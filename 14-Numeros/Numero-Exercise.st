@@ -375,16 +375,10 @@ Numero subclass: #Entero
 			 [^Fraccion with: self * (aMultiplier numerator)  over: aMultiplier denominator
 		].! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'MS 9/26/2020 18:21:30'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'MS 9/28/2020 22:06:20'!
 + anAdder 
 	
-	(anAdder isKindOf: self class) 
-		ifTrue: 
-			[^self class with: value + anAdder integerValue
-		] 
-		ifFalse:
-			 [^Fraccion with: self * (anAdder denominator) + anAdder numerator over: anAdder denominator
-		].! !
+	^anAdder sumarUnEntero: self.! !
 
 !Entero methodsFor: 'arithmetic operations' stamp: 'MS 9/26/2020 18:27:06'!
 - aSubtrahend 
@@ -430,6 +424,18 @@ fibonacci
 greatestCommonDivisorWith: anEntero 
 	
 	^self class with: (value gcd: anEntero integerValue)! !
+
+!Entero methodsFor: 'arithmetic operations' stamp: 'MS 9/28/2020 21:53:39'!
+sumarUnEntero: unEntero
+
+	^self class with: value + unEntero integerValue.
+! !
+
+!Entero methodsFor: 'arithmetic operations' stamp: 'MS 9/28/2020 21:58:06'!
+sumarUnaFraccion:  unaFraccion
+
+	^ (self * (unaFraccion denominator) + unaFraccion numerator) / unaFraccion denominator
+! !
 
 
 !Entero methodsFor: 'comparing' stamp: 'HernanWilkinson 5/7/2016 21:01'!
@@ -516,18 +522,10 @@ Numero subclass: #Fraccion
 		].
 	! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'MS 9/26/2020 18:24:43'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'MS 9/28/2020 22:06:34'!
 + anAdder 
 	
-	| newNumerator newDenominator |
-	(anAdder isKindOf: self class) 
-		ifTrue: [
-		newNumerator := (numerator * anAdder denominator) + (denominator * anAdder numerator).
-		newDenominator := denominator * anAdder denominator.
-		^newNumerator / newDenominator 
-		] 
-	
-		ifFalse: [^self class with: (self denominator * anAdder) + self numerator over: self denominator].! !
+	^anAdder sumarUnaFraccion: self! !
 
 !Fraccion methodsFor: 'arithmetic operations' stamp: 'MS 9/26/2020 18:31:48'!
 - aSubtrahend 
@@ -552,6 +550,20 @@ Numero subclass: #Fraccion
 		ifFalse:
 			 [^self class with: self numerator over: aDivisor * self denominator 
 		].! !
+
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'MS 9/28/2020 22:04:18'!
+sumarUnEntero: unEntero
+	
+	^(self denominator * unEntero) + self numerator / self denominator.
+	"se pueden sacar los self???"! !
+
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'MS 9/28/2020 22:02:27'!
+sumarUnaFraccion: unaFraccion
+	| newDenominator newNumerator |
+		
+	newNumerator := (numerator * unaFraccion denominator) + (denominator * unaFraccion numerator).
+		newDenominator := denominator * unaFraccion denominator.
+		^newNumerator / newDenominator ! !
 
 
 !Fraccion methodsFor: 'comparing' stamp: 'HernanWilkinson 5/7/2016 20:42'!
