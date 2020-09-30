@@ -1,4 +1,4 @@
-!classDefinition: #NumeroTest category: #'Numero-Exercise'!
+!classDefinition: #NumeroTest category: 'Numero-Exercise'!
 TestCase subclass: #NumeroTest
 	instanceVariableNames: 'zero one two four oneFifth oneHalf five twoFifth twoTwentyfifth fiveHalfs three eight negativeOne negativeTwo'
 	classVariableNames: ''
@@ -287,7 +287,7 @@ setUp
 	! !
 
 
-!classDefinition: #Numero category: #'Numero-Exercise'!
+!classDefinition: #Numero category: 'Numero-Exercise'!
 Object subclass: #Numero
 	instanceVariableNames: ''
 	classVariableNames: ''
@@ -342,7 +342,7 @@ isZero
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'Numero class' category: #'Numero-Exercise'!
+!classDefinition: 'Numero class' category: 'Numero-Exercise'!
 Numero class
 	instanceVariableNames: ''!
 
@@ -357,7 +357,7 @@ invalidNumberTypeErrorDescription
 	^ 'Tipo de número inválido!!'! !
 
 
-!classDefinition: #Entero category: #'Numero-Exercise'!
+!classDefinition: #Entero category: 'Numero-Exercise'!
 Numero subclass: #Entero
 	instanceVariableNames: 'value'
 	classVariableNames: ''
@@ -381,31 +381,25 @@ Numero subclass: #Entero
 	^ (aSubtrahend restarUnEntero: self) negated.
 ! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'MS 9/30/2020 18:13:25'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'FD 9/30/2020 19:21:40'!
 / aDivisor 
 	
-	(aDivisor isKindOf: self class) 
-		ifTrue: 
-			[^self dividirPorEntero: aDivisor .
-		] 
-		ifFalse:
-			 [^self dividirPorFraccion: aDivisor 
-		].! !
+	^aDivisor dividirUnEntero: self.! !
 
 !Entero methodsFor: 'arithmetic operations' stamp: 'HernanWilkinson 5/7/2016 21:55'!
 // aDivisor 
 	
 	^self class with: value // aDivisor integerValue! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'MS 9/30/2020 18:11:52'!
-dividirPorEntero:  unEntero
+!Entero methodsFor: 'arithmetic operations' stamp: 'FD 9/30/2020 19:24:26'!
+dividirUnEntero:  unEntero
 
-	^Fraccion with: self over: unEntero.! !
+	^Fraccion with: unEntero over: self.! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'MS 9/30/2020 18:03:21'!
-dividirPorFraccion:  unaFraccion
+!Entero methodsFor: 'arithmetic operations' stamp: 'FD 9/30/2020 19:24:45'!
+dividirUnaFraccion:  unaFraccion
 
-	^self * unaFraccion denominator / unaFraccion numerator.! !
+	^unaFraccion numerator / (unaFraccion denominator * self).! !
 
 !Entero methodsFor: 'arithmetic operations' stamp: 'HAW 9/24/2018 08:47:50'!
 fibonacci
@@ -509,7 +503,7 @@ isZero
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'Entero class' category: #'Numero-Exercise'!
+!classDefinition: 'Entero class' category: 'Numero-Exercise'!
 Entero class
 	instanceVariableNames: ''!
 
@@ -526,7 +520,7 @@ with: aValue
 	^self new initalizeWith: aValue! !
 
 
-!classDefinition: #Fraccion category: #'Numero-Exercise'!
+!classDefinition: #Fraccion category: 'Numero-Exercise'!
 Numero subclass: #Fraccion
 	instanceVariableNames: 'numerator denominator'
 	classVariableNames: ''
@@ -551,36 +545,30 @@ Numero subclass: #Fraccion
 
 ! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'MS 9/30/2020 18:16:06'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'FD 9/30/2020 19:21:57'!
 / aDivisor 
 		
-	(aDivisor isKindOf: self class) 
-		ifTrue: 
-			[^self dividirPorFraccion: aDivisor .
-		] 
-		ifFalse:
-			 [^self dividirPorEntero: aDivisor 
-		].! !
+	^aDivisor  dividirUnaFraccion: self.! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'MS 9/30/2020 18:16:53'!
-dividirPorEntero: unEntero
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'FD 9/30/2020 19:20:50'!
+dividirUnEntero: unEntero
 		
-	^ numerator/ (denominator *  unEntero) .! !
+	^ denominator * unEntero / numerator .! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'MS 9/30/2020 18:14:41'!
-dividirPorFraccion: unaFraccion
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'FD 9/30/2020 19:25:03'!
+dividirUnaFraccion: unaFraccion
 		
-	^(numerator * unaFraccion denominator) / (denominator * unaFraccion numerator).! !
+	^denominator * unaFraccion numerator / (numerator * unaFraccion denominator).! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'MS 9/30/2020 17:36:22'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'FD 9/30/2020 18:53:51'!
 multiplicarPorEntero: unEntero
 		
 	^ numerator *  unEntero / denominator.! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'MS 9/30/2020 17:33:02'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'FD 9/30/2020 19:25:24'!
 multiplicarPorFraccion: unaFraccion
 		
-	^(numerator * unaFraccion numerator) / (denominator * unaFraccion denominator).! !
+	^numerator * unaFraccion numerator / (denominator * unaFraccion denominator).! !
 
 !Fraccion methodsFor: 'arithmetic operations' stamp: 'MS 9/30/2020 17:54:06'!
 restarUnEntero: unEntero
@@ -669,7 +657,7 @@ printOn: aStream
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'Fraccion class' category: #'Numero-Exercise'!
+!classDefinition: 'Fraccion class' category: 'Numero-Exercise'!
 Fraccion class
 	instanceVariableNames: ''!
 
