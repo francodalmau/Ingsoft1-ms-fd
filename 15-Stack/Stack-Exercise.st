@@ -139,10 +139,134 @@ test10CanNotTopWhenThereAreNoObjectsInTheStack
 
 !classDefinition: #SentenceFinderByPrefixTest category: 'Stack-Exercise'!
 TestCase subclass: #SentenceFinderByPrefixTest
-	instanceVariableNames: ''
+	instanceVariableNames: 'testStack senteceFinder'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'FD 10/5/2020 18:20:54'!
+test01FindReturnsAnEmptyCollectionWhenTheStackIsEmpty
+	
+	self assert: (senteceFinder find: 'aSentence') isEmpty! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'FD 10/5/2020 18:21:01'!
+test02FindReturnsAnEmptyCollectionWhenThereIsNoMatch
+	
+	testStack push: 'aSentence'.
+
+	self assert: (senteceFinder find: 'noMatch') isEmpty! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'FD 10/5/2020 18:21:08'!
+test03FindReturnsACollectionsWithTheSingleMatchInTheStack
+	
+	|match|
+	
+	testStack push: 'aSentence'.
+	testStack push: 'anotherSentence'.
+
+	match := senteceFinder find: 'aS'.
+	self assert: match size = 1.
+	self assert: (match includes: 'aSentence').! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'FD 10/5/2020 18:21:13'!
+test04FindReturnsACollectionsWithAllTheMatchingSentences
+	
+	|match|
+	
+	testStack push: 'aSentence'.
+	testStack push: 'aSuperSentence'.
+	testStack push: 'aSensationalSentence'.
+	testStack push: 'anotherSentence'.
+
+	match := senteceFinder find: 'aS'.
+	self assert: match size = 3.
+	self assert: (match includes: 'aSentence').
+	self assert: (match includes: 'aSuperSentence').
+	self assert: (match includes: 'aSensationalSentence').! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'FD 10/5/2020 18:23:37'!
+test05FindOnlyReturnsMatchesByPrefix
+	
+	|match|
+	
+	testStack push: 'aSentence'.
+
+	match := senteceFinder find: 'Sentence'.
+	self assert: match isEmpty .! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'FD 10/5/2020 18:23:48'!
+test06FindReturnsAllMatchingAppereances
+	
+	|match|
+	
+	testStack push: 'aSentence'.
+	testStack push: 'aSentence'.
+	testStack push: 'aSentence'.
+	
+	match := senteceFinder find: 'aSentence'.
+	self assert: match size = 3 .
+	self assert: (match occurrencesOf: 'aSentence') = 3 .! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'FD 10/5/2020 18:23:59'!
+test07FindIsCaseSensitive
+	
+	|match|
+	
+	testStack push: 'aSentence'.
+	
+	match := senteceFinder find: 'asentence'.
+	self assert: match isEmpty .! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'FD 10/5/2020 18:27:41'!
+test08PrefixCantHaveSpaces
+	
+	
+	
+	testStack push: 'aSentence'.
+	
+	
+	self
+		should: [ senteceFinder find: 'a sentence' ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Prefix prefixHasEmptySpacesErrorDescription]! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'FD 10/5/2020 18:28:18'!
+test09PrefixCantBeEmpty
+	
+	
+	
+	testStack push: 'aSentence'.
+	
+	
+	self
+		should: [ senteceFinder find: '' ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Prefix emptyPrefixErrorDescription ]! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'FD 10/5/2020 18:33:54'!
+test10FindDoesNotAlterTheStack
+	
+	|initialStack|
+
+	testStack push: 'aSentence'.
+	testStack push: 'anotherSentence'.
+
+	initialStack := testStack  copy.
+	
+	senteceFinder find: 'aS'.
+
+	self assert: initialStack size = testStack size.
+	self assert: initialStack top = testStack top.! !
+
+
+!SentenceFinderByPrefixTest methodsFor: 'setup' stamp: 'FD 10/5/2020 17:37:24'!
+setUp
+
+	testStack := OOStack new.
+	senteceFinder := SentenceFinderByPrefix with: testStack.
+	! !
 
 
 !classDefinition: #OOStack category: 'Stack-Exercise'!
@@ -152,17 +276,28 @@ Object subclass: #OOStack
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'FD 10/4/2020 16:19:00'!
+!OOStack methodsFor: 'initialization' stamp: 'FD 10/4/2020 16:19:00'!
 initialize
 
 	size := 0.
 	top := NullStackElement  new.! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'FD 10/4/2020 16:20:41'!
+
+!OOStack methodsFor: 'values' stamp: 'FD 10/4/2020 16:20:41'!
 isEmpty
 	^size == 0.! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'FD 10/4/2020 16:18:28'!
+!OOStack methodsFor: 'values' stamp: 'FD 10/4/2020 15:58:24'!
+size
+	^size.! !
+
+!OOStack methodsFor: 'values' stamp: 'FD 10/4/2020 16:18:34'!
+top
+
+	^top sentence.! !
+
+
+!OOStack methodsFor: 'operations' stamp: 'FD 10/4/2020 16:18:28'!
 pop
 	|element|
 	
@@ -171,20 +306,11 @@ pop
 	size := size - 1.
 	^element sentence.! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'FD 10/4/2020 16:00:54'!
+!OOStack methodsFor: 'operations' stamp: 'FD 10/4/2020 16:00:54'!
 push: aSentence 
 	
 	size := size + 1.
 	top := StackElement with: aSentence pointingTo: top.! !
-
-!OOStack methodsFor: 'as yet unclassified' stamp: 'FD 10/4/2020 15:58:24'!
-size
-	^size.! !
-
-!OOStack methodsFor: 'as yet unclassified' stamp: 'FD 10/4/2020 16:18:34'!
-top
-
-	^top sentence.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -206,23 +332,26 @@ Object subclass: #SentenceFinderByPrefix
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'FD 10/4/2020 17:00:23'!
+!SentenceFinderByPrefix methodsFor: 'operations' stamp: 'FD 10/5/2020 18:19:08'!
 find: aPrefix
 
-	| sentencesWithPrefix actualElement stackCopy|
+	|prefix sentencesWithPrefix actualElement stackCopy|
 	
+	prefix := (Prefix with: aPrefix) value.
+
 	sentencesWithPrefix := OrderedCollection new.
 	stackCopy  := stack copy.
 	[stackCopy isEmpty ] whileFalse: [
 			actualElement := stackCopy pop.
 			(
-			(actualElement copyFrom: 1 to: aPrefix size) = aPrefix
+			(actualElement copyFrom: 1 to: prefix size) = prefix
 			) ifTrue: [ sentencesWithPrefix addLast: actualElement].
 	].
 
 	^ sentencesWithPrefix .! !
 
-!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'FD 10/4/2020 16:26:35'!
+
+!SentenceFinderByPrefix methodsFor: 'initialization' stamp: 'FD 10/4/2020 16:26:35'!
 initializeWith: aStack
 
 	stack := aStack.! !
@@ -236,6 +365,54 @@ SentenceFinderByPrefix class
 !SentenceFinderByPrefix class methodsFor: 'as yet unclassified' stamp: 'FD 10/4/2020 16:26:16'!
 with: aStack
 	^self new initializeWith: aStack.! !
+
+
+!classDefinition: #Prefix category: 'Stack-Exercise'!
+SentenceFinderByPrefix subclass: #Prefix
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!Prefix methodsFor: 'initialization' stamp: 'FD 10/5/2020 18:13:30'!
+value
+
+	^value.! !
+
+!Prefix methodsFor: 'initialization' stamp: 'FD 10/5/2020 18:13:05'!
+with: aPrefix
+
+	value := aPrefix.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Prefix class' category: 'Stack-Exercise'!
+Prefix class
+	instanceVariableNames: ''!
+
+!Prefix class methodsFor: 'initialization' stamp: 'FD 10/5/2020 18:17:37'!
+with: aPrefix
+
+	self validatePrefix: aPrefix.
+	^self new with: aPrefix .! !
+
+
+!Prefix class methodsFor: 'errors' stamp: 'FD 10/5/2020 18:17:00'!
+emptyPrefixErrorDescription
+
+	^'Prefix cannot be empty'.! !
+
+!Prefix class methodsFor: 'errors' stamp: 'FD 10/5/2020 18:17:16'!
+prefixHasEmptySpacesErrorDescription
+
+	^'Prefix cannot have empty spaces'.! !
+
+
+!Prefix class methodsFor: 'validation' stamp: 'FD 10/5/2020 18:16:05'!
+validatePrefix: aPrefix
+
+	aPrefix = '' ifTrue: [self error: self emptyPrefixErrorDescription].
+	(aPrefix includesSubString: ' ') ifTrue: [self error: self prefixHasEmptySpacesErrorDescription].! !
 
 
 !classDefinition: #StackElement category: 'Stack-Exercise'!
