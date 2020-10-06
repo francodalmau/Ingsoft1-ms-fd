@@ -144,6 +144,14 @@ TestCase subclass: #SentenceFinderByPrefixTest
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
+!SentenceFinderByPrefixTest methodsFor: 'setup' stamp: 'FD 10/5/2020 17:37:24'!
+setUp
+
+	testStack := OOStack new.
+	senteceFinder := SentenceFinderByPrefix with: testStack.
+	! !
+
+
 !SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'FD 10/5/2020 18:20:54'!
 test01FindReturnsAnEmptyCollectionWhenTheStackIsEmpty
 	
@@ -260,14 +268,6 @@ test10FindDoesNotAlterTheStack
 	self assert: initialStack size = testStack size.
 	self assert: initialStack top = testStack top.! !
 
-
-!SentenceFinderByPrefixTest methodsFor: 'setup' stamp: 'FD 10/5/2020 17:37:24'!
-setUp
-
-	testStack := OOStack new.
-	senteceFinder := SentenceFinderByPrefix with: testStack.
-	! !
-
 
 !classDefinition: #OOStack category: 'Stack-Exercise'!
 Object subclass: #OOStack
@@ -276,41 +276,39 @@ Object subclass: #OOStack
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OOStack methodsFor: 'initialization' stamp: 'FD 10/4/2020 16:19:00'!
+!OOStack methodsFor: 'as yet unclassified' stamp: 'FD 10/4/2020 16:19:00'!
 initialize
 
 	size := 0.
 	top := NullStackElement  new.! !
 
-
-!OOStack methodsFor: 'values' stamp: 'FD 10/4/2020 16:20:41'!
+!OOStack methodsFor: 'as yet unclassified' stamp: 'FD 10/4/2020 16:20:41'!
 isEmpty
 	^size == 0.! !
 
-!OOStack methodsFor: 'values' stamp: 'FD 10/4/2020 15:58:24'!
-size
-	^size.! !
-
-!OOStack methodsFor: 'values' stamp: 'FD 10/4/2020 16:18:34'!
-top
-
-	^top sentence.! !
-
-
-!OOStack methodsFor: 'operations' stamp: 'FD 10/4/2020 16:18:28'!
+!OOStack methodsFor: 'as yet unclassified' stamp: 'FD 10/5/2020 21:01:40'!
 pop
 	|element|
 	
 	element := top.
 	top := element predecessor.
 	size := size - 1.
-	^element sentence.! !
+	^element value.! !
 
-!OOStack methodsFor: 'operations' stamp: 'FD 10/4/2020 16:00:54'!
-push: aSentence 
+!OOStack methodsFor: 'as yet unclassified' stamp: 'FD 10/5/2020 21:01:55'!
+push: anElement 
 	
 	size := size + 1.
-	top := StackElement with: aSentence pointingTo: top.! !
+	top := StackElement with: anElement pointingTo: top.! !
+
+!OOStack methodsFor: 'as yet unclassified' stamp: 'FD 10/4/2020 15:58:24'!
+size
+	^size.! !
+
+!OOStack methodsFor: 'as yet unclassified' stamp: 'FD 10/5/2020 21:02:03'!
+top
+
+	^top value.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -325,50 +323,8 @@ stackEmptyErrorDescription
 
 
 
-!classDefinition: #SentenceFinderByPrefix category: 'Stack-Exercise'!
-Object subclass: #SentenceFinderByPrefix
-	instanceVariableNames: 'stack'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Stack-Exercise'!
-
-!SentenceFinderByPrefix methodsFor: 'operations' stamp: 'FD 10/5/2020 18:19:08'!
-find: aPrefix
-
-	|prefix sentencesWithPrefix actualElement stackCopy|
-	
-	prefix := (Prefix with: aPrefix) value.
-
-	sentencesWithPrefix := OrderedCollection new.
-	stackCopy  := stack copy.
-	[stackCopy isEmpty ] whileFalse: [
-			actualElement := stackCopy pop.
-			(
-			(actualElement copyFrom: 1 to: prefix size) = prefix
-			) ifTrue: [ sentencesWithPrefix addLast: actualElement].
-	].
-
-	^ sentencesWithPrefix .! !
-
-
-!SentenceFinderByPrefix methodsFor: 'initialization' stamp: 'FD 10/4/2020 16:26:35'!
-initializeWith: aStack
-
-	stack := aStack.! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'SentenceFinderByPrefix class' category: 'Stack-Exercise'!
-SentenceFinderByPrefix class
-	instanceVariableNames: ''!
-
-!SentenceFinderByPrefix class methodsFor: 'as yet unclassified' stamp: 'FD 10/4/2020 16:26:16'!
-with: aStack
-	^self new initializeWith: aStack.! !
-
-
 !classDefinition: #Prefix category: 'Stack-Exercise'!
-SentenceFinderByPrefix subclass: #Prefix
+Object subclass: #Prefix
 	instanceVariableNames: 'value'
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -390,11 +346,12 @@ with: aPrefix
 Prefix class
 	instanceVariableNames: ''!
 
-!Prefix class methodsFor: 'initialization' stamp: 'FD 10/5/2020 18:17:37'!
-with: aPrefix
 
-	self validatePrefix: aPrefix.
-	^self new with: aPrefix .! !
+!Prefix class methodsFor: 'validation' stamp: 'FD 10/5/2020 18:16:05'!
+validatePrefix: aPrefix
+
+	aPrefix = '' ifTrue: [self error: self emptyPrefixErrorDescription].
+	(aPrefix includesSubString: ' ') ifTrue: [self error: self prefixHasEmptySpacesErrorDescription].! !
 
 
 !Prefix class methodsFor: 'errors' stamp: 'FD 10/5/2020 18:17:00'!
@@ -408,24 +365,85 @@ prefixHasEmptySpacesErrorDescription
 	^'Prefix cannot have empty spaces'.! !
 
 
-!Prefix class methodsFor: 'validation' stamp: 'FD 10/5/2020 18:16:05'!
-validatePrefix: aPrefix
+!Prefix class methodsFor: 'initialization' stamp: 'FD 10/5/2020 18:17:37'!
+with: aPrefix
 
-	aPrefix = '' ifTrue: [self error: self emptyPrefixErrorDescription].
-	(aPrefix includesSubString: ' ') ifTrue: [self error: self prefixHasEmptySpacesErrorDescription].! !
+	self validatePrefix: aPrefix.
+	^self new with: aPrefix .! !
 
 
-!classDefinition: #StackElement category: 'Stack-Exercise'!
-Object subclass: #StackElement
-	instanceVariableNames: 'sentence predecessor'
+!classDefinition: #SentenceFinderByPrefix category: 'Stack-Exercise'!
+Object subclass: #SentenceFinderByPrefix
+	instanceVariableNames: 'stack'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!StackElement methodsFor: 'initialization' stamp: 'FD 10/4/2020 15:53:41'!
-initializeWith: aSentence pointingTo: aStackElement
+!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'FD 10/4/2020 16:26:35'!
+initializeWith: aStack
+
+	stack := aStack.! !
+
+
+!SentenceFinderByPrefix methodsFor: 'operations' stamp: 'FD 10/5/2020 20:51:49'!
+addToStack: aCollectionOfSentences
 	
-	sentence := aSentence.
+	aCollectionOfSentences do: [:sentence | stack push: sentence].! !
+
+!SentenceFinderByPrefix methodsFor: 'operations' stamp: 'FD 10/5/2020 21:00:28'!
+find: aPrefix
+
+	|prefix sentencesWithPrefix stackSentences|
+	
+	prefix := (Prefix with: aPrefix) value.
+
+	stackSentences := self getStackSentences.
+	sentencesWithPrefix  := stackSentences select: [:sentence | self sentence: sentence matchesPrefix: prefix].
+	
+	self addToStack: stackSentences.
+
+	^ sentencesWithPrefix .! !
+
+!SentenceFinderByPrefix methodsFor: 'operations' stamp: 'FD 10/5/2020 20:57:38'!
+getStackSentences
+
+	| stackSentences |
+	
+	stackSentences := OrderedCollection new.
+	
+	[stack isEmpty ] whileFalse: [
+			stackSentences addFirst: stack pop.
+	].
+
+	^stackSentences.! !
+
+!SentenceFinderByPrefix methodsFor: 'operations' stamp: 'FD 10/5/2020 21:00:02'!
+sentence: aSentence matchesPrefix: aPrefix
+
+	^(aSentence copyFrom: 1 to: aPrefix size) = aPrefix.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'SentenceFinderByPrefix class' category: 'Stack-Exercise'!
+SentenceFinderByPrefix class
+	instanceVariableNames: ''!
+
+!SentenceFinderByPrefix class methodsFor: 'as yet unclassified' stamp: 'FD 10/4/2020 16:26:16'!
+with: aStack
+	^self new initializeWith: aStack.! !
+
+
+!classDefinition: #StackElement category: 'Stack-Exercise'!
+Object subclass: #StackElement
+	instanceVariableNames: 'value predecessor'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!StackElement methodsFor: 'initialization' stamp: 'FD 10/5/2020 21:02:36'!
+initializeWith: anElement pointingTo: aStackElement
+	
+	value := anElement.
 	predecessor := aStackElement .! !
 
 
@@ -433,9 +451,9 @@ initializeWith: aSentence pointingTo: aStackElement
 predecessor
 	^predecessor.! !
 
-!StackElement methodsFor: 'as yet unclassified' stamp: 'FD 10/4/2020 15:43:50'!
-sentence
-	^sentence.! !
+!StackElement methodsFor: 'as yet unclassified' stamp: 'FD 10/5/2020 21:02:59'!
+value
+	^value.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -460,7 +478,7 @@ predecessor
 
 	^self error: OOStack stackEmptyErrorDescription.! !
 
-!NullStackElement methodsFor: 'as yet unclassified' stamp: 'FD 10/4/2020 16:17:53'!
-sentence
+!NullStackElement methodsFor: 'as yet unclassified' stamp: 'FD 10/5/2020 21:03:31'!
+value
 
 	^self error: OOStack stackEmptyErrorDescription.! !
