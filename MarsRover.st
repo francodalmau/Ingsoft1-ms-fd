@@ -150,6 +150,40 @@ self should: [MarsRover initializeInPosition: (0@0) facing: 0.]
 ! !
 
 
+!classDefinition: #Compass category: #MarsRover!
+Object subclass: #Compass
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Compass class' category: #MarsRover!
+Compass class
+	instanceVariableNames: ''!
+
+!Compass class methodsFor: 'convertions' stamp: 'MS 10/25/2020 20:01:31'!
+charToDegree: aChar
+
+	aChar = $N ifTrue:[^0].
+	aChar = $E ifTrue:[^90].
+	aChar = $S ifTrue:[^180].
+	aChar = $O ifTrue:[^270].! !
+
+!Compass class methodsFor: 'convertions' stamp: 'MS 10/25/2020 20:11:19'!
+degreeToChar: aDegree
+
+	|NormalizedDegree|
+
+	NormalizedDegree := aDegree \\ 360.
+	
+	NormalizedDegree = 0 ifTrue:[^$N].
+	NormalizedDegree = 90 ifTrue:[^$E].
+	NormalizedDegree = 180 ifTrue:[^$S].
+	NormalizedDegree = 270 ifTrue:[^$O].! !
+
+
 !classDefinition: #MarsRover category: #MarsRover!
 Object subclass: #MarsRover
 	instanceVariableNames: 'direction position'
@@ -157,62 +191,68 @@ Object subclass: #MarsRover
 	poolDictionaries: ''
 	category: 'MarsRover'!
 
-!MarsRover methodsFor: 'initialization' stamp: 'MS 10/25/2020 16:37:11'!
+!MarsRover methodsFor: 'initialization' stamp: 'MS 10/25/2020 20:02:57'!
 initializeInPosition: aPoint facing: aDirection 
 	
 	position := aPoint.
-	direction := aDirection.! !
+	direction := Compass charToDegree: aDirection.! !
 
 
-!MarsRover methodsFor: 'accessing' stamp: 'MS 10/25/2020 16:37:36'!
+!MarsRover methodsFor: 'accessing' stamp: 'MS 10/25/2020 20:03:20'!
 direction
 
-	^direction! !
+	^Compass degreeToChar: direction.! !
+
+!MarsRover methodsFor: 'accessing' stamp: 'MS 10/25/2020 20:30:03'!
+getMovementFromFacingDirection
+
+	|xAxis yAxis|
+	
+	xAxis := (direction/90) odd ifTrue:[1] ifFalse: [0]	.
+	yAxis := (direction/90) even ifTrue:[1] ifFalse:[0].
+	
+	^(xAxis@yAxis)! !
 
 !MarsRover methodsFor: 'accessing' stamp: 'MS 10/25/2020 16:34:26'!
 position
 	^position.! !
 
 
-!MarsRover methodsFor: 'actions' stamp: 'MS 10/25/2020 18:38:51'!
-RotateLeft
-
-	direction = $N ifTrue: [^direction:= $O].
-	direction = $E ifTrue: [^direction:= $N].
-	direction = $S ifTrue: [^direction:= $E].
-	direction = $O ifTrue: [^direction:= $S].! !
-
-!MarsRover methodsFor: 'actions' stamp: 'MS 10/25/2020 18:38:59'!
-RotateRight
-
-	direction = $N ifTrue: [^direction:= $E].
-	direction = $E ifTrue: [^direction:= $S].
-	direction = $S ifTrue: [^direction:= $O].
-	direction = $O ifTrue: [^direction:= $N].! !
-
-!MarsRover methodsFor: 'actions' stamp: 'MS 10/25/2020 18:21:12'!
+!MarsRover methodsFor: 'testing' stamp: 'MS 10/25/2020 18:21:12'!
 isMovementCommand: aCommand
 
 	^ aCommand = $f or: [aCommand = $b]! !
 
-!MarsRover methodsFor: 'actions' stamp: 'MS 10/25/2020 18:21:27'!
+!MarsRover methodsFor: 'testing' stamp: 'MS 10/25/2020 18:21:27'!
 isRotationCommand: aCommand
 
 	^ aCommand = $r or: [aCommand = $l]! !
 
-!MarsRover methodsFor: 'actions' stamp: 'MS 10/25/2020 18:48:26'!
+
+!MarsRover methodsFor: 'actions--private' stamp: 'MS 10/25/2020 20:14:53'!
+RotateLeft
+
+	direction := direction -90.! !
+
+!MarsRover methodsFor: 'actions--private' stamp: 'MS 10/25/2020 20:14:26'!
+RotateRight
+
+	direction := direction + 90.! !
+
+!MarsRover methodsFor: 'actions--private' stamp: 'MS 10/25/2020 20:29:38'!
 move: aDirection
 
-	| forwardDirection |
-	
-	direction = $N ifTrue:[forwardDirection := (0@1)].
-	direction = $E ifTrue:[forwardDirection := (1@0)].
-	direction = $S ifTrue:[forwardDirection := (0@-1)].
-	direction = $O ifTrue:[forwardDirection := (-1@0)].
-
 	^ aDirection = $f 
-			ifTrue: [position:= position + forwardDirection]
-			ifFalse: [position := position - forwardDirection]! !
+			ifTrue: [position:= position + self getMovementFromFacingDirection]
+			ifFalse: [position := position - self getMovementFromFacingDirection]! !
+
+!MarsRover methodsFor: 'actions--private' stamp: 'MS 10/25/2020 18:30:24'!
+rotate: aDirection
+
+	^ aDirection = $l 
+				ifTrue: [self RotateLeft]
+				ifFalse: [self RotateRight]! !
+
 
 !MarsRover methodsFor: 'actions' stamp: 'MS 10/25/2020 18:23:43'!
 processCommands: aString 
@@ -224,13 +264,6 @@ processCommands: aString
 			ifTrue: [self move: aCommand].
 		(self isRotationCommand: aCommand) 
 			ifTrue: [ self rotate: aCommand]].! !
-
-!MarsRover methodsFor: 'actions' stamp: 'MS 10/25/2020 18:30:24'!
-rotate: aDirection
-
-	^ aDirection = $l 
-				ifTrue: [self RotateLeft]
-				ifFalse: [self RotateRight]! !
 
 
 !MarsRover methodsFor: 'signals' stamp: 'MS 10/25/2020 17:47:04'!

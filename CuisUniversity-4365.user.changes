@@ -2621,3 +2621,673 @@ PASSED!
 
 !testRun: #MarsRoverTest #test13MarsRoverCantHaveAnInvalidDirection stamp: 'MS 10/25/2020 19:40:14'!
 PASSED!
+
+Object subclass: #Compass
+	instanceVariableNames: 'direction'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #Compass category: #MarsRover stamp: 'MS 10/25/2020 19:51:38'!
+Object subclass: #Compass
+	instanceVariableNames: 'direction'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+Object subclass: #Compass
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #Compass category: #MarsRover stamp: 'MS 10/25/2020 19:53:18'!
+Object subclass: #Compass
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+!Compass class methodsFor: 'nil' stamp: 'MS 10/25/2020 19:55:50'!
+degreeToChar: aDegree
+
+	aDegree = 0 ifTrue:[^$N].
+	aDegree = 90 ifTrue:[^$E].
+	aDegree = 180 ifTrue:[^$S].
+	aDegree = 270 ifTrue:[^$O].! !
+!Compass class methodsFor: 'as yet unclassified' stamp: 'MS 10/25/2020 19:58:27' prior: 50884554!
+degreeToChar: aDegree
+
+	|NormalizedDegree|
+
+	NormalizedDegree := aDegree % 360.
+	NormalizedDegree = 0 ifTrue:[^$N].
+	NormalizedDegree = 90 ifTrue:[^$E].
+	NormalizedDegree = 180 ifTrue:[^$S].
+	NormalizedDegree = 270 ifTrue:[^$O].! !
+!Compass class methodsFor: 'as yet unclassified' stamp: 'MS 10/25/2020 19:58:43' prior: 50884562!
+degreeToChar: aDegree
+
+	|NormalizedDegree|
+
+	NormalizedDegree := aDegree % 360.
+	
+	NormalizedDegree = 0 ifTrue:[^$N].
+	NormalizedDegree = 90 ifTrue:[^$E].
+	NormalizedDegree = 180 ifTrue:[^$S].
+	NormalizedDegree = 270 ifTrue:[^$O].! !
+!Compass class methodsFor: 'convertions' stamp: 'MS 10/25/2020 20:01:31'!
+charToDegree: aChar
+
+	aChar = $N ifTrue:[^0].
+	aChar = $E ifTrue:[^90].
+	aChar = $S ifTrue:[^180].
+	aChar = $O ifTrue:[^270].! !
+
+!testRun: #MarsRoverTest #test01MarsRoverHasPostionAndDirection stamp: 'MS 10/25/2020 20:01:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02CanMoveForward stamp: 'MS 10/25/2020 20:01:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03CanMoveBackwards stamp: 'MS 10/25/2020 20:01:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CanRotateRight stamp: 'MS 10/25/2020 20:01:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CanRotateLeft stamp: 'MS 10/25/2020 20:01:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MovingDoesNotAlterTheDirection stamp: 'MS 10/25/2020 20:01:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07RotatingDoesNotAlterPosition stamp: 'MS 10/25/2020 20:01:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08DoesNotProcessInvalidCommands stamp: 'MS 10/25/2020 20:01:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09canProcessMultipleMoveCommands stamp: 'MS 10/25/2020 20:01:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10canProcessMultipleRotateCommands stamp: 'MS 10/25/2020 20:01:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11MovesTowardsItsDirection stamp: 'MS 10/25/2020 20:01:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12MarsRoverCantHaveAnInvalidPosition stamp: 'MS 10/25/2020 20:01:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MarsRoverCantHaveAnInvalidDirection stamp: 'MS 10/25/2020 20:01:41'!
+PASSED!
+!MarsRover methodsFor: 'initialization' stamp: 'MS 10/25/2020 20:02:57' prior: 50882190!
+initializeInPosition: aPoint facing: aDirection 
+	
+	position := aPoint.
+	direction := Compass charToDegree: aDirection.! !
+!MarsRover methodsFor: 'accessing' stamp: 'MS 10/25/2020 20:03:20' prior: 50882205!
+direction
+
+	^Compass degreeToChar: direction.! !
+!MarsRover methodsFor: 'actions' stamp: 'MS 10/25/2020 20:03:46' prior: 50883522!
+RotateLeft
+
+	direction:= direction -90.! !
+!MarsRover methodsFor: 'actions' stamp: 'MS 10/25/2020 20:03:58' prior: 50883531!
+RotateRight
+
+	direction = direction + 90.! !
+
+!testRun: #MarsRoverTest #test01MarsRoverHasPostionAndDirection stamp: 'MS 10/25/2020 20:04:06'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02CanMoveForward stamp: 'MS 10/25/2020 20:04:06'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03CanMoveBackwards stamp: 'MS 10/25/2020 20:04:06'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04CanRotateRight stamp: 'MS 10/25/2020 20:04:06'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05CanRotateLeft stamp: 'MS 10/25/2020 20:04:06'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test06MovingDoesNotAlterTheDirection stamp: 'MS 10/25/2020 20:04:06'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07RotatingDoesNotAlterPosition stamp: 'MS 10/25/2020 20:04:06'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08DoesNotProcessInvalidCommands stamp: 'MS 10/25/2020 20:04:06'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test09canProcessMultipleMoveCommands stamp: 'MS 10/25/2020 20:04:06'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10canProcessMultipleRotateCommands stamp: 'MS 10/25/2020 20:04:06'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11MovesTowardsItsDirection stamp: 'MS 10/25/2020 20:04:06'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12MarsRoverCantHaveAnInvalidPosition stamp: 'MS 10/25/2020 20:04:06'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MarsRoverCantHaveAnInvalidDirection stamp: 'MS 10/25/2020 20:04:06'!
+PASSED!
+!MarsRover methodsFor: 'actions' stamp: 'MS 10/25/2020 20:05:22' prior: 50883682!
+move: aDirection
+
+	| forwardDirection |
+	
+	self direction = $N ifTrue:[forwardDirection := (0@1)].
+	self direction = $E ifTrue:[forwardDirection := (1@0)].
+	self direction = $S ifTrue:[forwardDirection := (0@-1)].
+	self direction = $O ifTrue:[forwardDirection := (-1@0)].
+
+	^ aDirection = $f 
+			ifTrue: [position:= position + forwardDirection]
+			ifFalse: [position := position - forwardDirection]! !
+
+!testRun: #MarsRoverTest #test01MarsRoverHasPostionAndDirection stamp: 'MS 10/25/2020 20:05:26'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02CanMoveForward stamp: 'MS 10/25/2020 20:05:26'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03CanMoveBackwards stamp: 'MS 10/25/2020 20:05:26'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04CanRotateRight stamp: 'MS 10/25/2020 20:05:26'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05CanRotateLeft stamp: 'MS 10/25/2020 20:05:26'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test06MovingDoesNotAlterTheDirection stamp: 'MS 10/25/2020 20:05:26'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07RotatingDoesNotAlterPosition stamp: 'MS 10/25/2020 20:05:26'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08DoesNotProcessInvalidCommands stamp: 'MS 10/25/2020 20:05:27'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test09canProcessMultipleMoveCommands stamp: 'MS 10/25/2020 20:05:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10canProcessMultipleRotateCommands stamp: 'MS 10/25/2020 20:05:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11MovesTowardsItsDirection stamp: 'MS 10/25/2020 20:05:27'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12MarsRoverCantHaveAnInvalidPosition stamp: 'MS 10/25/2020 20:05:27'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MarsRoverCantHaveAnInvalidDirection stamp: 'MS 10/25/2020 20:05:27'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02CanMoveForward stamp: 'MS 10/25/2020 20:05:59'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02CanMoveForward stamp: 'MS 10/25/2020 20:08:30'!
+ERROR!
+!Compass class methodsFor: 'convertions' stamp: 'MS 10/25/2020 20:11:19' prior: 50884573!
+degreeToChar: aDegree
+
+	|NormalizedDegree|
+
+	NormalizedDegree := aDegree \\ 360.
+	
+	NormalizedDegree = 0 ifTrue:[^$N].
+	NormalizedDegree = 90 ifTrue:[^$E].
+	NormalizedDegree = 180 ifTrue:[^$S].
+	NormalizedDegree = 270 ifTrue:[^$O].! !
+
+ 5.0 \\ 3.0!
+
+!testRun: #MarsRoverTest #test01MarsRoverHasPostionAndDirection stamp: 'MS 10/25/2020 20:12:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02CanMoveForward stamp: 'MS 10/25/2020 20:12:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03CanMoveBackwards stamp: 'MS 10/25/2020 20:12:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CanRotateRight stamp: 'MS 10/25/2020 20:12:08'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05CanRotateLeft stamp: 'MS 10/25/2020 20:12:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MovingDoesNotAlterTheDirection stamp: 'MS 10/25/2020 20:12:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07RotatingDoesNotAlterPosition stamp: 'MS 10/25/2020 20:12:08'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08DoesNotProcessInvalidCommands stamp: 'MS 10/25/2020 20:12:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09canProcessMultipleMoveCommands stamp: 'MS 10/25/2020 20:12:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10canProcessMultipleRotateCommands stamp: 'MS 10/25/2020 20:12:08'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11MovesTowardsItsDirection stamp: 'MS 10/25/2020 20:12:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12MarsRoverCantHaveAnInvalidPosition stamp: 'MS 10/25/2020 20:12:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MarsRoverCantHaveAnInvalidDirection stamp: 'MS 10/25/2020 20:12:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CanRotateRight stamp: 'MS 10/25/2020 20:12:24'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04CanRotateRight stamp: 'MS 10/25/2020 20:13:02'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04CanRotateRight stamp: 'MS 10/25/2020 20:13:08'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04CanRotateRight stamp: 'MS 10/25/2020 20:13:12'!
+ERROR!
+!MarsRover methodsFor: 'actions' stamp: 'MS 10/25/2020 20:14:26' prior: 50884647!
+RotateRight
+
+	direction := direction + 90.! !
+
+!testRun: #MarsRoverTest #test01MarsRoverHasPostionAndDirection stamp: 'MS 10/25/2020 20:14:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02CanMoveForward stamp: 'MS 10/25/2020 20:14:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03CanMoveBackwards stamp: 'MS 10/25/2020 20:14:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CanRotateRight stamp: 'MS 10/25/2020 20:14:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CanRotateLeft stamp: 'MS 10/25/2020 20:14:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MovingDoesNotAlterTheDirection stamp: 'MS 10/25/2020 20:14:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07RotatingDoesNotAlterPosition stamp: 'MS 10/25/2020 20:14:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08DoesNotProcessInvalidCommands stamp: 'MS 10/25/2020 20:14:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09canProcessMultipleMoveCommands stamp: 'MS 10/25/2020 20:14:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10canProcessMultipleRotateCommands stamp: 'MS 10/25/2020 20:14:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11MovesTowardsItsDirection stamp: 'MS 10/25/2020 20:14:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12MarsRoverCantHaveAnInvalidPosition stamp: 'MS 10/25/2020 20:14:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MarsRoverCantHaveAnInvalidDirection stamp: 'MS 10/25/2020 20:14:30'!
+PASSED!
+!MarsRover methodsFor: 'actions' stamp: 'MS 10/25/2020 20:14:53' prior: 50884643!
+RotateLeft
+
+	direction := direction -90.! !
+!MarsRover methodsFor: 'actions' stamp: 'MS 10/25/2020 20:23:05' prior: 50884692!
+move: aDirection
+
+	| forwardDirection xAxis yAxis|
+	
+	xAxis := (direction/90) odd ifTrue:[1] ifFalse: [0]	.
+	yAxis := (direction-90)/180 even ifTrue:[1] ifFalse:[0].
+	
+	forwardDirection := (xAxis@yAxis).
+	"
+	self direction = $N ifTrue:[forwardDirection := (0@1)].
+	self direction = $E ifTrue:[forwardDirection := (1@0)].
+	self direction = $S ifTrue:[forwardDirection := (0@-1)].
+	self direction = $O ifTrue:[forwardDirection := (-1@0)].
+"
+	^ aDirection = $f 
+			ifTrue: [position:= position + forwardDirection]
+			ifFalse: [position := position - forwardDirection]! !
+
+!testRun: #MarsRoverTest #test01MarsRoverHasPostionAndDirection stamp: 'MS 10/25/2020 20:23:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02CanMoveForward stamp: 'MS 10/25/2020 20:23:08'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03CanMoveBackwards stamp: 'MS 10/25/2020 20:23:08'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04CanRotateRight stamp: 'MS 10/25/2020 20:23:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CanRotateLeft stamp: 'MS 10/25/2020 20:23:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MovingDoesNotAlterTheDirection stamp: 'MS 10/25/2020 20:23:09'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07RotatingDoesNotAlterPosition stamp: 'MS 10/25/2020 20:23:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08DoesNotProcessInvalidCommands stamp: 'MS 10/25/2020 20:23:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09canProcessMultipleMoveCommands stamp: 'MS 10/25/2020 20:23:09'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10canProcessMultipleRotateCommands stamp: 'MS 10/25/2020 20:23:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11MovesTowardsItsDirection stamp: 'MS 10/25/2020 20:23:09'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12MarsRoverCantHaveAnInvalidPosition stamp: 'MS 10/25/2020 20:23:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MarsRoverCantHaveAnInvalidDirection stamp: 'MS 10/25/2020 20:23:09'!
+PASSED!
+!MarsRover methodsFor: 'actions' stamp: 'MS 10/25/2020 20:23:31' prior: 50884866!
+move: aDirection
+
+	| forwardDirection xAxis yAxis|
+	
+	xAxis := (direction/90) odd ifTrue:[1] ifFalse: [0]	.
+	yAxis := (direction/90)/180 even ifTrue:[1] ifFalse:[0].
+	
+	forwardDirection := (xAxis@yAxis).
+	"
+	self direction = $N ifTrue:[forwardDirection := (0@1)].
+	self direction = $E ifTrue:[forwardDirection := (1@0)].
+	self direction = $S ifTrue:[forwardDirection := (0@-1)].
+	self direction = $O ifTrue:[forwardDirection := (-1@0)].
+"
+	^ aDirection = $f 
+			ifTrue: [position:= position + forwardDirection]
+			ifFalse: [position := position - forwardDirection]! !
+!MarsRover methodsFor: 'actions' stamp: 'MS 10/25/2020 20:23:36' prior: 50884927!
+move: aDirection
+
+	| forwardDirection xAxis yAxis|
+	
+	xAxis := (direction/90) odd ifTrue:[1] ifFalse: [0]	.
+	yAxis := (direction/90) even ifTrue:[1] ifFalse:[0].
+	
+	forwardDirection := (xAxis@yAxis).
+	"
+	self direction = $N ifTrue:[forwardDirection := (0@1)].
+	self direction = $E ifTrue:[forwardDirection := (1@0)].
+	self direction = $S ifTrue:[forwardDirection := (0@-1)].
+	self direction = $O ifTrue:[forwardDirection := (-1@0)].
+"
+	^ aDirection = $f 
+			ifTrue: [position:= position + forwardDirection]
+			ifFalse: [position := position - forwardDirection]! !
+
+!testRun: #MarsRoverTest #test01MarsRoverHasPostionAndDirection stamp: 'MS 10/25/2020 20:23:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02CanMoveForward stamp: 'MS 10/25/2020 20:23:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03CanMoveBackwards stamp: 'MS 10/25/2020 20:23:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CanRotateRight stamp: 'MS 10/25/2020 20:23:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CanRotateLeft stamp: 'MS 10/25/2020 20:23:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MovingDoesNotAlterTheDirection stamp: 'MS 10/25/2020 20:23:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07RotatingDoesNotAlterPosition stamp: 'MS 10/25/2020 20:23:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08DoesNotProcessInvalidCommands stamp: 'MS 10/25/2020 20:23:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09canProcessMultipleMoveCommands stamp: 'MS 10/25/2020 20:23:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10canProcessMultipleRotateCommands stamp: 'MS 10/25/2020 20:23:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11MovesTowardsItsDirection stamp: 'MS 10/25/2020 20:23:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12MarsRoverCantHaveAnInvalidPosition stamp: 'MS 10/25/2020 20:23:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MarsRoverCantHaveAnInvalidDirection stamp: 'MS 10/25/2020 20:23:54'!
+PASSED!
+!MarsRover methodsFor: 'actions' stamp: 'MS 10/25/2020 20:24:34' prior: 50884948!
+move: aDirection
+
+	| forwardDirection xAxis yAxis|
+	
+	xAxis := (direction/90) odd ifTrue:[1] ifFalse: [0]	.
+	yAxis := (direction/90) even ifTrue:[1] ifFalse:[0].
+	
+	forwardDirection := (xAxis@yAxis).
+
+	^ aDirection = $f 
+			ifTrue: [position:= position + forwardDirection]
+			ifFalse: [position := position - forwardDirection]! !
+!MarsRover methodsFor: 'actions' stamp: 'MS 10/25/2020 20:26:05' prior: 50885009!
+move: aDirection
+
+	| forwardDirection xAxis yAxis|
+	
+	xAxis := (direction/90) odd ifTrue:[1] ifFalse: [0]	.
+	yAxis := (direction/90) even ifTrue:[1] ifFalse:[0].
+	
+	forwardDirection := (xAxis@yAxis).
+
+	^ aDirection = $f 
+			ifTrue: [position:= position + self getMovementFromDirection]
+			ifFalse: [position := position - self getMovementFromDirection]! !
+!MarsRover methodsFor: 'actions' stamp: 'MS 10/25/2020 20:26:35'!
+getMovementFromDirection
+
+	| forwardDirection xAxis yAxis|
+	
+	xAxis := (direction/90) odd ifTrue:[1] ifFalse: [0]	.
+	yAxis := (direction/90) even ifTrue:[1] ifFalse:[0].
+	
+	forwardDirection := (xAxis@yAxis)! !
+!MarsRover methodsFor: 'actions' stamp: 'MS 10/25/2020 20:26:35' prior: 50885022!
+move: aDirection
+
+	self getMovementFromDirection.
+
+	^ aDirection = $f 
+			ifTrue: [position:= position + self getMovementFromDirection]
+			ifFalse: [position := position - self getMovementFromDirection]! !
+!MarsRover methodsFor: 'actions' stamp: 'MS 10/25/2020 20:26:59' prior: 50885046!
+move: aDirection
+
+	| forwardDirection xAxis yAxis|
+	
+	xAxis := (direction/90) odd ifTrue:[1] ifFalse: [0]	.
+	yAxis := (direction/90) even ifTrue:[1] ifFalse:[0].
+	
+	forwardDirection := (xAxis@yAxis).
+
+	^ aDirection = $f 
+			ifTrue: [position:= position + self getMovementFromDirection]
+			ifFalse: [position := position - self getMovementFromDirection]! !
+!MarsRover methodsFor: 'actions' stamp: 'MS 10/25/2020 20:29:22' prior: 50885055!
+move: aDirection
+
+	^ aDirection = $f 
+			ifTrue: [position:= position + self getMovementFromDirection]
+			ifFalse: [position := position - self getMovementFromDirection]! !
+!MarsRover methodsFor: 'actions' stamp: 'MS 10/25/2020 20:29:38'!
+getMovementFromFacingDirection
+
+	| forwardDirection xAxis yAxis|
+	
+	xAxis := (direction/90) odd ifTrue:[1] ifFalse: [0]	.
+	yAxis := (direction/90) even ifTrue:[1] ifFalse:[0].
+	
+	forwardDirection := (xAxis@yAxis)! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'MS 10/25/2020 20:29:38' prior: 50885069!
+move: aDirection
+
+	^ aDirection = $f 
+			ifTrue: [position:= position + self getMovementFromFacingDirection]
+			ifFalse: [position := position - self getMovementFromFacingDirection]! !
+
+!methodRemoval: MarsRover #getMovementFromDirection stamp: 'MS 10/25/2020 20:29:38'!
+getMovementFromDirection
+
+	| forwardDirection xAxis yAxis|
+	
+	xAxis := (direction/90) odd ifTrue:[1] ifFalse: [0]	.
+	yAxis := (direction/90) even ifTrue:[1] ifFalse:[0].
+	
+	forwardDirection := (xAxis@yAxis)!
+!MarsRover methodsFor: 'actions' stamp: 'MS 10/25/2020 20:30:03' prior: 50885077!
+getMovementFromFacingDirection
+
+	|xAxis yAxis|
+	
+	xAxis := (direction/90) odd ifTrue:[1] ifFalse: [0]	.
+	yAxis := (direction/90) even ifTrue:[1] ifFalse:[0].
+	
+	^(xAxis@yAxis)! !
+
+!testRun: #MarsRoverTest #test01MarsRoverHasPostionAndDirection stamp: 'MS 10/25/2020 20:30:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02CanMoveForward stamp: 'MS 10/25/2020 20:30:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03CanMoveBackwards stamp: 'MS 10/25/2020 20:30:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CanRotateRight stamp: 'MS 10/25/2020 20:30:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CanRotateLeft stamp: 'MS 10/25/2020 20:30:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MovingDoesNotAlterTheDirection stamp: 'MS 10/25/2020 20:30:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07RotatingDoesNotAlterPosition stamp: 'MS 10/25/2020 20:30:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08DoesNotProcessInvalidCommands stamp: 'MS 10/25/2020 20:30:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09canProcessMultipleMoveCommands stamp: 'MS 10/25/2020 20:30:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10canProcessMultipleRotateCommands stamp: 'MS 10/25/2020 20:30:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11MovesTowardsItsDirection stamp: 'MS 10/25/2020 20:30:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12MarsRoverCantHaveAnInvalidPosition stamp: 'MS 10/25/2020 20:30:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MarsRoverCantHaveAnInvalidDirection stamp: 'MS 10/25/2020 20:30:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01MarsRoverHasPostionAndDirection stamp: 'MS 10/25/2020 20:33:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02CanMoveForward stamp: 'MS 10/25/2020 20:33:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03CanMoveBackwards stamp: 'MS 10/25/2020 20:33:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CanRotateRight stamp: 'MS 10/25/2020 20:33:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CanRotateLeft stamp: 'MS 10/25/2020 20:33:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MovingDoesNotAlterTheDirection stamp: 'MS 10/25/2020 20:33:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07RotatingDoesNotAlterPosition stamp: 'MS 10/25/2020 20:33:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08DoesNotProcessInvalidCommands stamp: 'MS 10/25/2020 20:33:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09canProcessMultipleMoveCommands stamp: 'MS 10/25/2020 20:33:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10canProcessMultipleRotateCommands stamp: 'MS 10/25/2020 20:33:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11MovesTowardsItsDirection stamp: 'MS 10/25/2020 20:33:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12MarsRoverCantHaveAnInvalidPosition stamp: 'MS 10/25/2020 20:33:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MarsRoverCantHaveAnInvalidDirection stamp: 'MS 10/25/2020 20:33:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01MarsRoverHasPostionAndDirection stamp: 'MS 10/25/2020 20:34:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02CanMoveForward stamp: 'MS 10/25/2020 20:34:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03CanMoveBackwards stamp: 'MS 10/25/2020 20:34:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CanRotateRight stamp: 'MS 10/25/2020 20:34:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CanRotateLeft stamp: 'MS 10/25/2020 20:34:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MovingDoesNotAlterTheDirection stamp: 'MS 10/25/2020 20:34:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07RotatingDoesNotAlterPosition stamp: 'MS 10/25/2020 20:34:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08DoesNotProcessInvalidCommands stamp: 'MS 10/25/2020 20:34:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09canProcessMultipleMoveCommands stamp: 'MS 10/25/2020 20:34:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10canProcessMultipleRotateCommands stamp: 'MS 10/25/2020 20:34:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11MovesTowardsItsDirection stamp: 'MS 10/25/2020 20:34:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12MarsRoverCantHaveAnInvalidPosition stamp: 'MS 10/25/2020 20:34:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MarsRoverCantHaveAnInvalidDirection stamp: 'MS 10/25/2020 20:34:06'!
+PASSED!
