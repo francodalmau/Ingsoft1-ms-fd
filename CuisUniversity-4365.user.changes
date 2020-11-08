@@ -4751,3 +4751,666 @@ PASSED!
 PASSED!
 
 ----SNAPSHOT----(3 November 2020 18:34:06) CuisUniversity-4365.image priorSource: 17744509!
+
+----QUIT----(3 November 2020 18:50:49) CuisUniversity-4365.image priorSource: 17774490!
+
+----STARTUP---- (8 November 2020 15:59:37) as C:\Users\mdlcs\Downloads\OS\cuis3\CuisUniversity-4365.image!
+
+
+!testRun: #PortfolioTest #test06AddingPortfolioChangesBalanceByPortfolioBalance stamp: 'MS 11/8/2020 16:05:31'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MS 11/8/2020 16:05:52'!
+test07AddingPortfolioDoesNotAddAccountsItAlreadyHas
+
+	| aPortfolio aBiggerPortfolio account |
+	
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+	
+	aPortfolio := Portfolio  new.
+	aBiggerPortfolio := Portfolio  new.
+	
+	aPortfolio add: account.
+	aBiggerPortfolio add: account.
+	aBiggerPortfolio add: aPortfolio.
+		
+	self assert: 100 equals: aBiggerPortfolio balance.
+	self assert: 1 equals: aBiggerPortfolio transactions size.
+! !
+
+!methodRemoval: PortfolioTest #no_test07AddingPortfolioDoesNotAddAccountsItAlreadyHas stamp: 'MS 11/8/2020 16:06:00'!
+no_test07AddingPortfolioDoesNotAddAccountsItAlreadyHas
+
+	| aPortfolio aBiggerPortfolio account |
+	
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+	
+	aPortfolio := Portfolio  new.
+	aBiggerPortfolio := Portfolio  new.
+	
+	aPortfolio add: account.
+	aBiggerPortfolio add: account.
+	aBiggerPortfolio add: aPortfolio.
+		
+	self assert: 100 equals: aBiggerPortfolio balance.
+	self assert: 1 equals: aBiggerPortfolio transactions size.
+!
+
+!testRun: #PortfolioTest #test07AddingPortfolioDoesNotAddAccountsItAlreadyHas stamp: 'MS 11/8/2020 16:06:12'!
+FAILURE!
+
+!testRun: #PortfolioTest #test07AddingPortfolioDoesNotAddAccountsItAlreadyHas stamp: 'MS 11/8/2020 16:06:13'!
+FAILURE!
+
+!testRun: #PortfolioTest #test01PortfolioHasZeroAsBalanceWhenCreated stamp: 'MS 11/8/2020 16:07:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddingAccountChangesBalanceByAccountBalance stamp: 'MS 11/8/2020 16:07:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactions stamp: 'MS 11/8/2020 16:07:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoesNotKnowNotRegisteredTransactions stamp: 'MS 11/8/2020 16:07:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsItsTransactions stamp: 'MS 11/8/2020 16:07:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test06AddingPortfolioChangesBalanceByPortfolioBalance stamp: 'MS 11/8/2020 16:07:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test07AddingPortfolioDoesNotAddAccountsItAlreadyHas stamp: 'MS 11/8/2020 16:07:10'!
+FAILURE!
+
+!testRun: #PortfolioTest #test07AddingPortfolioDoesNotAddAccountsItAlreadyHas stamp: 'MS 11/8/2020 16:07:10'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MS 11/8/2020 16:07:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MS 11/8/2020 16:07:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MS 11/8/2020 16:07:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MS 11/8/2020 16:07:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MS 11/8/2020 16:07:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MS 11/8/2020 16:07:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MS 11/8/2020 16:07:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test07AddingPortfolioDoesNotAddAccountsItAlreadyHas stamp: 'MS 11/8/2020 16:07:25'!
+FAILURE!
+
+!testRun: #PortfolioTest #test07AddingPortfolioDoesNotAddAccountsItAlreadyHas stamp: 'MS 11/8/2020 16:07:25'!
+FAILURE!
+
+!testRun: #PortfolioTest #test07AddingPortfolioDoesNotAddAccountsItAlreadyHas stamp: 'MS 11/8/2020 16:11:06'!
+FAILURE!
+
+!testRun: #PortfolioTest #test07AddingPortfolioDoesNotAddAccountsItAlreadyHas stamp: 'MS 11/8/2020 16:11:06'!
+FAILURE!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MS 11/8/2020 16:12:45' prior: 50887117!
+test07AddingPortfolioDoesNotAddAccountsItAlreadyHas
+
+	| aPortfolio aBiggerPortfolio account |
+	
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+	
+	aPortfolio := Portfolio  new.
+	aBiggerPortfolio := Portfolio  new.
+	
+	aPortfolio add: account.
+	"aBiggerPortfolio add: account."
+	aBiggerPortfolio add: aPortfolio.
+		
+	self assert: 100 equals: aBiggerPortfolio balance.
+	self assert: 1 equals: aBiggerPortfolio transactions size.
+! !
+
+!testRun: #PortfolioTest #test07AddingPortfolioDoesNotAddAccountsItAlreadyHas stamp: 'MS 11/8/2020 16:12:48'!
+PASSED!
+
+	"aBiggerPortfolio add: aPortfolio."!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MS 11/8/2020 16:13:08' prior: 50887230!
+test07AddingPortfolioDoesNotAddAccountsItAlreadyHas
+
+	| aPortfolio aBiggerPortfolio account |
+	
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+	
+	aPortfolio := Portfolio  new.
+	aBiggerPortfolio := Portfolio  new.
+	
+	aPortfolio add: account.
+	aBiggerPortfolio add: account.
+	"aBiggerPortfolio add: aPortfolio."
+		
+	self assert: 100 equals: aBiggerPortfolio balance.
+	self assert: 1 equals: aBiggerPortfolio transactions size.
+! !
+
+!testRun: #PortfolioTest #test07AddingPortfolioDoesNotAddAccountsItAlreadyHas stamp: 'MS 11/8/2020 16:13:10'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MS 11/8/2020 16:14:32' prior: 50887253!
+test07AddingPortfolioDoesNotAddAccountsItAlreadyHas
+
+	| aPortfolio aBiggerPortfolio account account2 |
+	
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 100 on: account2.
+	
+	aPortfolio := Portfolio  new.
+	aBiggerPortfolio := Portfolio  new.
+	
+	aPortfolio add: account.
+	aBiggerPortfolio add: account2.
+	aBiggerPortfolio add: aPortfolio.
+		
+	self assert: 200 equals: aBiggerPortfolio balance.
+	self assert: 2 equals: aBiggerPortfolio transactions size.
+! !
+
+!testRun: #PortfolioTest #test07AddingPortfolioDoesNotAddAccountsItAlreadyHas stamp: 'MS 11/8/2020 16:14:36'!
+FAILURE!
+
+!testRun: #PortfolioTest #test07AddingPortfolioDoesNotAddAccountsItAlreadyHas stamp: 'MS 11/8/2020 16:14:36'!
+FAILURE!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MS 11/8/2020 16:15:07' prior: 50887274!
+test07AddingPortfolioDoesNotAddAccountsItAlreadyHas
+
+	| aPortfolio aBiggerPortfolio account account2 |
+	
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 100 on: account2.
+	
+	aPortfolio := Portfolio  new.
+	aBiggerPortfolio := Portfolio  new.
+	
+	aPortfolio add: account.
+	aBiggerPortfolio add: account2.
+	aBiggerPortfolio add: aPortfolio.
+		
+	"self assert: 200 equals: aBiggerPortfolio balance."
+	self assert: 2 equals: aBiggerPortfolio transactions size.
+! !
+
+!testRun: #PortfolioTest #test07AddingPortfolioDoesNotAddAccountsItAlreadyHas stamp: 'MS 11/8/2020 16:15:41'!
+FAILURE!
+
+!testRun: #PortfolioTest #test07AddingPortfolioDoesNotAddAccountsItAlreadyHas stamp: 'MS 11/8/2020 16:15:42'!
+FAILURE!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MS 11/8/2020 16:18:41' prior: 50887302!
+test07AddingPortfolioDoesNotAddAccountsItAlreadyHas
+
+	| aPortfolio aBiggerPortfolio account account2 |
+	
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 150 on: account2.
+	
+	aPortfolio := Portfolio  new.
+	aBiggerPortfolio := Portfolio  new.
+	
+	aPortfolio add: account.
+	aBiggerPortfolio add: account2.
+	aBiggerPortfolio add: aPortfolio.
+		
+	"self assert: 200 equals: aBiggerPortfolio balance."
+	self assert: 2 equals: aBiggerPortfolio transactions size.
+! !
+
+!testRun: #PortfolioTest #test07AddingPortfolioDoesNotAddAccountsItAlreadyHas stamp: 'MS 11/8/2020 16:19:09'!
+FAILURE!
+
+!testRun: #PortfolioTest #test07AddingPortfolioDoesNotAddAccountsItAlreadyHas stamp: 'MS 11/8/2020 16:19:09'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 11/8/2020 16:28:19' prior: 50886705!
+addNewTransactions: aTransactionList 
+	|newTransactions result|
+	
+	newTransactions:= self transactions reject: [:aTransaction| aTransactionList includes: aTransaction].  
+	
+	result :=  aTransactionList copy addAll: newTransactions .
+	^result.! !
+
+!testRun: #PortfolioTest #test07AddingPortfolioDoesNotAddAccountsItAlreadyHas stamp: 'MS 11/8/2020 16:29:08'!
+FAILURE!
+
+!testRun: #PortfolioTest #test07AddingPortfolioDoesNotAddAccountsItAlreadyHas stamp: 'MS 11/8/2020 16:29:08'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 11/8/2020 16:37:51' prior: 50887358!
+addNewTransactions: aTransactionList 
+	|newTransactions result|
+	
+	newTransactions:= self transactions reject: [:aTransaction| aTransactionList includes: aTransaction].  
+	
+	result :=  newTransactions addAll: aTransactionList .
+	^result.! !
+
+!testRun: #PortfolioTest #test07AddingPortfolioDoesNotAddAccountsItAlreadyHas stamp: 'MS 11/8/2020 16:40:55'!
+FAILURE!
+
+!testRun: #PortfolioTest #test07AddingPortfolioDoesNotAddAccountsItAlreadyHas stamp: 'MS 11/8/2020 16:40:55'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 11/8/2020 16:45:14' prior: 50887377!
+addNewTransactions: aTransactionList 
+	|newTransactions result|
+	
+	newTransactions:= self transactions reject: [:aTransaction| aTransactionList includes: aTransaction].  
+	
+	result :=  aTransactionList copy. 
+	result addAll: newTransactions.
+	^result.! !
+
+!testRun: #PortfolioTest #test07AddingPortfolioDoesNotAddAccountsItAlreadyHas stamp: 'MS 11/8/2020 16:45:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test07AddingPortfolioDoesNotAddAccountsItAlreadyHas stamp: 'MS 11/8/2020 16:45:55'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MS 11/8/2020 16:46:07' prior: 50887330!
+test07AddingPortfolioDoesNotAddAccountsItAlreadyHas
+
+	| aPortfolio aBiggerPortfolio account account2 |
+	
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 150 on: account2.
+	
+	aPortfolio := Portfolio  new.
+	aBiggerPortfolio := Portfolio  new.
+	
+	aPortfolio add: account.
+	aBiggerPortfolio add: account2.
+	aBiggerPortfolio add: aPortfolio.
+		
+	self assert: 250 equals: aBiggerPortfolio balance.
+	self assert: 2 equals: aBiggerPortfolio transactions size.
+! !
+
+!testRun: #PortfolioTest #test07AddingPortfolioDoesNotAddAccountsItAlreadyHas stamp: 'MS 11/8/2020 16:46:10'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MS 11/8/2020 16:52:01' prior: 50887415!
+test07AddingPortfolioDoesNotAddAccountsItAlreadyHas
+
+	| aPortfolio aBiggerPortfolio account |
+	
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+	
+	aPortfolio := Portfolio  new.
+	aBiggerPortfolio := Portfolio  new.
+	
+	aPortfolio add: account.
+	aBiggerPortfolio add: account.
+	aBiggerPortfolio add: aPortfolio.
+		
+	self assert: 100 equals: aBiggerPortfolio balance.
+	self assert: 2 equals: aBiggerPortfolio transactions size.
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MS 11/8/2020 16:52:10' prior: 50887439!
+test07AddingPortfolioDoesNotAddAccountsItAlreadyHas
+
+	| aPortfolio aBiggerPortfolio account |
+	
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+	
+	aPortfolio := Portfolio  new.
+	aBiggerPortfolio := Portfolio  new.
+	
+	aPortfolio add: account.
+	aBiggerPortfolio add: account.
+	aBiggerPortfolio add: aPortfolio.
+		
+	self assert: 100 equals: aBiggerPortfolio balance.
+	self assert: 1 equals: aBiggerPortfolio transactions size.
+! !
+
+!testRun: #PortfolioTest #test07AddingPortfolioDoesNotAddAccountsItAlreadyHas stamp: 'MS 11/8/2020 16:52:14'!
+PASSED!
+
+----SNAPSHOT----(8 November 2020 16:57:23) CuisUniversity-4365.image priorSource: 17774583!
+!PortfolioTest methodsFor: 'actions' stamp: 'MS 11/8/2020 17:01:17' prior: 50885991!
+test02AddingAccountChangesBalanceByAccountBalance
+
+	| aPortfolio  account |
+	
+	account:= self createAccountWithBalance: 100.
+	
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+	aPortfolio := Portfolio  new.
+	
+	aPortfolio add: account.
+		
+	self assert: 100 equals: aPortfolio balance.
+
+
+! !
+!PortfolioTest methodsFor: 'actions' stamp: 'MS 11/8/2020 17:01:48'!
+createAccountWithBalance: aBalance
+
+! !
+!PortfolioTest methodsFor: 'actions' stamp: 'MS 11/8/2020 17:02:03' prior: 50887481!
+test02AddingAccountChangesBalanceByAccountBalance
+
+	| aPortfolio  account |
+	
+	account:= self createAccountWithBalance: 100.
+	aPortfolio := Portfolio  new.
+	
+	aPortfolio add: account.
+		
+	self assert: 100 equals: aPortfolio balance.
+
+
+! !
+!PortfolioTest methodsFor: 'actions' stamp: 'MS 11/8/2020 17:03:48' prior: 50887493!
+createAccountWithBalance: aBalance	
+	|account|
+
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+	
+	^account. 
+
+! !
+
+!testRun: #PortfolioTest #test02AddingAccountChangesBalanceByAccountBalance stamp: 'MS 11/8/2020 17:04:00'!
+PASSED!
+!PortfolioTest methodsFor: 'accessing' stamp: 'MS 11/8/2020 17:05:08' prior: 50886219!
+test05PortfolioKnowsItsTransactions 
+
+	| account deposit aPortfolio|
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 50 on: account.
+	
+	aPortfolio := Portfolio  new.
+	aPortfolio add: account.
+		
+	self assert: 1 equals: aPortfolio transactions size.
+	self assert: (aPortfolio transactions includes: deposit).
+! !
+!PortfolioTest methodsFor: 'actions' stamp: 'MS 11/2/2020 20:45:28' prior: 50887497!
+test02AddingAccountChangesBalanceByAccountBalance
+
+	| aPortfolio  account |
+	
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+	aPortfolio := Portfolio  new.
+	
+	aPortfolio add: account.
+		
+	self assert: 100 equals: aPortfolio balance.
+
+
+! !
+
+!methodRemoval: PortfolioTest #createAccountWithBalance: stamp: 'MS 11/8/2020 17:05:43'!
+createAccountWithBalance: aBalance	
+	|account|
+
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+	
+	^account. 
+
+!
+
+!testRun: #PortfolioTest #test01PortfolioHasZeroAsBalanceWhenCreated stamp: 'MS 11/8/2020 17:05:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddingAccountChangesBalanceByAccountBalance stamp: 'MS 11/8/2020 17:05:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactions stamp: 'MS 11/8/2020 17:05:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoesNotKnowNotRegisteredTransactions stamp: 'MS 11/8/2020 17:05:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsItsTransactions stamp: 'MS 11/8/2020 17:05:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test06AddingPortfolioChangesBalanceByPortfolioBalance stamp: 'MS 11/8/2020 17:05:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test07AddingPortfolioDoesNotAddAccountsItAlreadyHas stamp: 'MS 11/8/2020 17:05:47'!
+PASSED!
+!Portfolio methodsFor: 'actions' stamp: 'MS 11/8/2020 17:06:59' prior: 50886144!
+hasRegistered: aDeposit 
+	^ (contents select: [:anItem | anItem hasRegistered: aDeposit]) size = 1.! !
+!Portfolio methodsFor: 'accessing' stamp: 'MS 11/8/2020 17:09:35' prior: 50886864!
+transactions
+	
+	|allTransactions|
+	allTransactions := OrderedCollection new.
+
+	"contents do: [:anItem | allTransactions:= (anItem addNewTransactions: allTransactions)]."
+	
+	self addNewTransactions: allTransactions.
+
+	
+	^allTransactions.
+	! !
+
+!testRun: #PortfolioTest #test01PortfolioHasZeroAsBalanceWhenCreated stamp: 'MS 11/8/2020 17:09:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddingAccountChangesBalanceByAccountBalance stamp: 'MS 11/8/2020 17:09:39'!
+FAILURE!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactions stamp: 'MS 11/8/2020 17:09:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoesNotKnowNotRegisteredTransactions stamp: 'MS 11/8/2020 17:09:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsItsTransactions stamp: 'MS 11/8/2020 17:09:39'!
+FAILURE!
+
+!testRun: #PortfolioTest #test06AddingPortfolioChangesBalanceByPortfolioBalance stamp: 'MS 11/8/2020 17:09:39'!
+FAILURE!
+
+!testRun: #PortfolioTest #test07AddingPortfolioDoesNotAddAccountsItAlreadyHas stamp: 'MS 11/8/2020 17:09:39'!
+FAILURE!
+!Portfolio methodsFor: 'accessing' stamp: 'MS 11/8/2020 17:10:05' prior: 50887581!
+transactions
+	
+	|allTransactions|
+	allTransactions := OrderedCollection new.
+
+	"contents do: [:anItem | allTransactions:= (anItem addNewTransactions: allTransactions)]."
+	
+	allTransactions:=  self addNewTransactions: allTransactions.
+
+	
+	^allTransactions.
+	! !
+
+!testRun: #PortfolioTest #test01PortfolioHasZeroAsBalanceWhenCreated stamp: 'MS 11/8/2020 17:10:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddingAccountChangesBalanceByAccountBalance stamp: 'MS 11/8/2020 17:10:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactions stamp: 'MS 11/8/2020 17:10:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoesNotKnowNotRegisteredTransactions stamp: 'MS 11/8/2020 17:10:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsItsTransactions stamp: 'MS 11/8/2020 17:10:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test06AddingPortfolioChangesBalanceByPortfolioBalance stamp: 'MS 11/8/2020 17:10:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test07AddingPortfolioDoesNotAddAccountsItAlreadyHas stamp: 'MS 11/8/2020 17:10:10'!
+PASSED!
+!Portfolio methodsFor: 'accessing' stamp: 'MS 11/8/2020 17:10:46' prior: 50887617!
+transactions
+	
+	|allTransactions|
+	allTransactions := OrderedCollection new.
+
+	allTransactions:=  self addNewTransactions: allTransactions.
+
+	^allTransactions.
+	! !
+!Portfolio methodsFor: 'accessing' stamp: 'MS 11/8/2020 17:11:39' prior: 50887653!
+transactions
+	
+	|allTransactions|
+	allTransactions := OrderedCollection new.
+
+	allTransactions:=  self addUniqueTransactions: allTransactions.
+
+	^allTransactions.
+	! !
+!Portfolio methodsFor: 'accessing' stamp: 'MS 11/8/2020 17:10:46' prior: 50887661!
+transactions
+	
+	|allTransactions|
+	allTransactions := OrderedCollection new.
+
+	allTransactions:=  self addNewTransactions: allTransactions.
+
+	^allTransactions.
+	! !
+!Portfolio methodsFor: 'actions' stamp: 'MS 11/8/2020 17:12:34'!
+addUniqueTransactions: aTransactionList
+	
+	|newTransactions|
+	newTransactions := aTransactionList .
+
+	contents do: [:anItem | newTransactions := anItem addNewTransactions: aTransactionList].
+
+	^newTransactions.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 11/8/2020 17:12:34'!
+addUniqueTransactions: aTransactionList 
+	|newTransactions result|
+	
+	newTransactions:= self transactions reject: [:aTransaction| aTransactionList includes: aTransaction].  
+	
+	result :=  aTransactionList copy. 
+	result addAll: newTransactions.
+	^result.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 11/8/2020 17:12:35' prior: 50886816!
+addNewTransactions: aTransactionList
+	
+	|newTransactions|
+	newTransactions := aTransactionList .
+
+	contents do: [:anItem | newTransactions := anItem addUniqueTransactions: aTransactionList].
+
+	^newTransactions.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 11/8/2020 17:12:35' prior: 50887669!
+transactions
+	
+	|allTransactions|
+	allTransactions := OrderedCollection new.
+
+	allTransactions:=  self addUniqueTransactions: allTransactions.
+
+	^allTransactions.
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 11/8/2020 17:12:35' prior: 50887677!
+addUniqueTransactions: aTransactionList
+	
+	|newTransactions|
+	newTransactions := aTransactionList .
+
+	contents do: [:anItem | newTransactions := anItem addUniqueTransactions: aTransactionList].
+
+	^newTransactions.! !
+
+!methodRemoval: Portfolio #addNewTransactions: stamp: 'MS 11/8/2020 17:12:35'!
+addNewTransactions: aTransactionList
+	
+	|newTransactions|
+	newTransactions := aTransactionList .
+
+	contents do: [:anItem | newTransactions := anItem addUniqueTransactions: aTransactionList].
+
+	^newTransactions.!
+
+!methodRemoval: ReceptiveAccount #addNewTransactions: stamp: 'MS 11/8/2020 17:12:35'!
+addNewTransactions: aTransactionList 
+	|newTransactions result|
+	
+	newTransactions:= self transactions reject: [:aTransaction| aTransactionList includes: aTransaction].  
+	
+	result :=  aTransactionList copy. 
+	result addAll: newTransactions.
+	^result.!
+
+!testRun: #PortfolioTest #test01PortfolioHasZeroAsBalanceWhenCreated stamp: 'MS 11/8/2020 17:12:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AddingAccountChangesBalanceByAccountBalance stamp: 'MS 11/8/2020 17:12:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactions stamp: 'MS 11/8/2020 17:12:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoesNotKnowNotRegisteredTransactions stamp: 'MS 11/8/2020 17:12:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioKnowsItsTransactions stamp: 'MS 11/8/2020 17:12:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test06AddingPortfolioChangesBalanceByPortfolioBalance stamp: 'MS 11/8/2020 17:12:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test07AddingPortfolioDoesNotAddAccountsItAlreadyHas stamp: 'MS 11/8/2020 17:12:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MS 11/8/2020 17:12:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MS 11/8/2020 17:12:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MS 11/8/2020 17:12:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MS 11/8/2020 17:12:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MS 11/8/2020 17:12:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MS 11/8/2020 17:12:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MS 11/8/2020 17:12:50'!
+PASSED!
+
+----SNAPSHOT----(8 November 2020 17:13:41) CuisUniversity-4365.image priorSource: 17786457!
+
+----QUIT----(8 November 2020 17:14:02) CuisUniversity-4365.image priorSource: 17796696!

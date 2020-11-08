@@ -5,26 +5,7 @@ TestCase subclass: #PortfolioTest
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MS 11/3/2020 18:32:54'!
-no_test07AddingPortfolioDoesNotAddAccountsItAlreadyHas
-
-	| aPortfolio aBiggerPortfolio account |
-	
-	account := ReceptiveAccount  new.
-	Deposit register: 100 on: account.
-	
-	aPortfolio := Portfolio  new.
-	aBiggerPortfolio := Portfolio  new.
-	
-	aPortfolio add: account.
-	aBiggerPortfolio add: account.
-	aBiggerPortfolio add: aPortfolio.
-		
-	self assert: 100 equals: aBiggerPortfolio balance.
-	self assert: 1 equals: aBiggerPortfolio transactions size.
-! !
-
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MS 11/2/2020 19:54:41'!
+!PortfolioTest methodsFor: 'accessing' stamp: 'MS 11/2/2020 19:54:41'!
 test01PortfolioHasZeroAsBalanceWhenCreated 
 
 	| aPortfolio |
@@ -34,23 +15,7 @@ test01PortfolioHasZeroAsBalanceWhenCreated
 	self assert: 0 equals: aPortfolio balance.
 ! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MS 11/2/2020 20:45:28'!
-test02AddingAccountChangesBalanceByAccountBalance
-
-	| aPortfolio  account |
-	
-	account := ReceptiveAccount  new.
-	Deposit register: 100 on: account.
-	aPortfolio := Portfolio  new.
-	
-	aPortfolio add: account.
-		
-	self assert: 100 equals: aPortfolio balance.
-
-
-! !
-
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MS 11/2/2020 21:00:07'!
+!PortfolioTest methodsFor: 'accessing' stamp: 'MS 11/2/2020 21:00:07'!
 test03PortfolioKnowsRegisteredTransactions 
 
 	| aPortfolio  account deposit |
@@ -63,7 +28,7 @@ test03PortfolioKnowsRegisteredTransactions
 		
 	self assert: (aPortfolio hasRegistered: deposit).! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MS 11/3/2020 16:46:34'!
+!PortfolioTest methodsFor: 'accessing' stamp: 'MS 11/3/2020 16:46:34'!
 test04PortfolioDoesNotKnowNotRegisteredTransactions
 
 	| deposit withdraw account aPortfolio |
@@ -79,22 +44,39 @@ test04PortfolioDoesNotKnowNotRegisteredTransactions
 	self deny: (account hasRegistered:withdraw).
 ! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MS 11/3/2020 16:52:37'!
+!PortfolioTest methodsFor: 'accessing' stamp: 'MS 11/8/2020 17:05:08'!
 test05PortfolioKnowsItsTransactions 
 
-	| account1 deposit1 aPortfolio|
+	| account deposit aPortfolio|
 	
-	account1 := ReceptiveAccount new.
-	deposit1 := Deposit register: 50 on: account1.
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 50 on: account.
 	
 	aPortfolio := Portfolio  new.
-	aPortfolio add: account1.
+	aPortfolio add: account.
 		
 	self assert: 1 equals: aPortfolio transactions size.
-	self assert: (aPortfolio transactions includes: deposit1).
+	self assert: (aPortfolio transactions includes: deposit).
 ! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MS 11/3/2020 17:08:59'!
+
+!PortfolioTest methodsFor: 'actions' stamp: 'MS 11/2/2020 20:45:28'!
+test02AddingAccountChangesBalanceByAccountBalance
+
+	| aPortfolio  account |
+	
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+	aPortfolio := Portfolio  new.
+	
+	aPortfolio add: account.
+		
+	self assert: 100 equals: aPortfolio balance.
+
+
+! !
+
+!PortfolioTest methodsFor: 'actions' stamp: 'MS 11/3/2020 17:08:59'!
 test06AddingPortfolioChangesBalanceByPortfolioBalance
 
 	| aPortfolio aBiggerPortfolio account |
@@ -111,6 +93,25 @@ test06AddingPortfolioChangesBalanceByPortfolioBalance
 	self assert: 100 equals: aBiggerPortfolio balance.
 
 
+! !
+
+!PortfolioTest methodsFor: 'actions' stamp: 'MS 11/8/2020 16:52:10'!
+test07AddingPortfolioDoesNotAddAccountsItAlreadyHas
+
+	| aPortfolio aBiggerPortfolio account |
+	
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+	
+	aPortfolio := Portfolio  new.
+	aBiggerPortfolio := Portfolio  new.
+	
+	aPortfolio add: account.
+	aBiggerPortfolio add: account.
+	aBiggerPortfolio add: aPortfolio.
+		
+	self assert: 100 equals: aBiggerPortfolio balance.
+	self assert: 1 equals: aBiggerPortfolio transactions size.
 ! !
 
 
@@ -324,15 +325,14 @@ balance
 	
 	^balance.! !
 
-!Portfolio methodsFor: 'accessing' stamp: 'MS 11/3/2020 18:27:44'!
+!Portfolio methodsFor: 'accessing' stamp: 'MS 11/8/2020 17:12:35'!
 transactions
 	
 	|allTransactions|
 	allTransactions := OrderedCollection new.
 
-	contents do: [:anItem | allTransactions:= (anItem addNewTransactions: allTransactions)].
+	allTransactions:=  self addUniqueTransactions: allTransactions.
 
-	
 	^allTransactions.
 	! !
 
@@ -342,13 +342,13 @@ add: anItem
 	
 	contents add: anItem.! !
 
-!Portfolio methodsFor: 'actions' stamp: 'MS 11/3/2020 18:21:54'!
-addNewTransactions: aTransactionList
+!Portfolio methodsFor: 'actions' stamp: 'MS 11/8/2020 17:12:35'!
+addUniqueTransactions: aTransactionList
 	
 	|newTransactions|
 	newTransactions := aTransactionList .
 
-	contents do: [:anItem | newTransactions := anItem addNewTransactions: aTransactionList].
+	contents do: [:anItem | newTransactions := anItem addUniqueTransactions: aTransactionList].
 
 	^newTransactions.! !
 
@@ -357,9 +357,8 @@ contents
 	
 	^contents.! !
 
-!Portfolio methodsFor: 'actions' stamp: 'MS 11/2/2020 21:11:14'!
+!Portfolio methodsFor: 'actions' stamp: 'MS 11/8/2020 17:06:59'!
 hasRegistered: aDeposit 
-	"^ aDeposit = contents detect: [:anItem | anItem hasRegistered: aDeposit] ifNone: []."
 	^ (contents select: [:anItem | anItem hasRegistered: aDeposit]) size = 1.! !
 
 
@@ -411,11 +410,12 @@ hasRegistered: aTransaction
 ! !
 
 
-!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 11/3/2020 18:04:52'!
-addNewTransactions: aTransactionList 
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 11/8/2020 17:12:34'!
+addUniqueTransactions: aTransactionList 
 	|newTransactions result|
 	
 	newTransactions:= self transactions reject: [:aTransaction| aTransactionList includes: aTransaction].  
 	
-	result :=  aTransactionList addAll: newTransactions .
+	result :=  aTransactionList copy. 
+	result addAll: newTransactions.
 	^result.! !
