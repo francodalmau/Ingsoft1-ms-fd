@@ -1,4 +1,4 @@
-!classDefinition: #PortfolioTest category: #'Portfolio-Solucion'!
+!classDefinition: #PortfolioTest category: 'Portfolio-Solucion'!
 TestCase subclass: #PortfolioTest
 	instanceVariableNames: ''
 	classVariableNames: ''
@@ -214,7 +214,7 @@ test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd
 			self assert: portfolioToModify accountsIsEmpty ]! !
 
 
-!classDefinition: #ReceptiveAccountTest category: #'Portfolio-Solucion'!
+!classDefinition: #ReceptiveAccountTest category: 'Portfolio-Solucion'!
 TestCase subclass: #ReceptiveAccountTest
 	instanceVariableNames: ''
 	classVariableNames: ''
@@ -305,7 +305,54 @@ test07AccountKnowsItsTransactions
 ! !
 
 
-!classDefinition: #Account category: #'Portfolio-Solucion'!
+!classDefinition: #ReportTest category: 'Portfolio-Solucion'!
+TestCase subclass: #ReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'FD 11/12/2020 21:44:02'!
+test01AccountSummaryOfAnEmptyPortfolioIsEmpty
+
+	| report | 
+	
+	report := Report for: Portfolio new.
+	
+	self assert: report accountsSummary isEmpty.! !
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'FD 11/12/2020 21:55:47'!
+test02AccountSummaryOfAPortfolioWithADepositAddsIt
+
+	| report account portfolio | 
+	
+	
+	account := ReceptiveAccount new.
+	
+	Deposit register: 100 on: account.
+	portfolio := Portfolio with: account.
+	
+	report := Report for: portfolio.
+	
+	self assert: report accountsSummary first equals: 'Depósito por 100'.! !
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'FD 11/12/2020 22:03:58'!
+test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt
+
+	| report account portfolio | 
+	
+	
+	account := ReceptiveAccount new.
+	
+	Withdraw register: 50 on: account.
+	portfolio := Portfolio with: account.
+	
+	report := Report for: portfolio.
+	
+	self assert: report accountsSummary first equals: 'Extracción por 50'.! !
+
+
+!classDefinition: #Account category: 'Portfolio-Solucion'!
 Object subclass: #Account
 	instanceVariableNames: ''
 	classVariableNames: ''
@@ -346,7 +393,7 @@ addedTo: aPortfolio
 	self subclassResponsibility ! !
 
 
-!classDefinition: #Portfolio category: #'Portfolio-Solucion'!
+!classDefinition: #Portfolio category: 'Portfolio-Solucion'!
 Account subclass: #Portfolio
 	instanceVariableNames: 'accounts parents'
 	classVariableNames: ''
@@ -459,7 +506,7 @@ signalCanNotAddAccount
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'Portfolio class' category: #'Portfolio-Solucion'!
+!classDefinition: 'Portfolio class' category: 'Portfolio-Solucion'!
 Portfolio class
 	instanceVariableNames: ''!
 
@@ -484,7 +531,7 @@ with: anAccount with: anotherAccount
 		yourself! !
 
 
-!classDefinition: #ReceptiveAccount category: #'Portfolio-Solucion'!
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Solucion'!
 Account subclass: #ReceptiveAccount
 	instanceVariableNames: 'transactions'
 	classVariableNames: ''
@@ -541,7 +588,7 @@ addedTo: aPortfolio
 	! !
 
 
-!classDefinition: #AccountTransaction category: #'Portfolio-Solucion'!
+!classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
 Object subclass: #AccountTransaction
 	instanceVariableNames: ''
 	classVariableNames: ''
@@ -561,7 +608,7 @@ affectBalance: aBalance
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'AccountTransaction class' category: #'Portfolio-Solucion'!
+!classDefinition: 'AccountTransaction class' category: 'Portfolio-Solucion'!
 AccountTransaction class
 	instanceVariableNames: ''!
 
@@ -576,7 +623,7 @@ register: aValue on: account
 	^ transaction! !
 
 
-!classDefinition: #Deposit category: #'Portfolio-Solucion'!
+!classDefinition: #Deposit category: 'Portfolio-Solucion'!
 AccountTransaction subclass: #Deposit
 	instanceVariableNames: 'value'
 	classVariableNames: ''
@@ -602,7 +649,7 @@ affectBalance: aBalance
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'Deposit class' category: #'Portfolio-Solucion'!
+!classDefinition: 'Deposit class' category: 'Portfolio-Solucion'!
 Deposit class
 	instanceVariableNames: ''!
 
@@ -612,7 +659,7 @@ for: aValue
 	^ self new initializeFor: aValue ! !
 
 
-!classDefinition: #Withdraw category: #'Portfolio-Solucion'!
+!classDefinition: #Withdraw category: 'Portfolio-Solucion'!
 AccountTransaction subclass: #Withdraw
 	instanceVariableNames: 'value'
 	classVariableNames: ''
@@ -638,7 +685,7 @@ affectBalance: aBalance
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'Withdraw class' category: #'Portfolio-Solucion'!
+!classDefinition: 'Withdraw class' category: 'Portfolio-Solucion'!
 Withdraw class
 	instanceVariableNames: ''!
 
@@ -646,3 +693,37 @@ Withdraw class
 for: aValue
 
 	^ self new initializeFor: aValue ! !
+
+
+!classDefinition: #Report category: 'Portfolio-Solucion'!
+Object subclass: #Report
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!Report methodsFor: 'initialization' stamp: 'FD 11/12/2020 21:43:21'!
+initializeWith: anAccount 
+	
+	account := anAccount.! !
+
+
+!Report methodsFor: 'as yet unclassified' stamp: 'FD 11/12/2020 22:03:08'!
+accountsSummary
+
+	"Nico dice que el mensaje accounts o transactions no tiene que aparecer"
+	account transactions isEmpty ifTrue: [^OrderedCollection new].
+	(account transactions first isKindOf: Deposit) ifTrue: [^OrderedCollection with: 'Depósito por 100'.	].
+	
+	^OrderedCollection with: 'Extracción por 50'.	
+	! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Report class' category: 'Portfolio-Solucion'!
+Report class
+	instanceVariableNames: ''!
+
+!Report class methodsFor: 'as yet unclassified' stamp: 'FD 11/12/2020 21:43:08'!
+for: anAccount 
+	^self new initializeWith: anAccount.! !
