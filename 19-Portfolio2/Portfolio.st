@@ -1,9 +1,9 @@
-!classDefinition: #PortfolioTest category: 'Portfolio-Solucion'!
+!classDefinition: #PortfolioTest category: 'Portfolio'!
 TestCase subclass: #PortfolioTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
+	category: 'Portfolio'!
 
 !PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:16:26'!
 test01BalanceOfPortfolioWithoutAccountsIsZero
@@ -214,12 +214,12 @@ test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd
 			self assert: portfolioToModify accountsIsEmpty ]! !
 
 
-!classDefinition: #ReceptiveAccountTest category: 'Portfolio-Solucion'!
+!classDefinition: #ReceptiveAccountTest category: 'Portfolio'!
 TestCase subclass: #ReceptiveAccountTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
+	category: 'Portfolio'!
 
 !ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:19:48'!
 test01ReceptiveAccountHaveZeroAsBalanceWhenCreated 
@@ -305,12 +305,12 @@ test07AccountKnowsItsTransactions
 ! !
 
 
-!classDefinition: #ReportTest category: 'Portfolio-Solucion'!
+!classDefinition: #ReportTest category: 'Portfolio'!
 TestCase subclass: #ReportTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
+	category: 'Portfolio'!
 
 !ReportTest methodsFor: 'as yet unclassified' stamp: 'FD 11/12/2020 21:44:02'!
 test01AccountSummaryOfAnEmptyPortfolioIsEmpty
@@ -334,7 +334,7 @@ test02AccountSummaryOfAPortfolioWithADepositAddsIt
 	
 	report := Report for: portfolio.
 	
-	self assert: report accountsSummary first equals: 'Depósito por 100'.! !
+	self assert: report accountsSummary first equals: 'Dep\F3sito por 100'.! !
 
 !ReportTest methodsFor: 'as yet unclassified' stamp: 'FD 11/12/2020 22:03:58'!
 test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt
@@ -349,15 +349,107 @@ test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt
 	
 	report := Report for: portfolio.
 	
-	self assert: report accountsSummary first equals: 'Extracción por 50'.! !
+	self assert: report accountsSummary first equals: 'Extracci\F3n por 50'.! !
+
 
 
-!classDefinition: #Account category: 'Portfolio-Solucion'!
+!classDefinition: #TransferTest category: 'Portfolio'!
+TestCase subclass: #TransferTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 20:55:05'!
+test01ARegisteredTransferToAnotherAccountDiminishesBalance
+
+
+	| account anotherAccount |
+	
+	account := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Transfer register: 100 on: account to: anotherAccount.
+		
+	self assert: -100 equals: account balance .
+! !
+
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 20:55:08'!
+test02ARegisteredTransferFromAnotherAccountIncreasesBalance
+
+
+	| account anotherAccount |
+	
+	account := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Transfer register: 100 on: anotherAccount to: account.
+		
+	self assert: 100 equals: account balance .
+! !
+
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 21:22:33'!
+test03SenderKnowsItsTransfer
+
+
+	| account anotherAccount transfer |
+	
+	account := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	transfer := Transfer register: 100 on: account to: anotherAccount.
+		
+	self assert: (account hasRegistered: transfer sending)
+! !
+
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 21:22:40'!
+test04ReceiverKnowsItsTransfer
+
+
+	| account anotherAccount transfer |
+	
+	account := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	transfer := Transfer register: 100 on: account to: anotherAccount.
+		
+	self assert: (anotherAccount hasRegistered: transfer reception)
+! !
+
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 20:55:50'!
+test05AnAccountCannotTransferToItself
+
+
+	| account |
+	
+	account := ReceptiveAccount new.
+		
+		self 
+		should: [ Transfer register: 100 on: account to: account ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: [ Transfer accountsMustBeDifferentErrorDescription ]! !
+
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 21:31:45'!
+test06TransferAmountShouldBeGreaterThanZero
+
+
+	| account anotherAccount |
+	
+	account := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+		
+		self 
+		should: [ Transfer register: 0 on: account to: anotherAccount ]
+		raise: Error - MessageNotUnderstood 
+		withMessageText: [ Transfer amountShouldBeGreaterThanZeroErrorDescription ]! !
+
+
+!classDefinition: #Account category: 'Portfolio'!
 Object subclass: #Account
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
+	category: 'Portfolio'!
 
 !Account methodsFor: 'testing' stamp: 'HAW 5/25/2019 12:23:47'!
 hasRegistered: aTransaction
@@ -393,12 +485,12 @@ addedTo: aPortfolio
 	self subclassResponsibility ! !
 
 
-!classDefinition: #Portfolio category: 'Portfolio-Solucion'!
+!classDefinition: #Portfolio category: 'Portfolio'!
 Account subclass: #Portfolio
 	instanceVariableNames: 'accounts parents'
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
+	category: 'Portfolio'!
 
 !Portfolio methodsFor: 'accounts management' stamp: 'HAW 5/25/2019 11:49:20'!
 accountsIncludes: anAccount
@@ -506,7 +598,7 @@ signalCanNotAddAccount
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'Portfolio class' category: 'Portfolio-Solucion'!
+!classDefinition: 'Portfolio class' category: 'Portfolio'!
 Portfolio class
 	instanceVariableNames: ''!
 
@@ -531,12 +623,12 @@ with: anAccount with: anotherAccount
 		yourself! !
 
 
-!classDefinition: #ReceptiveAccount category: 'Portfolio-Solucion'!
+!classDefinition: #ReceptiveAccount category: 'Portfolio'!
 Account subclass: #ReceptiveAccount
 	instanceVariableNames: 'transactions'
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
+	category: 'Portfolio'!
 
 !ReceptiveAccount methodsFor: 'initialization' stamp: 'HernanWilkinson 7/13/2011 18:35'!
 initialize
@@ -562,12 +654,12 @@ transactions
 	^ transactions copy! !
 
 
-!ReceptiveAccount methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:24:46'!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'FD 11/9/2020 20:35:50'!
 balance
 
 	^transactions 
 		inject: 0
-		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]! !
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance]! !
 
 
 !ReceptiveAccount methodsFor: 'testing' stamp: 'NR 10/21/2019 18:55:56'!
@@ -587,13 +679,18 @@ addedTo: aPortfolio
 	
 	! !
 
+
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 21:02:10'!
+register: aClass registerFor: aSmallInteger 
+	self shouldBeImplemented.! !
+
 
-!classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
+!classDefinition: #AccountTransaction category: 'Portfolio'!
 Object subclass: #AccountTransaction
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
+	category: 'Portfolio'!
 
 !AccountTransaction methodsFor: 'value' stamp: 'HernanWilkinson 9/12/2011 12:25'!
 value 
@@ -601,14 +698,14 @@ value
 	self subclassResponsibility ! !
 
 
-!AccountTransaction methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:39'!
+!AccountTransaction methodsFor: 'balance' stamp: 'FD 11/9/2020 20:35:37'!
 affectBalance: aBalance
 
 	self subclassResponsibility ! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'AccountTransaction class' category: 'Portfolio-Solucion'!
+!classDefinition: 'AccountTransaction class' category: 'Portfolio'!
 AccountTransaction class
 	instanceVariableNames: ''!
 
@@ -623,12 +720,12 @@ register: aValue on: account
 	^ transaction! !
 
 
-!classDefinition: #Deposit category: 'Portfolio-Solucion'!
+!classDefinition: #Deposit category: 'Portfolio'!
 AccountTransaction subclass: #Deposit
 	instanceVariableNames: 'value'
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
+	category: 'Portfolio'!
 
 !Deposit methodsFor: 'initialization' stamp: 'HernanWilkinson 7/13/2011 18:45'!
 initializeFor: aValue
@@ -649,7 +746,7 @@ affectBalance: aBalance
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'Deposit class' category: 'Portfolio-Solucion'!
+!classDefinition: 'Deposit class' category: 'Portfolio'!
 Deposit class
 	instanceVariableNames: ''!
 
@@ -659,12 +756,12 @@ for: aValue
 	^ self new initializeFor: aValue ! !
 
 
-!classDefinition: #Withdraw category: 'Portfolio-Solucion'!
+!classDefinition: #Withdraw category: 'Portfolio'!
 AccountTransaction subclass: #Withdraw
 	instanceVariableNames: 'value'
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
+	category: 'Portfolio'!
 
 !Withdraw methodsFor: 'initialization' stamp: 'HernanWilkinson 7/13/2011 18:46'!
 initializeFor: aValue
@@ -685,7 +782,7 @@ affectBalance: aBalance
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'Withdraw class' category: 'Portfolio-Solucion'!
+!classDefinition: 'Withdraw class' category: 'Portfolio'!
 Withdraw class
 	instanceVariableNames: ''!
 
@@ -695,12 +792,12 @@ for: aValue
 	^ self new initializeFor: aValue ! !
 
 
-!classDefinition: #Report category: 'Portfolio-Solucion'!
+!classDefinition: #Report category: 'Portfolio'!
 Object subclass: #Report
 	instanceVariableNames: 'account'
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
+	category: 'Portfolio'!
 
 !Report methodsFor: 'initialization' stamp: 'FD 11/12/2020 21:43:21'!
 initializeWith: anAccount 
@@ -713,17 +810,125 @@ accountsSummary
 
 	"Nico dice que el mensaje accounts o transactions no tiene que aparecer"
 	account transactions isEmpty ifTrue: [^OrderedCollection new].
-	(account transactions first isKindOf: Deposit) ifTrue: [^OrderedCollection with: 'Depósito por 100'.	].
+	(account transactions first isKindOf: Deposit) ifTrue: [^OrderedCollection with: 'Dep\F3sito por 100'.	].
 	
-	^OrderedCollection with: 'Extracción por 50'.	
+	^OrderedCollection with: 'Extracci\F3n por 50'.	
 	! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'Report class' category: 'Portfolio-Solucion'!
+!classDefinition: 'Report class' category: 'Portfolio'!
 Report class
 	instanceVariableNames: ''!
 
 !Report class methodsFor: 'as yet unclassified' stamp: 'FD 11/12/2020 21:43:08'!
 for: anAccount 
 	^self new initializeWith: anAccount.! !
+
+
+!classDefinition: #Transfer category: 'Portfolio'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value sending reception'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!Transfer methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 19:57:33'!
+affectBalance: aBalance for: anAccount
+
+	^anAccount = sender ifTrue: [aBalance - value] ifFalse: [
+		anAccount = receiver ifTrue: [aBalance + value]
+		]! !
+
+!Transfer methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 21:15:06'!
+initializeFor: anAmount withSending: aTransferSending withReception: aTransferReception 
+	
+	
+	value := anAmount.
+	sending := aTransferSending.
+	reception := aTransferReception.! !
+
+
+!Transfer methodsFor: 'accessing' stamp: 'FD 11/9/2020 21:18:14'!
+reception
+	
+	^reception! !
+
+!Transfer methodsFor: 'accessing' stamp: 'FD 11/9/2020 21:17:41'!
+sending
+	
+	^sending! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Transfer class' category: 'Portfolio'!
+Transfer class
+	instanceVariableNames: ''!
+
+!Transfer class methodsFor: 'instance creation' stamp: 'FD 11/9/2020 20:21:47'!
+accountsMustBeDifferentErrorDescription
+
+ 	^'accounts must be different'.! !
+
+!Transfer class methodsFor: 'instance creation' stamp: 'FD 11/9/2020 21:32:06'!
+amountShouldBeGreaterThanZeroErrorDescription
+
+ 	^'amount should be greater than zero'.! !
+
+!Transfer class methodsFor: 'instance creation' stamp: 'FD 11/9/2020 21:32:38'!
+register: anAmount on: aSenderAccount to: aReceiverAccount 
+	
+	
+	| transaction sending reception |
+	
+	aSenderAccount = aReceiverAccount ifTrue: [self error: self accountsMustBeDifferentErrorDescription ].
+	anAmount <= 0 ifTrue: [self error: self amountShouldBeGreaterThanZeroErrorDescription ].
+	
+	sending := TransferSending new initializeFor: anAmount from: self.
+	reception := TransferReception new initializeFor: anAmount from: self.
+	transaction := self new initializeFor: anAmount withSending: sending withReception: reception.
+
+	
+	aSenderAccount register: sending.
+	aReceiverAccount register: reception.
+	
+	^ transaction! !
+
+
+!classDefinition: #TransferReception category: 'Portfolio'!
+Transfer subclass: #TransferReception
+	instanceVariableNames: 'amount transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!TransferReception methodsFor: 'initialization' stamp: 'FD 11/9/2020 21:10:34'!
+initializeFor: anAmount from: aTransfer
+
+	amount := anAmount.
+	transfer := aTransfer! !
+
+
+!TransferReception methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 21:05:30'!
+affectBalance: aBalance 
+	
+	^ aBalance + amount.! !
+
+
+!classDefinition: #TransferSending category: 'Portfolio'!
+Transfer subclass: #TransferSending
+	instanceVariableNames: 'amount transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!TransferSending methodsFor: 'initialization' stamp: 'FD 11/9/2020 21:10:42'!
+initializeFor: anAmount from: aTransfer
+
+	amount := anAmount.
+	transfer := aTransfer! !
+
+
+!TransferSending methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 21:04:56'!
+affectBalance: aBalance 
+	^aBalance - amount .! !
