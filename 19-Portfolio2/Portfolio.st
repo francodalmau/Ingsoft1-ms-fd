@@ -1,5 +1,13 @@
+!classDefinition: #AccountTest category: 'Portfolio'!
+TestCase subclass: #AccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+
 !classDefinition: #PortfolioTest category: 'Portfolio'!
-TestCase subclass: #PortfolioTest
+AccountTest subclass: #PortfolioTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -215,7 +223,7 @@ test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd
 
 
 !classDefinition: #ReceptiveAccountTest category: 'Portfolio'!
-TestCase subclass: #ReceptiveAccountTest
+AccountTest subclass: #ReceptiveAccountTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -312,19 +320,28 @@ TestCase subclass: #ReportTest
 	poolDictionaries: ''
 	category: 'Portfolio'!
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'FD 11/12/2020 21:44:02'!
-test01AccountSummaryOfAnEmptyPortfolioIsEmpty
+
+!classDefinition: #AccountSummaryTest category: 'Portfolio'!
+ReportTest subclass: #AccountSummaryTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
 
-	| report | 
-	
-	report := Report for: Portfolio new.
-	
-	self assert: report accountsSummary isEmpty.! !
+!AccountSummaryTest methodsFor: 'as yet unclassified' stamp: 'FD 11/14/2020 17:45:21'!
+test01AccountSummaryOfAnEmptyPortfolioOnlyShowsBalance
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'FD 11/12/2020 21:55:47'!
+	| summary | 
+	
+	summary := AccountSummary for: Portfolio new.
+	
+	self assert: summary report size equals: 1.
+	self assert: summary report first equals: 'Balance = 0'.! !
+
+!AccountSummaryTest methodsFor: 'as yet unclassified' stamp: 'FD 11/14/2020 17:45:42'!
 test02AccountSummaryOfAPortfolioWithADepositAddsIt
 
-	| report account portfolio | 
+	| summary account portfolio | 
 	
 	
 	account := ReceptiveAccount new.
@@ -332,14 +349,14 @@ test02AccountSummaryOfAPortfolioWithADepositAddsIt
 	Deposit register: 100 on: account.
 	portfolio := Portfolio with: account.
 	
-	report := Report for: portfolio.
+	summary := AccountSummary for: portfolio.
 	
-	self assert: report accountsSummary first equals: 'Dep\F3sito por 100'.! !
+	self assert: summary report first equals: 'Depósito por 100'.! !
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'FD 11/12/2020 22:03:58'!
+!AccountSummaryTest methodsFor: 'as yet unclassified' stamp: 'FD 11/14/2020 17:46:00'!
 test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt
 
-	| report account portfolio | 
+	| summary account portfolio | 
 	
 	
 	account := ReceptiveAccount new.
@@ -347,10 +364,117 @@ test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt
 	Withdraw register: 50 on: account.
 	portfolio := Portfolio with: account.
 	
-	report := Report for: portfolio.
+	summary := AccountSummary for: portfolio.
 	
-	self assert: report accountsSummary first equals: 'Extracci\F3n por 50'.! !
+	self assert: summary report first equals: 'Extracción por 50'.! !
 
+!AccountSummaryTest methodsFor: 'as yet unclassified' stamp: 'FD 11/14/2020 17:46:08'!
+test04AccountSummaryOfAPortfolioWithASendingTransferAddsIt
+
+	| summary sendingAccount receivingAccount | 
+	
+	
+	sendingAccount := ReceptiveAccount new.
+	receivingAccount := ReceptiveAccount new.
+	
+	Transfer register: 20 on: sendingAccount  to: receivingAccount.
+	
+	summary := AccountSummary for: sendingAccount .
+	
+	
+	self assert: summary report first equals: 'Salida por transferencia de 20'.! !
+
+!AccountSummaryTest methodsFor: 'as yet unclassified' stamp: 'FD 11/14/2020 17:46:20'!
+test05AccountSummaryOfAPortfolioWithAReceivingTransferAddsIt
+
+	| summary sendingAccount receivingAccount | 
+	
+	
+	sendingAccount := ReceptiveAccount new.
+	receivingAccount := ReceptiveAccount new.
+	
+	Transfer register: 30 on: sendingAccount  to: receivingAccount.
+	
+	summary := AccountSummary for: receivingAccount .
+	
+	
+	self assert: summary report first equals: 'Entrada por transferencia de 30'.! !
+
+!AccountSummaryTest methodsFor: 'as yet unclassified' stamp: 'FD 11/14/2020 17:46:31'!
+test06AccountSummaryShowsTheBalance
+
+	| summary account portfolio | 
+	
+	
+	account := ReceptiveAccount new.
+	
+	Deposit register: 100 on: account.
+	portfolio := Portfolio with: account.
+	
+	summary := AccountSummary for: portfolio.
+	
+	self assert: summary report last equals: 'Balance = 100'.! !
+
+!AccountSummaryTest methodsFor: 'as yet unclassified' stamp: 'FD 11/14/2020 17:47:00'!
+test07AccountSummaryOfAnAccountWithMultipleTransactionsAddsThemAll
+
+	| summary account portfolio | 
+	
+	
+	account := ReceptiveAccount new.
+	
+	Deposit register: 50 on: account.
+	Withdraw register: 30 on: account.
+	
+	portfolio := Portfolio with: account.
+	
+	summary := AccountSummary for: portfolio.
+	
+	self assert: summary report size equals: 3.
+	self assert: summary report first equals: 'Depósito por 50'.
+	self assert: summary report second equals: 'Extracción por 30'.
+	self assert: summary report last equals: 'Balance = 20'.! !
+
+
+!classDefinition: #NetTransferTest category: 'Portfolio'!
+ReportTest subclass: #NetTransferTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!NetTransferTest methodsFor: 'as yet unclassified' stamp: 'FD 11/14/2020 19:55:18'!
+test01NetTransferReportForAnAccountWithoutTransfersReturnsZero
+
+	| netTransferReport account portfolio | 
+	
+	
+	account := ReceptiveAccount new.
+	
+	Deposit register: 50 on: account.
+	Withdraw register: 30 on: account.
+	
+	portfolio := Portfolio with: account.
+	
+	netTransferReport := NetTransferReport for: portfolio.
+	
+	self assert: netTransferReport report equals: 0.! !
+
+!NetTransferTest methodsFor: 'as yet unclassified' stamp: 'FD 11/14/2020 19:55:29'!
+test02NetTransferReportForAnAccountWithTransfersReturnsTheNetValue
+
+	| netTransferReport account1 account2 | 
+	
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer register: 30 on: account1  to: account2.
+	Transfer register: 40 on: account2  to: account1.
+	
+	netTransferReport := NetTransferReport for: account1 .
+	
+	self assert: netTransferReport report equals: 10.! !
 
 
 !classDefinition: #TransferTest category: 'Portfolio'!
@@ -484,6 +608,12 @@ addedTo: aPortfolio
 
 	self subclassResponsibility ! !
 
+
+!Account methodsFor: 'report building' stamp: 'FD 11/14/2020 19:02:22'!
+buildReport: reportInstructions from: aReportToBuildOnto
+
+	self subclassResponsibility ! !
+
 
 !classDefinition: #Portfolio category: 'Portfolio'!
 Account subclass: #Portfolio
@@ -534,10 +664,10 @@ initialize
 	parents := OrderedCollection new.! !
 
 
-!Portfolio methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:19:36'!
+!Portfolio methodsFor: 'balance' stamp: 'FD 11/14/2020 19:48:52'!
 balance
-	
-	^accounts sum: [ :anAccount | anAccount balance ] ifEmpty: [ 0 ]! !
+
+	^(Balance for: self) report.! !
 
 
 !Portfolio methodsFor: 'transactions' stamp: 'HAW 5/25/2019 11:42:55'!
@@ -595,6 +725,14 @@ assertCanAdd: accountToAdd
 signalCanNotAddAccount
 	
 	self error: self class canNotAddAccountErrorMessage! !
+
+
+!Portfolio methodsFor: 'report building' stamp: 'FD 11/14/2020 19:02:44'!
+buildReport: reportInstructions from: aReportToBuildOnto
+
+	^accounts
+	inject: aReportToBuildOnto 
+	into: [:report :transaction | transaction buildReport: reportInstructions from: report].! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -654,12 +792,10 @@ transactions
 	^ transactions copy! !
 
 
-!ReceptiveAccount methodsFor: 'balance' stamp: 'FD 11/9/2020 20:35:50'!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'FD 11/14/2020 19:42:38'!
 balance
 
-	^transactions 
-		inject: 0
-		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance]! !
+	^(Balance for: self) report.! !
 
 
 !ReceptiveAccount methodsFor: 'testing' stamp: 'NR 10/21/2019 18:55:56'!
@@ -680,9 +816,12 @@ addedTo: aPortfolio
 	! !
 
 
-!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 21:02:10'!
-register: aClass registerFor: aSmallInteger 
-	self shouldBeImplemented.! !
+!ReceptiveAccount methodsFor: 'report building' stamp: 'FD 11/14/2020 19:00:55'!
+buildReport: reportInstructions from: aReportToBuildOnto
+
+	^transactions
+	inject: aReportToBuildOnto 
+	into: [:report :transaction | transaction buildReport: reportInstructions from: report].! !
 
 
 !classDefinition: #AccountTransaction category: 'Portfolio'!
@@ -698,8 +837,8 @@ value
 	self subclassResponsibility ! !
 
 
-!AccountTransaction methodsFor: 'balance' stamp: 'FD 11/9/2020 20:35:37'!
-affectBalance: aBalance
+!AccountTransaction methodsFor: 'report building' stamp: 'FD 11/14/2020 19:50:02'!
+buildReport: buildingInstructions from: aReportToBuildOnto
 
 	self subclassResponsibility ! !
 
@@ -739,10 +878,10 @@ value
 	^ value! !
 
 
-!Deposit methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:02'!
-affectBalance: aBalance
+!Deposit methodsFor: 'reportBuilding' stamp: 'FD 11/14/2020 19:48:19'!
+buildReport: buildingInstructions from: aReportToBuildOnto
 
-	^aBalance + value ! !
+	^buildingInstructions affectReport: aReportToBuildOnto FromDeposit: self.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -775,10 +914,10 @@ value
 	^ value! !
 
 
-!Withdraw methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:15'!
-affectBalance: aBalance
+!Withdraw methodsFor: 'report building' stamp: 'FD 11/14/2020 19:50:47'!
+buildReport: buildingInstructions from: aReportToBuildOnto
 
-	^aBalance - value! !
+	^buildingInstructions affectReport: aReportToBuildOnto FromWithdraw: self.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -794,26 +933,37 @@ for: aValue
 
 !classDefinition: #Report category: 'Portfolio'!
 Object subclass: #Report
-	instanceVariableNames: 'account'
+	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio'!
 
-!Report methodsFor: 'initialization' stamp: 'FD 11/12/2020 21:43:21'!
-initializeWith: anAccount 
-	
-	account := anAccount.! !
+
+!Report methodsFor: 'report building' stamp: 'FD 11/14/2020 19:09:30'!
+affectReport: aReportInProgress FromDeposit: aDeposit
+
+	self subclassResponsibility .! !
+
+!Report methodsFor: 'report building' stamp: 'FD 11/14/2020 19:09:40'!
+affectReport: aReportInProgress FromTransferReception: aTransferReception
+
+	self subclassResponsibility .! !
+
+!Report methodsFor: 'report building' stamp: 'FD 11/14/2020 19:09:50'!
+affectReport: aReportInProgress FromTransferSending: aTransferSending
+
+	self subclassResponsibility .! !
+
+!Report methodsFor: 'report building' stamp: 'FD 11/14/2020 19:09:59'!
+affectReport: aReportInProgress FromWithdraw: aWithdraw
+
+	self subclassResponsibility .! !
 
 
-!Report methodsFor: 'as yet unclassified' stamp: 'FD 11/12/2020 22:03:08'!
-accountsSummary
+!Report methodsFor: 'action' stamp: 'FD 11/14/2020 19:10:12'!
+report
 
-	"Nico dice que el mensaje accounts o transactions no tiene que aparecer"
-	account transactions isEmpty ifTrue: [^OrderedCollection new].
-	(account transactions first isKindOf: Deposit) ifTrue: [^OrderedCollection with: 'Dep\F3sito por 100'.	].
-	
-	^OrderedCollection with: 'Extracci\F3n por 50'.	
-	! !
+	self subclassResponsibility .! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -826,6 +976,149 @@ for: anAccount
 	^self new initializeWith: anAccount.! !
 
 
+!classDefinition: #AccountSummary category: 'Portfolio'!
+Report subclass: #AccountSummary
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!AccountSummary methodsFor: 'report building' stamp: 'FD 11/14/2020 19:22:33'!
+addBalanceEntry: aSummary
+	
+	aSummary add: ('Balance = ', account balance printString ).
+	
+	^aSummary.! !
+
+!AccountSummary methodsFor: 'report building' stamp: 'FD 11/14/2020 19:19:16'!
+affectReport: aReportInProgress FromDeposit: aDeposit
+
+	aReportInProgress add: 'Depósito por ', aDeposit value printString.	
+	
+	^aReportInProgress.! !
+
+!AccountSummary methodsFor: 'report building' stamp: 'FD 11/14/2020 18:45:55'!
+affectReport: aReportInProgress FromTransferReception: aTransferReception
+
+	aReportInProgress add: 'Entrada por transferencia de ', aTransferReception value printString.	
+	
+	^aReportInProgress.! !
+
+!AccountSummary methodsFor: 'report building' stamp: 'FD 11/14/2020 18:46:01'!
+affectReport: aReportInProgress FromTransferSending: aTransferSending
+
+	aReportInProgress add: 'Salida por transferencia de ', aTransferSending value printString.	
+	
+	^aReportInProgress.! !
+
+!AccountSummary methodsFor: 'report building' stamp: 'FD 11/14/2020 18:46:07'!
+affectReport: aReportInProgress FromWithdraw: aWithdraw
+
+	aReportInProgress add: 'Extracción por ', aWithdraw value printString.	
+	
+	^aReportInProgress.! !
+
+
+!AccountSummary methodsFor: 'action' stamp: 'FD 11/14/2020 19:23:06'!
+report
+
+	| summary |
+	
+	summary := OrderedCollection new.
+
+	account buildReport: self from: summary.
+	
+	self addBalanceEntry: summary.
+	
+	^summary.! !
+
+
+!AccountSummary methodsFor: 'initialization' stamp: 'FD 11/14/2020 19:14:51'!
+initializeWith: anAccount 
+	
+	account := anAccount.! !
+
+
+!classDefinition: #Balance category: 'Portfolio'!
+Report subclass: #Balance
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!Balance methodsFor: 'action' stamp: 'FD 11/14/2020 19:39:27'!
+report
+	
+	^account buildReport: self from: 0.! !
+
+
+!Balance methodsFor: 'report building' stamp: 'FD 11/14/2020 19:48:00'!
+affectReport: aReportInProgress FromDeposit: aDeposit
+	
+	^aReportInProgress + aDeposit value.! !
+
+!Balance methodsFor: 'report building' stamp: 'FD 11/14/2020 19:40:54'!
+affectReport: aReportInProgress FromTransferReception: aTransferReception
+	
+	^aReportInProgress + aTransferReception value.! !
+
+!Balance methodsFor: 'report building' stamp: 'FD 11/14/2020 19:41:13'!
+affectReport: aReportInProgress FromTransferSending: aTransferSending
+	
+	^aReportInProgress - aTransferSending value.! !
+
+!Balance methodsFor: 'report building' stamp: 'FD 11/14/2020 19:47:56'!
+affectReport: aReportInProgress FromWithdraw: aWithdraw
+	
+	^aReportInProgress - aWithdraw value.! !
+
+
+!Balance methodsFor: 'initialization' stamp: 'FD 11/14/2020 19:45:41'!
+initializeWith: anAccount 
+	
+	account := anAccount.! !
+
+
+!classDefinition: #NetTransferReport category: 'Portfolio'!
+Report subclass: #NetTransferReport
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!NetTransferReport methodsFor: 'report building' stamp: 'FD 11/14/2020 18:27:25'!
+affectReport: aReportInProgress FromDeposit: aDeposit
+	
+	^aReportInProgress.! !
+
+!NetTransferReport methodsFor: 'report building' stamp: 'FD 11/14/2020 18:35:11'!
+affectReport: aReportInProgress FromTransferReception: aTransferReception
+	
+	^aReportInProgress + aTransferReception value.! !
+
+!NetTransferReport methodsFor: 'report building' stamp: 'FD 11/14/2020 18:27:54'!
+affectReport: aReportInProgress FromTransferSending: aTransferSending
+	
+	^aReportInProgress - aTransferSending value.! !
+
+!NetTransferReport methodsFor: 'report building' stamp: 'FD 11/14/2020 18:27:13'!
+affectReport: aReportInProgress FromWithdraw: aWithdraw
+	
+	^aReportInProgress.! !
+
+
+!NetTransferReport methodsFor: 'action' stamp: 'FD 11/14/2020 18:28:26'!
+report
+	
+	^account buildReport: self from: 0.! !
+
+
+!NetTransferReport methodsFor: 'initialization' stamp: 'FD 11/14/2020 19:15:08'!
+initializeWith: anAccount 
+	
+	account := anAccount.! !
+
+
 !classDefinition: #Transfer category: 'Portfolio'!
 Object subclass: #Transfer
 	instanceVariableNames: 'value sending reception'
@@ -833,14 +1126,7 @@ Object subclass: #Transfer
 	poolDictionaries: ''
 	category: 'Portfolio'!
 
-!Transfer methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 19:57:33'!
-affectBalance: aBalance for: anAccount
-
-	^anAccount = sender ifTrue: [aBalance - value] ifFalse: [
-		anAccount = receiver ifTrue: [aBalance + value]
-		]! !
-
-!Transfer methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 21:15:06'!
+!Transfer methodsFor: 'initialization' stamp: 'FD 11/9/2020 21:15:06'!
 initializeFor: anAmount withSending: aTransferSending withReception: aTransferReception 
 	
 	
@@ -859,34 +1145,41 @@ sending
 	
 	^sending! !
 
+!Transfer methodsFor: 'accessing' stamp: 'FD 11/14/2020 16:41:12'!
+value
+
+	^value.! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Transfer class' category: 'Portfolio'!
 Transfer class
 	instanceVariableNames: ''!
 
-!Transfer class methodsFor: 'instance creation' stamp: 'FD 11/9/2020 20:21:47'!
-accountsMustBeDifferentErrorDescription
+!Transfer class methodsFor: 'instance creation' stamp: 'FD 11/14/2020 19:27:57'!
+assertAccount: aSenderAccount isDifferentFrom: aReceiverAccount
 
- 	^'accounts must be different'.! !
+	^ aSenderAccount = aReceiverAccount ifTrue: [self error: self accountsMustBeDifferentErrorDescription ]! !
 
-!Transfer class methodsFor: 'instance creation' stamp: 'FD 11/9/2020 21:32:06'!
-amountShouldBeGreaterThanZeroErrorDescription
+!Transfer class methodsFor: 'instance creation' stamp: 'FD 11/14/2020 19:28:33'!
+assertAmountIsPositive: anAmount
 
- 	^'amount should be greater than zero'.! !
+	^ anAmount <= 0 ifTrue: [self error: self amountShouldBeGreaterThanZeroErrorDescription ]! !
 
-!Transfer class methodsFor: 'instance creation' stamp: 'FD 11/9/2020 21:32:38'!
+!Transfer class methodsFor: 'instance creation' stamp: 'FD 11/14/2020 19:29:49'!
 register: anAmount on: aSenderAccount to: aReceiverAccount 
 	
 	
 	| transaction sending reception |
 	
-	aSenderAccount = aReceiverAccount ifTrue: [self error: self accountsMustBeDifferentErrorDescription ].
-	anAmount <= 0 ifTrue: [self error: self amountShouldBeGreaterThanZeroErrorDescription ].
+	self assertAccount: aSenderAccount isDifferentFrom: aReceiverAccount.
+	self assertAmountIsPositive: anAmount.
 	
-	sending := TransferSending new initializeFor: anAmount from: self.
-	reception := TransferReception new initializeFor: anAmount from: self.
-	transaction := self new initializeFor: anAmount withSending: sending withReception: reception.
+	transaction := self new.
+	
+	sending := TransferSending new initializeFrom: transaction.
+	reception := TransferReception new initializeFrom: transaction.
+	transaction := transaction initializeFor: anAmount withSending: sending withReception: reception.
 
 	
 	aSenderAccount register: sending.
@@ -894,41 +1187,81 @@ register: anAmount on: aSenderAccount to: aReceiverAccount
 	
 	^ transaction! !
 
+
+!Transfer class methodsFor: 'errors' stamp: 'FD 11/9/2020 20:21:47'!
+accountsMustBeDifferentErrorDescription
+
+ 	^'accounts must be different'.! !
+
+!Transfer class methodsFor: 'errors' stamp: 'FD 11/9/2020 21:32:06'!
+amountShouldBeGreaterThanZeroErrorDescription
+
+ 	^'amount should be greater than zero'.! !
+
 
-!classDefinition: #TransferReception category: 'Portfolio'!
-Transfer subclass: #TransferReception
-	instanceVariableNames: 'amount transfer'
+!classDefinition: #TransferEnd category: 'Portfolio'!
+Object subclass: #TransferEnd
+	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio'!
 
-!TransferReception methodsFor: 'initialization' stamp: 'FD 11/9/2020 21:10:34'!
-initializeFor: anAmount from: aTransfer
-
-	amount := anAmount.
-	transfer := aTransfer! !
+!TransferEnd methodsFor: 'accessing' stamp: 'FD 11/14/2020 19:31:40'!
+value
+	self subclassResponsibility.! !
 
 
-!TransferReception methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 21:05:30'!
-affectBalance: aBalance 
-	
-	^ aBalance + amount.! !
+!TransferEnd methodsFor: 'report building' stamp: 'FD 11/14/2020 19:34:33'!
+buildReport: buildingInstructions from: aReportToBuildOnto
+
+	self subclassResponsibility ! !
+
+
+!classDefinition: #TransferReception category: 'Portfolio'!
+TransferEnd subclass: #TransferReception
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!TransferReception methodsFor: 'initialization' stamp: 'FD 11/14/2020 19:32:25'!
+initializeFrom: aTransfer
+
+	transfer := aTransfer.! !
+
+
+!TransferReception methodsFor: 'accessing' stamp: 'FD 11/14/2020 19:33:09'!
+value
+
+	^transfer value.! !
+
+
+!TransferReception methodsFor: 'report building' stamp: 'FD 11/14/2020 19:35:16'!
+buildReport: buildingInstructions from: aReportToBuildOnto
+
+	^buildingInstructions affectReport: aReportToBuildOnto FromTransferReception: self.! !
 
 
 !classDefinition: #TransferSending category: 'Portfolio'!
-Transfer subclass: #TransferSending
-	instanceVariableNames: 'amount transfer'
+TransferEnd subclass: #TransferSending
+	instanceVariableNames: 'transfer'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio'!
 
-!TransferSending methodsFor: 'initialization' stamp: 'FD 11/9/2020 21:10:42'!
-initializeFor: anAmount from: aTransfer
+!TransferSending methodsFor: 'initialization' stamp: 'FD 11/14/2020 19:32:44'!
+initializeFrom: aTransfer
 
-	amount := anAmount.
-	transfer := aTransfer! !
+	transfer := aTransfer.! !
 
 
-!TransferSending methodsFor: 'as yet unclassified' stamp: 'FD 11/9/2020 21:04:56'!
-affectBalance: aBalance 
-	^aBalance - amount .! !
+!TransferSending methodsFor: 'accessing' stamp: 'FD 11/14/2020 19:33:34'!
+value
+
+	^transfer value.! !
+
+
+!TransferSending methodsFor: 'report building' stamp: 'FD 11/14/2020 19:35:43'!
+buildReport: buildingInstructions from: aReportToBuildOnto
+
+	^buildingInstructions affectReport: aReportToBuildOnto FromTransferSending: self.! !
