@@ -436,6 +436,125 @@ test07AccountSummaryOfAnAccountWithMultipleTransactionsAddsThemAll
 	self assert: summary report last equals: 'Balance = 20'.! !
 
 
+!classDefinition: #AccountTreeStructureTest category: 'Portfolio'!
+ReportTest subclass: #AccountTreeStructureTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!AccountTreeStructureTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 15:19:08'!
+test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts
+
+	| accountTreeStructure portfolio | 
+	
+	portfolio := Portfolio named: 'test portfolio'.
+	
+	accountTreeStructure := AccountTreeStructure for: portfolio.
+	
+	self assert: accountTreeStructure report size equals: 1.
+	self assert: accountTreeStructure report first equals: 'test portfolio'.! !
+
+!AccountTreeStructureTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 15:35:23'!
+test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount
+
+	| accountTreeStructure account | 
+	
+	account := ReceptiveAccount named: 'test account'.
+	
+	accountTreeStructure := AccountTreeStructure for: account.
+	
+	self assert: accountTreeStructure report size equals: 1.
+	self assert: accountTreeStructure report first equals: 'test account'.! !
+
+!AccountTreeStructureTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 15:38:22'!
+test03ReportDoesNotShowTransactions
+
+	| accountTreeStructure account | 
+	
+	account := ReceptiveAccount named: 'test account'.
+	Deposit register: 100 on: account.
+	
+	accountTreeStructure := AccountTreeStructure for: account.
+	
+	self assert: accountTreeStructure report size equals: 1.
+	self assert: accountTreeStructure report first equals: 'test account'.! !
+
+!AccountTreeStructureTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 16:25:31'!
+test04ChildAccountIsIndented
+
+	| accountTreeStructure portfolio | 
+	
+	portfolio := Portfolio named: 'a portfolio' with: (ReceptiveAccount named: 'an account').
+	
+	
+	accountTreeStructure := AccountTreeStructure for: portfolio.
+	
+	self assert: accountTreeStructure report second equals: '   an account'.! !
+
+!AccountTreeStructureTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 16:33:01'!
+test05ChildAccountsAreIndented
+
+	| accountTreeStructure childPortfolio portfolio | 
+	
+	childPortfolio := Portfolio named: 'a portfolio' with: (ReceptiveAccount named: 'an account').
+	portfolio := Portfolio named: 'parent portfolio' with: childPortfolio .
+	portfolio add: (ReceptiveAccount named: 'another account').
+	
+	
+	accountTreeStructure := AccountTreeStructure for: portfolio.
+	
+	self assert: accountTreeStructure report second equals: '   a portfolio'.
+	self assert: accountTreeStructure report third equals: '      an account'.
+	self assert: accountTreeStructure report fourth equals: '   another account'.! !
+
+
+!classDefinition: #AccountTreeStructureWithSummaryTest category: 'Portfolio'!
+ReportTest subclass: #AccountTreeStructureWithSummaryTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!AccountTreeStructureWithSummaryTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 16:36:27'!
+test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts
+
+	| accountTreeStructure portfolio | 
+	
+	portfolio := Portfolio named: 'test portfolio'.
+	
+	accountTreeStructure := AccountTreeStructureWithSummary for: portfolio.
+	
+	self assert: accountTreeStructure report size equals: 1.
+	self assert: accountTreeStructure report first equals: 'test portfolio'.! !
+
+!AccountTreeStructureWithSummaryTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 16:56:11'!
+test02ShowsEachAccountsSummary
+
+	| accountTreeStructure account1 account2 portfolio| 
+	
+	account1 := ReceptiveAccount named: 'test account1'.
+	Deposit register: 100 on: account1.
+	
+	account2 := ReceptiveAccount named: 'test account2'.
+	Withdraw register: 50 on: account2.
+	
+	portfolio := Portfolio named: 'a portfolio'.
+	portfolio add: account1.
+	portfolio add: account2.
+	
+	accountTreeStructure := AccountTreeStructureWithSummary for: portfolio .
+	
+	self assert: accountTreeStructure report size equals: 7.
+	self assert: accountTreeStructure report first equals: 'a portfolio'.
+	self assert: accountTreeStructure report second equals: '   test account1'.
+	self assert: accountTreeStructure report third equals: '      Depósito por 100'.
+	self assert: accountTreeStructure report fourth equals: '      Balance = 100'.
+	self assert: accountTreeStructure report fifth equals: '   test account2'.
+	self assert: accountTreeStructure report sixth equals: '      Extracción por 50'.
+	self assert: accountTreeStructure report seventh equals: '      Balance = -50'.! !
+
+
 !classDefinition: #NetTransferTest category: 'Portfolio'!
 ReportTest subclass: #NetTransferTest
 	instanceVariableNames: ''
@@ -614,10 +733,16 @@ buildReport: reportInstructions from: aReportToBuildOnto
 
 	self subclassResponsibility ! !
 
+
+!Account methodsFor: 'accessing' stamp: 'FD 11/15/2020 15:31:39'!
+name
+
+	self subclassResponsibility .! !
+
 
 !classDefinition: #Portfolio category: 'Portfolio'!
 Account subclass: #Portfolio
-	instanceVariableNames: 'accounts parents'
+	instanceVariableNames: 'accounts parents name'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio'!
@@ -662,6 +787,12 @@ initialize
 
 	accounts := OrderedCollection new.
 	parents := OrderedCollection new.! !
+
+!Portfolio methodsFor: 'initialization' stamp: 'FD 11/15/2020 15:22:23'!
+name: aName
+
+	name := aName.
+	! !
 
 
 !Portfolio methodsFor: 'balance' stamp: 'FD 11/14/2020 19:48:52'!
@@ -727,12 +858,26 @@ signalCanNotAddAccount
 	self error: self class canNotAddAccountErrorMessage! !
 
 
-!Portfolio methodsFor: 'report building' stamp: 'FD 11/14/2020 19:02:44'!
+!Portfolio methodsFor: 'report building' stamp: 'FD 11/15/2020 16:57:36'!
 buildReport: reportInstructions from: aReportToBuildOnto
 
-	^accounts
-	inject: aReportToBuildOnto 
-	into: [:report :transaction | transaction buildReport: reportInstructions from: report].! !
+	| reportInProgess |
+	
+	reportInProgess := reportInstructions affectReport: aReportToBuildOnto FromPortfolio: self.
+		
+	reportInProgess := accounts
+	inject: reportInProgess 
+	into: [:report :transaction | transaction buildReport: reportInstructions from: report].
+	
+	reportInstructions cleanAfterAffectReport.
+	
+	^reportInProgess.! !
+
+
+!Portfolio methodsFor: 'accessing' stamp: 'FD 11/15/2020 15:31:21'!
+name
+
+	^name.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -744,6 +889,21 @@ Portfolio class
 canNotAddAccountErrorMessage
 	
 	^'Can not add repeated account to a portfolio!!'! !
+
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 15:21:57'!
+named: aName
+
+	^self new 
+		name: aName;
+		yourself! !
+
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 15:46:05'!
+named: aName with: anotherAccount
+
+	^self new 
+		name: aName;
+		add: anotherAccount;
+		yourself! !
 
 !Portfolio class methodsFor: 'as yet unclassified' stamp: 'HAW 5/25/2019 11:18:21'!
 with: anAccount
@@ -763,7 +923,7 @@ with: anAccount with: anotherAccount
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio'!
 Account subclass: #ReceptiveAccount
-	instanceVariableNames: 'transactions'
+	instanceVariableNames: 'transactions name'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio'!
@@ -773,6 +933,11 @@ initialize
 
 	super initialize.
 	transactions := OrderedCollection new.! !
+
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'FD 11/15/2020 15:23:24'!
+name: aName
+
+	name := aName.! !
 
 
 !ReceptiveAccount methodsFor: 'transactions' stamp: 'NR 11/9/2020 05:56:36'!
@@ -816,12 +981,37 @@ addedTo: aPortfolio
 	! !
 
 
-!ReceptiveAccount methodsFor: 'report building' stamp: 'FD 11/14/2020 19:00:55'!
+!ReceptiveAccount methodsFor: 'report building' stamp: 'FD 11/15/2020 16:57:36'!
 buildReport: reportInstructions from: aReportToBuildOnto
 
-	^transactions
-	inject: aReportToBuildOnto 
-	into: [:report :transaction | transaction buildReport: reportInstructions from: report].! !
+	| reportInProgess |
+	
+	reportInProgess := reportInstructions affectReport: aReportToBuildOnto FromAccount: self.
+	
+	reportInProgess := transactions
+	inject: reportInProgess 
+	into: [:report :transaction | transaction buildReport: reportInstructions from: report].
+	
+	reportInstructions cleanAfterAffectReport.
+	
+	^reportInProgess.! !
+
+
+!ReceptiveAccount methodsFor: 'accessing' stamp: 'FD 11/15/2020 15:31:53'!
+name 
+	
+	^ name.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'ReceptiveAccount class' category: 'Portfolio'!
+ReceptiveAccount class
+	instanceVariableNames: ''!
+
+!ReceptiveAccount class methodsFor: 'initialization' stamp: 'FD 11/15/2020 15:26:11'!
+named: aName
+
+	^self new name: aName.! !
 
 
 !classDefinition: #AccountTransaction category: 'Portfolio'!
@@ -990,11 +1180,21 @@ addBalanceEntry: aSummary
 	
 	^aSummary.! !
 
+!AccountSummary methodsFor: 'report building' stamp: 'FD 11/15/2020 15:37:14'!
+affectReport: aReportInProgress FromAccount: aAccount
+
+	^aReportInProgress.! !
+
 !AccountSummary methodsFor: 'report building' stamp: 'FD 11/14/2020 19:19:16'!
 affectReport: aReportInProgress FromDeposit: aDeposit
 
 	aReportInProgress add: 'Depósito por ', aDeposit value printString.	
 	
+	^aReportInProgress.! !
+
+!AccountSummary methodsFor: 'report building' stamp: 'FD 11/15/2020 15:33:44'!
+affectReport: aReportInProgress FromPortfolio: aPortfolio
+
 	^aReportInProgress.! !
 
 !AccountSummary methodsFor: 'report building' stamp: 'FD 11/14/2020 18:45:55'!
@@ -1018,6 +1218,9 @@ affectReport: aReportInProgress FromWithdraw: aWithdraw
 	
 	^aReportInProgress.! !
 
+!AccountSummary methodsFor: 'report building' stamp: 'FD 11/15/2020 16:57:36'!
+cleanAfterAffectReport! !
+
 
 !AccountSummary methodsFor: 'action' stamp: 'FD 11/14/2020 19:23:06'!
 report
@@ -1039,6 +1242,203 @@ initializeWith: anAccount
 	account := anAccount.! !
 
 
+!classDefinition: #AccountTreeStructure category: 'Portfolio'!
+Report subclass: #AccountTreeStructure
+	instanceVariableNames: 'account indentationLevel'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!AccountTreeStructure methodsFor: 'initialization' stamp: 'FD 11/15/2020 16:04:13'!
+initializeWith: anAccount 
+	
+	account := anAccount.
+	indentationLevel := 0.! !
+
+
+!AccountTreeStructure methodsFor: 'action' stamp: 'FD 11/15/2020 17:00:05'!
+report
+
+	| structure |
+	
+	structure := OrderedCollection new.
+
+	account buildReport: self from: structure.
+	
+	self resetIndentationLevel.
+	^structure.! !
+
+
+!AccountTreeStructure methodsFor: 'report building' stamp: 'FD 11/15/2020 16:58:54'!
+affectReport: aReportInProgress FromAccount: anAccount
+
+	aReportInProgress add: (self indent: anAccount name).	
+	self increaseIndentationLevel.
+	
+	^aReportInProgress.! !
+
+!AccountTreeStructure methodsFor: 'report building' stamp: 'FD 11/15/2020 15:39:04'!
+affectReport: aReportInProgress FromDeposit: aDeposit
+
+	^aReportInProgress.! !
+
+!AccountTreeStructure methodsFor: 'report building' stamp: 'FD 11/15/2020 16:59:08'!
+affectReport: aReportInProgress FromPortfolio: aPortfolio
+
+	aReportInProgress add: (self indent: aPortfolio name).	
+	self increaseIndentationLevel.
+	
+	^aReportInProgress.! !
+
+!AccountTreeStructure methodsFor: 'report building' stamp: 'FD 11/15/2020 15:39:38'!
+affectReport: aReportInProgress FromTransferReception: aTransferReception
+
+	^aReportInProgress.! !
+
+!AccountTreeStructure methodsFor: 'report building' stamp: 'FD 11/15/2020 15:39:49'!
+affectReport: aReportInProgress FromTransferSending: aTransferSending
+
+	^aReportInProgress.! !
+
+!AccountTreeStructure methodsFor: 'report building' stamp: 'FD 11/15/2020 15:39:26'!
+affectReport: aReportInProgress FromWithdraw: aWithdraw
+
+	^aReportInProgress.! !
+
+!AccountTreeStructure methodsFor: 'report building' stamp: 'FD 11/15/2020 16:59:48'!
+cleanAfterAffectReport
+
+	self decreaseIndentationLevel.! !
+
+
+!AccountTreeStructure methodsFor: 'report building -- private' stamp: 'FD 11/15/2020 16:59:48'!
+decreaseIndentationLevel
+
+	^ indentationLevel := indentationLevel - 1! !
+
+!AccountTreeStructure methodsFor: 'report building -- private' stamp: 'FD 11/15/2020 16:58:54'!
+increaseIndentationLevel
+
+	^ indentationLevel := indentationLevel + 1! !
+
+!AccountTreeStructure methodsFor: 'report building -- private' stamp: 'FD 11/15/2020 16:20:11'!
+indent: anEntry
+
+	| indentedEntry |
+	
+	indentedEntry := anEntry.
+	indentationLevel timesRepeat: [indentedEntry := '   ',indentedEntry ].
+	
+	^indentedEntry.! !
+
+!AccountTreeStructure methodsFor: 'report building -- private' stamp: 'FD 11/15/2020 17:00:05'!
+resetIndentationLevel
+
+	^ indentationLevel := 0! !
+
+
+!classDefinition: #AccountTreeStructureWithSummary category: 'Portfolio'!
+Report subclass: #AccountTreeStructureWithSummary
+	instanceVariableNames: 'account indentationLevel'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!AccountTreeStructureWithSummary methodsFor: 'initialization' stamp: 'FD 11/15/2020 16:37:19'!
+initializeWith: anAccount 
+	
+	account := anAccount.
+	indentationLevel := 0.! !
+
+
+!AccountTreeStructureWithSummary methodsFor: 'action' stamp: 'FD 11/15/2020 17:00:26'!
+report
+
+	| structure |
+	
+	structure := OrderedCollection new.
+
+	account buildReport: self from: structure.
+	
+	self resetIndentationLevel.
+	^structure.! !
+
+
+!AccountTreeStructureWithSummary methodsFor: 'report building -- private' stamp: 'FD 11/15/2020 17:01:11'!
+decreaseIndentationLevel
+
+	^ indentationLevel := indentationLevel - 1! !
+
+!AccountTreeStructureWithSummary methodsFor: 'report building -- private' stamp: 'FD 11/15/2020 17:00:43'!
+increaseIndentationLevel
+
+	^ indentationLevel := indentationLevel + 1! !
+
+!AccountTreeStructureWithSummary methodsFor: 'report building -- private' stamp: 'FD 11/15/2020 16:37:52'!
+indent: anEntry
+
+	| indentedEntry |
+	
+	indentedEntry := anEntry.
+	indentationLevel timesRepeat: [indentedEntry := '   ',indentedEntry ].
+	
+	^indentedEntry.! !
+
+!AccountTreeStructureWithSummary methodsFor: 'report building -- private' stamp: 'FD 11/15/2020 16:52:40'!
+indentCollection: aCollectionOfEntries
+
+	^aCollectionOfEntries collect: [:anEntry | self indent: anEntry ].! !
+
+!AccountTreeStructureWithSummary methodsFor: 'report building -- private' stamp: 'FD 11/15/2020 17:00:26'!
+resetIndentationLevel
+
+	^ indentationLevel := 0! !
+
+
+!AccountTreeStructureWithSummary methodsFor: 'report building' stamp: 'FD 11/15/2020 17:00:43'!
+affectReport: aReportInProgress FromAccount: anAccount
+
+	aReportInProgress add: (self indent: anAccount name).	
+	self increaseIndentationLevel.
+	
+	aReportInProgress addAll: ( self indentCollection: ( AccountSummary  for: anAccount ) report).
+	
+	^aReportInProgress.! !
+
+!AccountTreeStructureWithSummary methodsFor: 'report building' stamp: 'FD 11/15/2020 16:38:31'!
+affectReport: aReportInProgress FromDeposit: aDeposit
+
+	^aReportInProgress.! !
+
+!AccountTreeStructureWithSummary methodsFor: 'report building' stamp: 'FD 11/15/2020 17:00:57'!
+affectReport: aReportInProgress FromPortfolio: aPortfolio
+
+	aReportInProgress add: (self indent: aPortfolio name).	
+	self increaseIndentationLevel.
+	
+	^aReportInProgress.! !
+
+!AccountTreeStructureWithSummary methodsFor: 'report building' stamp: 'FD 11/15/2020 16:38:45'!
+affectReport: aReportInProgress FromTransferReception: aTransferReception
+
+	^aReportInProgress.! !
+
+!AccountTreeStructureWithSummary methodsFor: 'report building' stamp: 'FD 11/15/2020 16:38:54'!
+affectReport: aReportInProgress FromTransferSending: aTransferSending
+
+	^aReportInProgress.! !
+
+!AccountTreeStructureWithSummary methodsFor: 'report building' stamp: 'FD 11/15/2020 16:39:05'!
+affectReport: aReportInProgress FromWithdraw: aWithdraw
+
+	^aReportInProgress.! !
+
+!AccountTreeStructureWithSummary methodsFor: 'report building' stamp: 'FD 11/15/2020 17:01:11'!
+cleanAfterAffectReport
+
+	self decreaseIndentationLevel.! !
+
+
 !classDefinition: #Balance category: 'Portfolio'!
 Report subclass: #Balance
 	instanceVariableNames: 'account'
@@ -1052,10 +1452,20 @@ report
 	^account buildReport: self from: 0.! !
 
 
+!Balance methodsFor: 'report building' stamp: 'FD 11/15/2020 15:37:20'!
+affectReport: aReportInProgress FromAccount: aAccount
+
+	^aReportInProgress.! !
+
 !Balance methodsFor: 'report building' stamp: 'FD 11/14/2020 19:48:00'!
 affectReport: aReportInProgress FromDeposit: aDeposit
 	
 	^aReportInProgress + aDeposit value.! !
+
+!Balance methodsFor: 'report building' stamp: 'FD 11/15/2020 15:33:36'!
+affectReport: aReportInProgress FromPortfolio: aPortfolio
+
+	^aReportInProgress.! !
 
 !Balance methodsFor: 'report building' stamp: 'FD 11/14/2020 19:40:54'!
 affectReport: aReportInProgress FromTransferReception: aTransferReception
@@ -1072,6 +1482,9 @@ affectReport: aReportInProgress FromWithdraw: aWithdraw
 	
 	^aReportInProgress - aWithdraw value.! !
 
+!Balance methodsFor: 'report building' stamp: 'FD 11/15/2020 16:57:36'!
+cleanAfterAffectReport! !
+
 
 !Balance methodsFor: 'initialization' stamp: 'FD 11/14/2020 19:45:41'!
 initializeWith: anAccount 
@@ -1086,9 +1499,19 @@ Report subclass: #NetTransferReport
 	poolDictionaries: ''
 	category: 'Portfolio'!
 
+!NetTransferReport methodsFor: 'report building' stamp: 'FD 11/15/2020 15:37:25'!
+affectReport: aReportInProgress FromAccount: aAccount
+
+	^aReportInProgress.! !
+
 !NetTransferReport methodsFor: 'report building' stamp: 'FD 11/14/2020 18:27:25'!
 affectReport: aReportInProgress FromDeposit: aDeposit
 	
+	^aReportInProgress.! !
+
+!NetTransferReport methodsFor: 'report building' stamp: 'FD 11/15/2020 15:33:30'!
+affectReport: aReportInProgress FromPortfolio: aPortfolio
+
 	^aReportInProgress.! !
 
 !NetTransferReport methodsFor: 'report building' stamp: 'FD 11/14/2020 18:35:11'!
@@ -1105,6 +1528,9 @@ affectReport: aReportInProgress FromTransferSending: aTransferSending
 affectReport: aReportInProgress FromWithdraw: aWithdraw
 	
 	^aReportInProgress.! !
+
+!NetTransferReport methodsFor: 'report building' stamp: 'FD 11/15/2020 16:57:36'!
+cleanAfterAffectReport! !
 
 
 !NetTransferReport methodsFor: 'action' stamp: 'FD 11/14/2020 18:28:26'!

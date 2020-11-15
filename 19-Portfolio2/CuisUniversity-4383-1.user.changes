@@ -6297,3 +6297,3902 @@ AccountTest subclass: #ReceptiveAccountTest
 	category: 'Portfolio'!
 
 ----SNAPSHOT----(14 November 2020 20:00:14) CuisUniversity-4383.image priorSource: 807780!
+
+----STARTUP---- (15 November 2020 15:00:45) as /home/franco/Documents/smallTalk/linux64/CuisUniversity-4383.image!
+
+
+ReportTest subclass: #AccountTreeStructureTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #AccountTreeStructureTest category: 'Portfolio' stamp: 'FD 11/15/2020 15:07:54'!
+ReportTest subclass: #AccountTreeStructureTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!AccountTreeStructureTest methodsFor: 'nil' stamp: 'FD 11/15/2020 15:08:38'!
+test01IsEmptyWhenPortfolioDoesNotHaveAccounts
+
+	! !
+!AccountTreeStructureTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 15:09:48' prior: 50364959!
+test01IsEmptyWhenPortfolioDoesNotHaveAccounts
+
+	| AccountTreeStructure portfolio | 
+	
+	portfolio := Portfolio new.
+	
+	AccountTreeStructure := AccountTreeStructure for: portfolio.
+	
+	self assert: AccountTreeStructure report isEmpty.! !
+!AccountTreeStructureTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 15:10:41'!
+test01ReportIsEmptyWhenPortfolioDoesNotHaveAccounts
+
+	| AccountTreeStructure portfolio | 
+	
+	portfolio := Portfolio new.
+	
+	AccountTreeStructure := AccountTreeStructure for: portfolio.
+	
+	self assert: AccountTreeStructure report isEmpty.! !
+
+!methodRemoval: AccountTreeStructureTest #test01IsEmptyWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 15:10:45'!
+test01IsEmptyWhenPortfolioDoesNotHaveAccounts
+
+	| AccountTreeStructure portfolio | 
+	
+	portfolio := Portfolio new.
+	
+	AccountTreeStructure := AccountTreeStructure for: portfolio.
+	
+	self assert: AccountTreeStructure report isEmpty.!
+
+!testRun: #AccountTreeStructureTest #test01ReportIsEmptyWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 15:10:48'!
+ERROR!
+
+!testRun: #AccountTreeStructureTest #test01ReportIsEmptyWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 15:10:48'!
+ERROR!
+
+Report subclass: #AccountTreeStructure
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #AccountTreeStructure category: 'Portfolio' stamp: 'FD 11/15/2020 15:11:25'!
+Report subclass: #AccountTreeStructure
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+Report subclass: #AccountTreeStructure
+	instanceVariableNames: 'portfolio'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #AccountTreeStructure category: 'Portfolio' stamp: 'FD 11/15/2020 15:11:48'!
+Report subclass: #AccountTreeStructure
+	instanceVariableNames: 'portfolio'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+Report subclass: #AccountTreeStructure
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #AccountTreeStructure category: 'Portfolio' stamp: 'FD 11/15/2020 15:12:25'!
+Report subclass: #AccountTreeStructure
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!AccountTreeStructure methodsFor: 'nil' stamp: 'FD 11/15/2020 15:12:39'!
+initializeWith: anAccount 
+	
+	account := anAccount.! !
+!AccountTreeStructure methodsFor: 'initialization' stamp: 'FD 11/15/2020 15:13:09' overrides: 50362243!
+report
+
+	| summary |
+	
+	summary := OrderedCollection new.
+
+	account buildReport: self from: summary.
+	
+	self addBalanceEntry: summary.
+	
+	^summary.! !
+!AccountTreeStructure methodsFor: 'initialization' stamp: 'FD 11/15/2020 15:13:23' prior: 50365047 overrides: 50362243!
+report
+
+	| structure |
+	
+	structure := OrderedCollection new.
+
+	account buildReport: self from: structure.
+	
+	self addBalanceEntry: structure.
+	
+	^structure.! !
+!AccountTreeStructure methodsFor: 'initialization' stamp: 'FD 11/15/2020 15:13:44' prior: 50365056 overrides: 50362243!
+report
+
+	| structure |
+	
+	structure := OrderedCollection new.
+
+	account buildReport: self from: structure.
+	
+	^structure.! !
+
+!testRun: #AccountTreeStructureTest #test01ReportIsEmptyWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 15:16:05'!
+ERROR!
+
+!testRun: #AccountTreeStructureTest #test01ReportIsEmptyWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 15:16:05'!
+ERROR!
+!AccountTreeStructureTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 15:17:07' prior: 50364976!
+test01ReportIsEmptyWhenPortfolioDoesNotHaveAccounts
+
+	| accountTreeStructure portfolio | 
+	
+	portfolio := Portfolio new.
+	
+	accountTreeStructure := AccountTreeStructure for: portfolio.
+	
+	self assert: AccountTreeStructure report isEmpty.! !
+!AccountTreeStructureTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 15:17:12' prior: 50365081!
+test01ReportIsEmptyWhenPortfolioDoesNotHaveAccounts
+
+	| accountTreeStructure portfolio | 
+	
+	portfolio := Portfolio new.
+	
+	accountTreeStructure := AccountTreeStructure for: portfolio.
+	
+	self assert: accountTreeStructure report isEmpty.! !
+
+!testRun: #AccountTreeStructureTest #test01ReportIsEmptyWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 15:17:13'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test01ReportIsEmptyWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 15:17:13'!
+PASSED!
+!AccountTreeStructureTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 15:17:44'!
+test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts
+
+	| accountTreeStructure portfolio | 
+	
+	portfolio := Portfolio new.
+	
+	accountTreeStructure := AccountTreeStructure for: portfolio.
+	
+	self assert: accountTreeStructure report isEmpty.! !
+!AccountTreeStructureTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 15:19:08' prior: 50365111!
+test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts
+
+	| accountTreeStructure portfolio | 
+	
+	portfolio := Portfolio named: 'test portfolio'.
+	
+	accountTreeStructure := AccountTreeStructure for: portfolio.
+	
+	self assert: accountTreeStructure report size equals: 1.
+	self assert: accountTreeStructure report first equals: 'test portfolio'.! !
+
+!testRun: #AccountTreeStructureTest #test01ReportIsEmptyWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 15:19:09'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 15:19:09'!
+ERROR!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 15:19:09'!
+ERROR!
+
+!methodRemoval: AccountTreeStructureTest #test01ReportIsEmptyWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 15:19:13'!
+test01ReportIsEmptyWhenPortfolioDoesNotHaveAccounts
+
+	| accountTreeStructure portfolio | 
+	
+	portfolio := Portfolio new.
+	
+	accountTreeStructure := AccountTreeStructure for: portfolio.
+	
+	self assert: accountTreeStructure report isEmpty.!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 15:19:14'!
+ERROR!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 15:19:14'!
+ERROR!
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 15:21:57'!
+named: aName
+
+	^self new 
+		name: aName;
+		yourself! !
+
+!classDefinition: #Portfolio category: 'Portfolio' stamp: 'FD 11/15/2020 15:22:25'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents name'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!Portfolio methodsFor: 'accounts management' stamp: 'FD 11/15/2020 15:22:23'!
+name: aName
+
+	name := aName.
+	! !
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio' stamp: 'FD 11/15/2020 15:23:26'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions name'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'FD 11/15/2020 15:23:24'!
+name: aName
+
+	name := aName.! !
+!ReceptiveAccount class methodsFor: 'nil' stamp: 'FD 11/15/2020 15:26:11'!
+named: aName
+
+	^self new name: aName.! !
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 15:26:25'!
+FAILURE!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 15:26:25'!
+FAILURE!
+!Portfolio methodsFor: 'report building' stamp: 'FD 11/15/2020 15:29:48' prior: 50361945 overrides: 50361938!
+buildReport: reportInstructions from: aReportToBuildOnto
+
+	| reportInProgess |
+	
+	reportInProgess := reportInstructions affectReport: aReportToBuildOnto FromPortfolio: self.
+		
+	^accounts
+	inject: reportInProgess 
+	into: [:report :transaction | transaction buildReport: reportInstructions from: report].! !
+!AccountTreeStructure methodsFor: 'initialization' stamp: 'FD 11/15/2020 15:30:20'!
+affectReport: aReportInProgress FromPortfolio: aDeposit
+
+	aReportInProgress add: 'Depósito por ', aDeposit value printString.	
+	
+	^aReportInProgress.! !
+!AccountTreeStructure methodsFor: 'initialization' stamp: 'FD 11/15/2020 15:30:32' prior: 50365226!
+affectReport: aReportInProgress FromPortfolio: aPortfolio
+
+	aReportInProgress add: 'Depósito por ', aPortfolio value printString.	
+	
+	^aReportInProgress.! !
+!AccountTreeStructure methodsFor: 'initialization' stamp: 'FD 11/15/2020 15:30:57' prior: 50365234!
+affectReport: aReportInProgress FromPortfolio: aPortfolio
+
+	aReportInProgress add: aPortfolio name.	
+	
+	^aReportInProgress.! !
+!Portfolio methodsFor: 'balance' stamp: 'FD 11/15/2020 15:31:21' overrides: 16882612!
+name
+
+	^name.! !
+!Account methodsFor: 'balance' stamp: 'FD 11/15/2020 15:31:39' overrides: 16882612!
+name
+
+	self subclassResponsibility .! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'FD 11/15/2020 15:31:53' overrides: 50365254!
+name 
+	
+	^ name.! !
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 15:32:00'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test01AccountSummaryOfAnEmptyPortfolioOnlyShowsBalance stamp: 'FD 11/15/2020 15:33:02'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test02AccountSummaryOfAPortfolioWithADepositAddsIt stamp: 'FD 11/15/2020 15:33:02'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt stamp: 'FD 11/15/2020 15:33:02'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test04AccountSummaryOfAPortfolioWithASendingTransferAddsIt stamp: 'FD 11/15/2020 15:33:02'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test05AccountSummaryOfAPortfolioWithAReceivingTransferAddsIt stamp: 'FD 11/15/2020 15:33:02'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test06AccountSummaryShowsTheBalance stamp: 'FD 11/15/2020 15:33:02'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test07AccountSummaryOfAnAccountWithMultipleTransactionsAddsThemAll stamp: 'FD 11/15/2020 15:33:02'!
+ERROR!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 15:33:02'!
+PASSED!
+
+!testRun: #NetTransferTest #test01NetTransferReportForAnAccountWithoutTransfersReturnsZero stamp: 'FD 11/15/2020 15:33:02'!
+ERROR!
+
+!testRun: #NetTransferTest #test02NetTransferReportForAnAccountWithTransfersReturnsTheNetValue stamp: 'FD 11/15/2020 15:33:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'FD 11/15/2020 15:33:02'!
+ERROR!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithOneAccountIsAccountBalance stamp: 'FD 11/15/2020 15:33:02'!
+ERROR!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'FD 11/15/2020 15:33:02'!
+ERROR!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'FD 11/15/2020 15:33:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'FD 11/15/2020 15:33:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'FD 11/15/2020 15:33:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'FD 11/15/2020 15:33:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'FD 11/15/2020 15:33:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'FD 11/15/2020 15:33:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'FD 11/15/2020 15:33:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'FD 11/15/2020 15:33:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'FD 11/15/2020 15:33:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'FD 11/15/2020 15:33:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'FD 11/15/2020 15:33:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'FD 11/15/2020 15:33:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/15/2020 15:33:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 15:33:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 15:33:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/15/2020 15:33:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/15/2020 15:33:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/15/2020 15:33:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/15/2020 15:33:02'!
+PASSED!
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/15/2020 15:33:02'!
+PASSED!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/15/2020 15:33:02'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/15/2020 15:33:02'!
+PASSED!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/15/2020 15:33:02'!
+PASSED!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/15/2020 15:33:02'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferAmountShouldBeGreaterThanZero stamp: 'FD 11/15/2020 15:33:02'!
+PASSED!
+!NetTransferReport methodsFor: 'report building' stamp: 'FD 11/15/2020 15:33:30'!
+affectReport: aReportInProgress FromPortfolio: aPortfolio
+
+	^aReportInProgress.! !
+!Balance methodsFor: 'report building' stamp: 'FD 11/15/2020 15:33:36'!
+affectReport: aReportInProgress FromPortfolio: aPortfolio
+
+	^aReportInProgress.! !
+!AccountSummary methodsFor: 'report building' stamp: 'FD 11/15/2020 15:33:44'!
+affectReport: aReportInProgress FromPortfolio: aPortfolio
+
+	^aReportInProgress.! !
+
+!testRun: #AccountSummaryTest #test01AccountSummaryOfAnEmptyPortfolioOnlyShowsBalance stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AccountSummaryOfAPortfolioWithADepositAddsIt stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test04AccountSummaryOfAPortfolioWithASendingTransferAddsIt stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test05AccountSummaryOfAPortfolioWithAReceivingTransferAddsIt stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test06AccountSummaryShowsTheBalance stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test07AccountSummaryOfAnAccountWithMultipleTransactionsAddsThemAll stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #NetTransferTest #test01NetTransferReportForAnAccountWithoutTransfersReturnsZero stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #NetTransferTest #test02NetTransferReportForAnAccountWithTransfersReturnsTheNetValue stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithOneAccountIsAccountBalance stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferAmountShouldBeGreaterThanZero stamp: 'FD 11/15/2020 15:33:46'!
+PASSED!
+!AccountTreeStructureTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 15:34:54'!
+test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount
+
+	| accountTreeStructure portfolio | 
+	
+	portfolio := Account named: 'test portfolio'.
+	
+	accountTreeStructure := AccountTreeStructure for: portfolio.
+	
+	self assert: accountTreeStructure report size equals: 1.
+	self assert: accountTreeStructure report first equals: 'test portfolio'.! !
+!AccountTreeStructureTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 15:35:00' prior: 50365576!
+test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount
+
+	| accountTreeStructure account | 
+	
+	account := Account named: 'test portfolio'.
+	
+	accountTreeStructure := AccountTreeStructure for: account.
+	
+	self assert: accountTreeStructure report size equals: 1.
+	self assert: accountTreeStructure report first equals: 'test portfolio'.! !
+!AccountTreeStructureTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 15:35:07' prior: 50365591!
+test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount
+
+	| accountTreeStructure account | 
+	
+	account := Account named: 'test account'.
+	
+	accountTreeStructure := AccountTreeStructure for: account.
+	
+	self assert: accountTreeStructure report size equals: 1.
+	self assert: accountTreeStructure report first equals: 'test account'.! !
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 15:35:13'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 15:35:13'!
+ERROR!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 15:35:13'!
+ERROR!
+!AccountTreeStructureTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 15:35:23' prior: 50365605!
+test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount
+
+	| accountTreeStructure account | 
+	
+	account := ReceptiveAccount named: 'test account'.
+	
+	accountTreeStructure := AccountTreeStructure for: account.
+	
+	self assert: accountTreeStructure report size equals: 1.
+	self assert: accountTreeStructure report first equals: 'test account'.! !
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 15:35:25'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'report building' stamp: 'FD 11/15/2020 15:35:56' prior: 50361923 overrides: 50361938!
+buildReport: reportInstructions from: aReportToBuildOnto
+
+	| reportInProgess |
+	
+	reportInProgess := reportInstructions affectReport: aReportToBuildOnto FromAccount: self.
+	
+	^transactions
+	inject: reportInProgess 
+	into: [:report :transaction | transaction buildReport: reportInstructions from: report].! !
+!AccountTreeStructure methodsFor: 'initialization' stamp: 'FD 11/15/2020 15:36:25'!
+affectReport: aReportInProgress FromAccount: anAccount
+
+	aReportInProgress add: anAccount name.	
+	
+	^aReportInProgress.! !
+!AccountSummary methodsFor: 'report building' stamp: 'FD 11/15/2020 15:37:14'!
+affectReport: aReportInProgress FromAccount: aAccount
+
+	^aReportInProgress.! !
+!Balance methodsFor: 'report building' stamp: 'FD 11/15/2020 15:37:20'!
+affectReport: aReportInProgress FromAccount: aAccount
+
+	^aReportInProgress.! !
+!NetTransferReport methodsFor: 'report building' stamp: 'FD 11/15/2020 15:37:25'!
+affectReport: aReportInProgress FromAccount: aAccount
+
+	^aReportInProgress.! !
+
+!testRun: #AccountSummaryTest #test01AccountSummaryOfAnEmptyPortfolioOnlyShowsBalance stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AccountSummaryOfAPortfolioWithADepositAddsIt stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test04AccountSummaryOfAPortfolioWithASendingTransferAddsIt stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test05AccountSummaryOfAPortfolioWithAReceivingTransferAddsIt stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test06AccountSummaryShowsTheBalance stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test07AccountSummaryOfAnAccountWithMultipleTransactionsAddsThemAll stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #NetTransferTest #test01NetTransferReportForAnAccountWithoutTransfersReturnsZero stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #NetTransferTest #test02NetTransferReportForAnAccountWithTransfersReturnsTheNetValue stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithOneAccountIsAccountBalance stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferAmountShouldBeGreaterThanZero stamp: 'FD 11/15/2020 15:37:27'!
+PASSED!
+!AccountTreeStructureTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 15:38:22'!
+test03ReportDoesNotShowTransactions
+
+	| accountTreeStructure account | 
+	
+	account := ReceptiveAccount named: 'test account'.
+	Deposit register: 100 on: account.
+	
+	accountTreeStructure := AccountTreeStructure for: account.
+	
+	self assert: accountTreeStructure report size equals: 1.
+	self assert: accountTreeStructure report first equals: 'test account'.! !
+
+!testRun: #AccountTreeStructureTest #test03ReportDoesNotShowTransactions stamp: 'FD 11/15/2020 15:38:25'!
+ERROR!
+
+!testRun: #AccountTreeStructureTest #test03ReportDoesNotShowTransactions stamp: 'FD 11/15/2020 15:38:25'!
+ERROR!
+!AccountTreeStructure methodsFor: 'initialization' stamp: 'FD 11/15/2020 15:39:04' overrides: 50362219!
+affectReport: aReportInProgress FromDeposit: aDeposit
+
+	^aReportInProgress.! !
+!AccountTreeStructure methodsFor: 'initialization' stamp: 'FD 11/15/2020 15:39:26' overrides: 50362237!
+affectReport: aReportInProgress FromWithdraw: aWithdraw
+
+	^aReportInProgress.! !
+!AccountTreeStructure methodsFor: 'initialization' stamp: 'FD 11/15/2020 15:39:38' overrides: 50362225!
+affectReport: aReportInProgress FromTransferReception: aTransferReception
+
+	^aReportInProgress.! !
+!AccountTreeStructure methodsFor: 'initialization' stamp: 'FD 11/15/2020 15:39:49' overrides: 50362231!
+affectReport: aReportInProgress FromTransferSending: aTransferSending
+
+	^aReportInProgress.! !
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 15:39:52'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 15:39:52'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test03ReportDoesNotShowTransactions stamp: 'FD 11/15/2020 15:39:52'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test01AccountSummaryOfAnEmptyPortfolioOnlyShowsBalance stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AccountSummaryOfAPortfolioWithADepositAddsIt stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test04AccountSummaryOfAPortfolioWithASendingTransferAddsIt stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test05AccountSummaryOfAPortfolioWithAReceivingTransferAddsIt stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test06AccountSummaryShowsTheBalance stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test07AccountSummaryOfAnAccountWithMultipleTransactionsAddsThemAll stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test03ReportDoesNotShowTransactions stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #NetTransferTest #test01NetTransferReportForAnAccountWithoutTransfersReturnsZero stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #NetTransferTest #test02NetTransferReportForAnAccountWithTransfersReturnsTheNetValue stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithOneAccountIsAccountBalance stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferAmountShouldBeGreaterThanZero stamp: 'FD 11/15/2020 15:39:54'!
+PASSED!
+!AccountTreeStructureTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 15:41:39'!
+test04ChildAccountsAreIndented
+
+	| accountTreeStructure account | 
+	
+	account := ReceptiveAccount named: 'test account'.
+	
+	
+	accountTreeStructure := AccountTreeStructure for: account.
+	
+	self assert: accountTreeStructure report size equals: 1.
+	self assert: accountTreeStructure report first equals: 'test account'.! !
+!AccountTreeStructureTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 15:41:43' prior: 50366051!
+test04ChildAccountsAreIndented
+
+	| accountTreeStructure portfolio | 
+	
+	portfolio := ReceptiveAccount named: 'test account'.
+	
+	
+	accountTreeStructure := AccountTreeStructure for: portfolio.
+	
+	self assert: accountTreeStructure report size equals: 1.
+	self assert: accountTreeStructure report first equals: 'test account'.! !
+!AccountTreeStructureTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 15:42:10' prior: 50366065!
+test04ChildAccountsAreIndented
+
+	| accountTreeStructure portfolio | 
+	
+	portfolio := Portfolio named: 'a portfolio'.
+	
+	
+	accountTreeStructure := AccountTreeStructure for: portfolio.
+	
+	self assert: accountTreeStructure report size equals: 1.
+	self assert: accountTreeStructure report first equals: 'test account'.! !
+!AccountTreeStructureTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 15:44:01' prior: 50366079!
+test04ChildAccountsAreIndented
+
+	| accountTreeStructure portfolio | 
+	
+	portfolio := Portfolio named: 'a portfolio' with: (Account named: 'an account').
+	
+	
+	accountTreeStructure := AccountTreeStructure for: portfolio.
+	
+	self assert: accountTreeStructure report second equals: '   an account'.! !
+
+!testRun: #AccountTreeStructureTest #test04ChildAccountsAreIndented stamp: 'FD 11/15/2020 15:44:06'!
+ERROR!
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 15:44:44'!
+named: aName with: anotherAccount
+
+	^self new 
+		name: aName;
+		add: anotherAccount;
+		yourself! !
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 15:44:50'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 15:44:50'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test03ReportDoesNotShowTransactions stamp: 'FD 11/15/2020 15:44:50'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test04ChildAccountsAreIndented stamp: 'FD 11/15/2020 15:44:50'!
+ERROR!
+
+!testRun: #AccountTreeStructureTest #test04ChildAccountsAreIndented stamp: 'FD 11/15/2020 15:44:50'!
+ERROR!
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 15:45:15' prior: 50366109!
+named: aName with: anotherAccount
+
+	^self new 
+		named: aName;
+		add: anotherAccount;
+		yourself! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'FD 11/15/2020 15:45:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithOneAccountIsAccountBalance stamp: 'FD 11/15/2020 15:45:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'FD 11/15/2020 15:45:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'FD 11/15/2020 15:45:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'FD 11/15/2020 15:45:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'FD 11/15/2020 15:45:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'FD 11/15/2020 15:45:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'FD 11/15/2020 15:45:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'FD 11/15/2020 15:45:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'FD 11/15/2020 15:45:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'FD 11/15/2020 15:45:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'FD 11/15/2020 15:45:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'FD 11/15/2020 15:45:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'FD 11/15/2020 15:45:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'FD 11/15/2020 15:45:18'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 15:45:28'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 15:45:28'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test03ReportDoesNotShowTransactions stamp: 'FD 11/15/2020 15:45:28'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test04ChildAccountsAreIndented stamp: 'FD 11/15/2020 15:45:28'!
+ERROR!
+
+!testRun: #AccountTreeStructureTest #test04ChildAccountsAreIndented stamp: 'FD 11/15/2020 15:45:28'!
+ERROR!
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 15:46:05' prior: 50366135!
+named: aName with: anotherAccount
+
+	^self new 
+		name: aName;
+		add: anotherAccount;
+		yourself! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'FD 11/15/2020 15:46:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithOneAccountIsAccountBalance stamp: 'FD 11/15/2020 15:46:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'FD 11/15/2020 15:46:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'FD 11/15/2020 15:46:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'FD 11/15/2020 15:46:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'FD 11/15/2020 15:46:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'FD 11/15/2020 15:46:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'FD 11/15/2020 15:46:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'FD 11/15/2020 15:46:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'FD 11/15/2020 15:46:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'FD 11/15/2020 15:46:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'FD 11/15/2020 15:46:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'FD 11/15/2020 15:46:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'FD 11/15/2020 15:46:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'FD 11/15/2020 15:46:15'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 15:46:18'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 15:46:18'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test03ReportDoesNotShowTransactions stamp: 'FD 11/15/2020 15:46:18'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test04ChildAccountsAreIndented stamp: 'FD 11/15/2020 15:46:18'!
+ERROR!
+
+!testRun: #AccountTreeStructureTest #test04ChildAccountsAreIndented stamp: 'FD 11/15/2020 15:46:18'!
+ERROR!
+!AccountTreeStructureTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 15:46:38' prior: 50366093!
+test04ChildAccountsAreIndented
+
+	| accountTreeStructure portfolio | 
+	
+	portfolio := Portfolio named: 'a portfolio' with: (ReceptiveAccount named: 'an account').
+	
+	
+	accountTreeStructure := AccountTreeStructure for: portfolio.
+	
+	self assert: accountTreeStructure report second equals: '   an account'.! !
+
+!testRun: #AccountTreeStructureTest #test04ChildAccountsAreIndented stamp: 'FD 11/15/2020 15:46:40'!
+FAILURE!
+!AccountTreeStructure methodsFor: 'initialization' stamp: 'FD 11/15/2020 15:47:07' prior: 50365664!
+affectReport: aReportInProgress FromAccount: anAccount
+
+	aReportInProgress add: '   ',anAccount name.	
+	
+	^aReportInProgress.! !
+
+!testRun: #AccountSummaryTest #test01AccountSummaryOfAnEmptyPortfolioOnlyShowsBalance stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AccountSummaryOfAPortfolioWithADepositAddsIt stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test04AccountSummaryOfAPortfolioWithASendingTransferAddsIt stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test05AccountSummaryOfAPortfolioWithAReceivingTransferAddsIt stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test06AccountSummaryShowsTheBalance stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test07AccountSummaryOfAnAccountWithMultipleTransactionsAddsThemAll stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 15:47:09'!
+FAILURE!
+
+!testRun: #AccountTreeStructureTest #test03ReportDoesNotShowTransactions stamp: 'FD 11/15/2020 15:47:09'!
+FAILURE!
+
+!testRun: #AccountTreeStructureTest #test04ChildAccountsAreIndented stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #NetTransferTest #test01NetTransferReportForAnAccountWithoutTransfersReturnsZero stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #NetTransferTest #test02NetTransferReportForAnAccountWithTransfersReturnsTheNetValue stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithOneAccountIsAccountBalance stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferAmountShouldBeGreaterThanZero stamp: 'FD 11/15/2020 15:47:09'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test01AccountSummaryOfAnEmptyPortfolioOnlyShowsBalance stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AccountSummaryOfAPortfolioWithADepositAddsIt stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test04AccountSummaryOfAPortfolioWithASendingTransferAddsIt stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test05AccountSummaryOfAPortfolioWithAReceivingTransferAddsIt stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test06AccountSummaryShowsTheBalance stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test07AccountSummaryOfAnAccountWithMultipleTransactionsAddsThemAll stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 15:50:40'!
+FAILURE!
+
+!testRun: #AccountTreeStructureTest #test03ReportDoesNotShowTransactions stamp: 'FD 11/15/2020 15:50:40'!
+FAILURE!
+
+!testRun: #AccountTreeStructureTest #test04ChildAccountsAreIndented stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #NetTransferTest #test01NetTransferReportForAnAccountWithoutTransfersReturnsZero stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #NetTransferTest #test02NetTransferReportForAnAccountWithTransfersReturnsTheNetValue stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithOneAccountIsAccountBalance stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferAmountShouldBeGreaterThanZero stamp: 'FD 11/15/2020 15:50:40'!
+PASSED!
+!AccountTreeStructure methodsFor: 'initialization' stamp: 'FD 11/15/2020 15:51:08' prior: 50366319!
+affectReport: aReportInProgress FromAccount: anAccount
+
+	aReportInProgress add: anAccount name.	
+	
+	^aReportInProgress.! !
+!Portfolio methodsFor: 'report building' stamp: 'FD 11/15/2020 16:03:31' prior: 50365213 overrides: 50361938!
+buildReport: reportInstructions from: aReportToBuildOnto
+
+	| reportInProgess |
+	
+	reportInProgess := reportInstructions affectReport: aReportToBuildOnto FromPortfolio: self.
+		
+	accounts
+	inject: reportInProgess 
+	into: [:report :transaction | transaction buildReport: reportInstructions from: report].
+	
+	reportInstructions afterAffectReport.
+	
+	^reportInProgess.! !
+
+!classDefinition: #AccountTreeStructure category: 'Portfolio' stamp: 'FD 11/15/2020 16:04:06'!
+Report subclass: #AccountTreeStructure
+	instanceVariableNames: 'account indentationLevel'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!AccountTreeStructure methodsFor: 'initialization' stamp: 'FD 11/15/2020 16:04:04'!
+afterAffectReport
+
+	indentationLevel := indentationLevel - 1.! !
+!AccountTreeStructure methodsFor: 'initialization' stamp: 'FD 11/15/2020 16:04:13' prior: 50365042!
+initializeWith: anAccount 
+	
+	account := anAccount.
+	indentationLevel := 0.! !
+!AccountTreeStructure methodsFor: 'initialization' stamp: 'FD 11/15/2020 16:04:39' prior: 50366640!
+affectReport: aReportInProgress FromAccount: anAccount
+
+	indentationLevel := indentationLevel + 1.
+	aReportInProgress add: anAccount name.	
+	
+	^aReportInProgress.! !
+!AccountTreeStructure methodsFor: 'initialization' stamp: 'FD 11/15/2020 16:04:56' prior: 50365243!
+affectReport: aReportInProgress FromPortfolio: aPortfolio
+
+	aReportInProgress add: aPortfolio name.	
+	indentationLevel := indentationLevel + 1.
+	
+	^aReportInProgress.! !
+!AccountTreeStructure methodsFor: 'initialization' stamp: 'FD 11/15/2020 16:05:03' prior: 50366683!
+affectReport: aReportInProgress FromAccount: anAccount
+
+	aReportInProgress add: anAccount name.	
+	indentationLevel := indentationLevel + 1.
+	
+	^aReportInProgress.! !
+!AccountTreeStructure methodsFor: 'initialization' stamp: 'FD 11/15/2020 16:05:42' prior: 50366701!
+affectReport: aReportInProgress FromAccount: anAccount
+
+	aReportInProgress add: (self indent: anAccount name).	
+	indentationLevel := indentationLevel + 1.
+	
+	^aReportInProgress.! !
+!AccountTreeStructure methodsFor: 'initialization' stamp: 'FD 11/15/2020 16:05:56' prior: 50366692!
+affectReport: aReportInProgress FromPortfolio: aPortfolio
+
+	aReportInProgress add: (self indent: aPortfolio name).	
+	indentationLevel := indentationLevel + 1.
+	
+	^aReportInProgress.! !
+!AccountTreeStructure methodsFor: 'report building' stamp: 'FD 11/15/2020 16:06:45'!
+indent: anEntry
+
+	^'  '.! !
+
+'a'time: 3.!
+
+2 timesRepeat: ['a','b']!
+
+2 timesRepeat: ['a','b']!
+
+3 timesRepeat: [2*1]!
+
+a := 'hola'.!
+
+3 timesRepeat: [a,'G']!
+
+3 timesRepeat: [a,'G']!
+
+a!
+
+3 timesRepeat: [a := a,'G']!
+
+3 timesRepeat: [a := a,'G']!
+
+a!
+!AccountTreeStructure methodsFor: 'report building -- private' stamp: 'FD 11/15/2020 16:20:11' prior: 50366728!
+indent: anEntry
+
+	| indentedEntry |
+	
+	indentedEntry := anEntry.
+	indentationLevel timesRepeat: [indentedEntry := '   ',indentedEntry ].
+	
+	^indentedEntry.! !
+
+!testRun: #AccountSummaryTest #test01AccountSummaryOfAnEmptyPortfolioOnlyShowsBalance stamp: 'FD 11/15/2020 16:20:29'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test02AccountSummaryOfAPortfolioWithADepositAddsIt stamp: 'FD 11/15/2020 16:20:29'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt stamp: 'FD 11/15/2020 16:20:29'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test04AccountSummaryOfAPortfolioWithASendingTransferAddsIt stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test05AccountSummaryOfAPortfolioWithAReceivingTransferAddsIt stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test06AccountSummaryShowsTheBalance stamp: 'FD 11/15/2020 16:20:29'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test07AccountSummaryOfAnAccountWithMultipleTransactionsAddsThemAll stamp: 'FD 11/15/2020 16:20:29'!
+ERROR!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 16:20:29'!
+FAILURE!
+
+!testRun: #AccountTreeStructureTest #test03ReportDoesNotShowTransactions stamp: 'FD 11/15/2020 16:20:29'!
+FAILURE!
+
+!testRun: #AccountTreeStructureTest #test04ChildAccountsAreIndented stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #NetTransferTest #test01NetTransferReportForAnAccountWithoutTransfersReturnsZero stamp: 'FD 11/15/2020 16:20:29'!
+ERROR!
+
+!testRun: #NetTransferTest #test02NetTransferReportForAnAccountWithTransfersReturnsTheNetValue stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'FD 11/15/2020 16:20:29'!
+ERROR!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithOneAccountIsAccountBalance stamp: 'FD 11/15/2020 16:20:29'!
+ERROR!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'FD 11/15/2020 16:20:29'!
+ERROR!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferAmountShouldBeGreaterThanZero stamp: 'FD 11/15/2020 16:20:29'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 16:20:32'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 16:20:32'!
+FAILURE!
+
+!testRun: #AccountTreeStructureTest #test03ReportDoesNotShowTransactions stamp: 'FD 11/15/2020 16:20:32'!
+FAILURE!
+
+!testRun: #AccountTreeStructureTest #test04ChildAccountsAreIndented stamp: 'FD 11/15/2020 16:20:32'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 16:20:40'!
+FAILURE!
+!AccountTreeStructure methodsFor: 'action' stamp: 'FD 11/15/2020 16:21:33' prior: 50365065 overrides: 50362243!
+report
+
+	| structure |
+	
+	structure := OrderedCollection new.
+
+	account buildReport: self from: structure.
+	
+	indentationLevel := 0.
+	^structure.! !
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 16:21:36'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 16:21:36'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test03ReportDoesNotShowTransactions stamp: 'FD 11/15/2020 16:21:36'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test04ChildAccountsAreIndented stamp: 'FD 11/15/2020 16:21:36'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test01AccountSummaryOfAnEmptyPortfolioOnlyShowsBalance stamp: 'FD 11/15/2020 16:21:37'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test02AccountSummaryOfAPortfolioWithADepositAddsIt stamp: 'FD 11/15/2020 16:21:38'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt stamp: 'FD 11/15/2020 16:21:38'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test04AccountSummaryOfAPortfolioWithASendingTransferAddsIt stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test05AccountSummaryOfAPortfolioWithAReceivingTransferAddsIt stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test06AccountSummaryShowsTheBalance stamp: 'FD 11/15/2020 16:21:38'!
+ERROR!
+
+!testRun: #AccountSummaryTest #test07AccountSummaryOfAnAccountWithMultipleTransactionsAddsThemAll stamp: 'FD 11/15/2020 16:21:38'!
+ERROR!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test03ReportDoesNotShowTransactions stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test04ChildAccountsAreIndented stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #NetTransferTest #test01NetTransferReportForAnAccountWithoutTransfersReturnsZero stamp: 'FD 11/15/2020 16:21:38'!
+ERROR!
+
+!testRun: #NetTransferTest #test02NetTransferReportForAnAccountWithTransfersReturnsTheNetValue stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'FD 11/15/2020 16:21:38'!
+ERROR!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithOneAccountIsAccountBalance stamp: 'FD 11/15/2020 16:21:38'!
+ERROR!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'FD 11/15/2020 16:21:38'!
+ERROR!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferAmountShouldBeGreaterThanZero stamp: 'FD 11/15/2020 16:21:38'!
+PASSED!
+!AccountSummary methodsFor: 'report building' stamp: 'FD 11/15/2020 16:22:08'!
+afterAffectReport! !
+!Balance methodsFor: 'report building' stamp: 'FD 11/15/2020 16:22:12'!
+afterAffectReport! !
+!NetTransferReport methodsFor: 'report building' stamp: 'FD 11/15/2020 16:22:15'!
+afterAffectReport! !
+
+!testRun: #AccountSummaryTest #test01AccountSummaryOfAnEmptyPortfolioOnlyShowsBalance stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AccountSummaryOfAPortfolioWithADepositAddsIt stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test04AccountSummaryOfAPortfolioWithASendingTransferAddsIt stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test05AccountSummaryOfAPortfolioWithAReceivingTransferAddsIt stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test06AccountSummaryShowsTheBalance stamp: 'FD 11/15/2020 16:22:18'!
+FAILURE!
+
+!testRun: #AccountSummaryTest #test07AccountSummaryOfAnAccountWithMultipleTransactionsAddsThemAll stamp: 'FD 11/15/2020 16:22:18'!
+FAILURE!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test03ReportDoesNotShowTransactions stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test04ChildAccountsAreIndented stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #NetTransferTest #test01NetTransferReportForAnAccountWithoutTransfersReturnsZero stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #NetTransferTest #test02NetTransferReportForAnAccountWithTransfersReturnsTheNetValue stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithOneAccountIsAccountBalance stamp: 'FD 11/15/2020 16:22:18'!
+FAILURE!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'FD 11/15/2020 16:22:18'!
+FAILURE!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferAmountShouldBeGreaterThanZero stamp: 'FD 11/15/2020 16:22:18'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test06AccountSummaryShowsTheBalance stamp: 'FD 11/15/2020 16:22:26'!
+FAILURE!
+!Portfolio methodsFor: 'report building' stamp: 'FD 11/15/2020 16:24:32' prior: 50366648 overrides: 50361938!
+buildReport: reportInstructions from: aReportToBuildOnto
+
+	| reportInProgess |
+	
+	reportInProgess := reportInstructions affectReport: aReportToBuildOnto FromPortfolio: self.
+		
+	reportInProgess := accounts
+	inject: reportInProgess 
+	into: [:report :transaction | transaction buildReport: reportInstructions from: report].
+	
+	reportInstructions afterAffectReport.
+	
+	^reportInProgess.! !
+!ReceptiveAccount methodsFor: 'report building' stamp: 'FD 11/15/2020 16:24:47' prior: 50365651 overrides: 50361938!
+buildReport: reportInstructions from: aReportToBuildOnto
+
+	| reportInProgess |
+	
+	reportInProgess := reportInstructions affectReport: aReportToBuildOnto FromAccount: self.
+	
+	^transactions
+	inject: reportInProgess 
+	into: [:report :transaction | transaction buildReport: reportInstructions from: report].! !
+
+!testRun: #AccountSummaryTest #test01AccountSummaryOfAnEmptyPortfolioOnlyShowsBalance stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AccountSummaryOfAPortfolioWithADepositAddsIt stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test04AccountSummaryOfAPortfolioWithASendingTransferAddsIt stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test05AccountSummaryOfAPortfolioWithAReceivingTransferAddsIt stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test06AccountSummaryShowsTheBalance stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test07AccountSummaryOfAnAccountWithMultipleTransactionsAddsThemAll stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test03ReportDoesNotShowTransactions stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test04ChildAccountsAreIndented stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #NetTransferTest #test01NetTransferReportForAnAccountWithoutTransfersReturnsZero stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #NetTransferTest #test02NetTransferReportForAnAccountWithTransfersReturnsTheNetValue stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithOneAccountIsAccountBalance stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferAmountShouldBeGreaterThanZero stamp: 'FD 11/15/2020 16:24:50'!
+PASSED!
+!AccountTreeStructureTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 16:25:31'!
+test04ChildAccountIsIndented
+
+	| accountTreeStructure portfolio | 
+	
+	portfolio := Portfolio named: 'a portfolio' with: (ReceptiveAccount named: 'an account').
+	
+	
+	accountTreeStructure := AccountTreeStructure for: portfolio.
+	
+	self assert: accountTreeStructure report second equals: '   an account'.! !
+
+!methodRemoval: AccountTreeStructureTest #test04ChildAccountsAreIndented stamp: 'FD 11/15/2020 16:25:31'!
+test04ChildAccountsAreIndented
+
+	| accountTreeStructure portfolio | 
+	
+	portfolio := Portfolio named: 'a portfolio' with: (ReceptiveAccount named: 'an account').
+	
+	
+	accountTreeStructure := AccountTreeStructure for: portfolio.
+	
+	self assert: accountTreeStructure report second equals: '   an account'.!
+!AccountTreeStructureTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 16:29:21'!
+test05ChildAccountsAreIndented
+
+	| accountTreeStructure childPortfolio portfolio | 
+	
+	childPortfolio := Portfolio named: 'a portfolio' with: (ReceptiveAccount named: 'an account').
+	portfolio := Portfolio named: 'parent portfolio' with: childPortfolio .
+	
+	
+	accountTreeStructure := AccountTreeStructure for: portfolio.
+	
+	self assert: accountTreeStructure report second equals: '   a portfolio'.
+	self assert: accountTreeStructure report third equals: '      an account'.! !
+
+!testRun: #AccountTreeStructureTest #test05ChildAccountsAreIndented stamp: 'FD 11/15/2020 16:29:24'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 16:29:24'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 16:29:24'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test03ReportDoesNotShowTransactions stamp: 'FD 11/15/2020 16:29:24'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test04ChildAccountIsIndented stamp: 'FD 11/15/2020 16:29:24'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test05ChildAccountsAreIndented stamp: 'FD 11/15/2020 16:29:24'!
+PASSED!
+!AccountTreeStructureTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 16:30:53' prior: 50367489!
+test05ChildAccountsAreIndented
+
+	| accountTreeStructure childPortfolio portfolio | 
+	
+	childPortfolio := Portfolio named: 'a portfolio' with: (ReceptiveAccount named: 'an account').
+	portfolio := Portfolio named: 'parent portfolio' with: childPortfolio .
+	portfolio add: (ReceptiveAccount named: 'another account').
+	
+	
+	accountTreeStructure := AccountTreeStructure for: portfolio.
+	
+	self assert: accountTreeStructure report second equals: '   a portfolio'.
+	self assert: accountTreeStructure report third equals: '      an account'.
+		self assert: accountTreeStructure report third equals: '   another account'.! !
+!AccountTreeStructureTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 16:30:56' prior: 50367530!
+test05ChildAccountsAreIndented
+
+	| accountTreeStructure childPortfolio portfolio | 
+	
+	childPortfolio := Portfolio named: 'a portfolio' with: (ReceptiveAccount named: 'an account').
+	portfolio := Portfolio named: 'parent portfolio' with: childPortfolio .
+	portfolio add: (ReceptiveAccount named: 'another account').
+	
+	
+	accountTreeStructure := AccountTreeStructure for: portfolio.
+	
+	self assert: accountTreeStructure report second equals: '   a portfolio'.
+	self assert: accountTreeStructure report third equals: '      an account'.
+	self assert: accountTreeStructure report third equals: '   another account'.! !
+
+!testRun: #AccountTreeStructureTest #test05ChildAccountsAreIndented stamp: 'FD 11/15/2020 16:30:57'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'report building' stamp: 'FD 11/15/2020 16:31:43' prior: 50367293 overrides: 50361938!
+buildReport: reportInstructions from: aReportToBuildOnto
+
+	| reportInProgess |
+	
+	reportInProgess := reportInstructions affectReport: aReportToBuildOnto FromAccount: self.
+	
+	reportInProgess := transactions
+	inject: reportInProgess 
+	into: [:report :transaction | transaction buildReport: reportInstructions from: report].
+	
+	reportInstructions afterAffectReport.
+	
+	^reportInProgess.! !
+
+!testRun: #AccountSummaryTest #test01AccountSummaryOfAnEmptyPortfolioOnlyShowsBalance stamp: 'FD 11/15/2020 16:31:45'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AccountSummaryOfAPortfolioWithADepositAddsIt stamp: 'FD 11/15/2020 16:31:45'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt stamp: 'FD 11/15/2020 16:31:45'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test04AccountSummaryOfAPortfolioWithASendingTransferAddsIt stamp: 'FD 11/15/2020 16:31:45'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test05AccountSummaryOfAPortfolioWithAReceivingTransferAddsIt stamp: 'FD 11/15/2020 16:31:45'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test06AccountSummaryShowsTheBalance stamp: 'FD 11/15/2020 16:31:45'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test07AccountSummaryOfAnAccountWithMultipleTransactionsAddsThemAll stamp: 'FD 11/15/2020 16:31:45'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 16:31:45'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 16:31:45'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test03ReportDoesNotShowTransactions stamp: 'FD 11/15/2020 16:31:45'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test04ChildAccountIsIndented stamp: 'FD 11/15/2020 16:31:45'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test05ChildAccountsAreIndented stamp: 'FD 11/15/2020 16:31:45'!
+FAILURE!
+
+!testRun: #NetTransferTest #test01NetTransferReportForAnAccountWithoutTransfersReturnsZero stamp: 'FD 11/15/2020 16:31:45'!
+PASSED!
+
+!testRun: #NetTransferTest #test02NetTransferReportForAnAccountWithTransfersReturnsTheNetValue stamp: 'FD 11/15/2020 16:31:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'FD 11/15/2020 16:31:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithOneAccountIsAccountBalance stamp: 'FD 11/15/2020 16:31:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'FD 11/15/2020 16:31:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'FD 11/15/2020 16:31:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'FD 11/15/2020 16:31:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'FD 11/15/2020 16:31:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'FD 11/15/2020 16:31:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'FD 11/15/2020 16:31:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'FD 11/15/2020 16:31:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'FD 11/15/2020 16:31:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'FD 11/15/2020 16:31:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'FD 11/15/2020 16:31:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'FD 11/15/2020 16:31:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'FD 11/15/2020 16:31:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'FD 11/15/2020 16:31:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/15/2020 16:31:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 16:31:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 16:31:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/15/2020 16:31:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/15/2020 16:31:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/15/2020 16:31:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/15/2020 16:31:46'!
+PASSED!
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/15/2020 16:31:46'!
+PASSED!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/15/2020 16:31:46'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/15/2020 16:31:46'!
+PASSED!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/15/2020 16:31:46'!
+PASSED!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/15/2020 16:31:46'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferAmountShouldBeGreaterThanZero stamp: 'FD 11/15/2020 16:31:46'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test05ChildAccountsAreIndented stamp: 'FD 11/15/2020 16:31:46'!
+FAILURE!
+
+!testRun: #AccountTreeStructureTest #test05ChildAccountsAreIndented stamp: 'FD 11/15/2020 16:32:02'!
+FAILURE!
+
+!testRun: #AccountTreeStructureTest #test05ChildAccountsAreIndented stamp: 'FD 11/15/2020 16:32:02'!
+FAILURE!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 16:32:17'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 16:32:17'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test03ReportDoesNotShowTransactions stamp: 'FD 11/15/2020 16:32:17'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test04ChildAccountIsIndented stamp: 'FD 11/15/2020 16:32:17'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test05ChildAccountsAreIndented stamp: 'FD 11/15/2020 16:32:17'!
+FAILURE!
+
+!testRun: #AccountTreeStructureTest #test05ChildAccountsAreIndented stamp: 'FD 11/15/2020 16:32:17'!
+FAILURE!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 16:32:24'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 16:32:24'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test03ReportDoesNotShowTransactions stamp: 'FD 11/15/2020 16:32:24'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test04ChildAccountIsIndented stamp: 'FD 11/15/2020 16:32:24'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test05ChildAccountsAreIndented stamp: 'FD 11/15/2020 16:32:24'!
+FAILURE!
+
+!testRun: #AccountTreeStructureTest #test05ChildAccountsAreIndented stamp: 'FD 11/15/2020 16:32:24'!
+FAILURE!
+!AccountTreeStructureTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 16:33:01' prior: 50367553!
+test05ChildAccountsAreIndented
+
+	| accountTreeStructure childPortfolio portfolio | 
+	
+	childPortfolio := Portfolio named: 'a portfolio' with: (ReceptiveAccount named: 'an account').
+	portfolio := Portfolio named: 'parent portfolio' with: childPortfolio .
+	portfolio add: (ReceptiveAccount named: 'another account').
+	
+	
+	accountTreeStructure := AccountTreeStructure for: portfolio.
+	
+	self assert: accountTreeStructure report second equals: '   a portfolio'.
+	self assert: accountTreeStructure report third equals: '      an account'.
+	self assert: accountTreeStructure report fourth equals: '   another account'.! !
+
+!testRun: #AccountSummaryTest #test01AccountSummaryOfAnEmptyPortfolioOnlyShowsBalance stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AccountSummaryOfAPortfolioWithADepositAddsIt stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test04AccountSummaryOfAPortfolioWithASendingTransferAddsIt stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test05AccountSummaryOfAPortfolioWithAReceivingTransferAddsIt stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test06AccountSummaryShowsTheBalance stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test07AccountSummaryOfAnAccountWithMultipleTransactionsAddsThemAll stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test03ReportDoesNotShowTransactions stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test04ChildAccountIsIndented stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test05ChildAccountsAreIndented stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #NetTransferTest #test01NetTransferReportForAnAccountWithoutTransfersReturnsZero stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #NetTransferTest #test02NetTransferReportForAnAccountWithTransfersReturnsTheNetValue stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithOneAccountIsAccountBalance stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferAmountShouldBeGreaterThanZero stamp: 'FD 11/15/2020 16:33:04'!
+PASSED!
+
+ReportTest subclass: #AccountTreeStructureWithSummaryTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #AccountTreeStructureWithSummaryTest category: 'Portfolio' stamp: 'FD 11/15/2020 16:34:15'!
+ReportTest subclass: #AccountTreeStructureWithSummaryTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!AccountTreeStructureWithSummaryTest methodsFor: 'nil' stamp: 'FD 11/15/2020 16:36:02'!
+test01! !
+
+!methodRemoval: AccountTreeStructureWithSummaryTest #test01 stamp: 'FD 11/15/2020 16:36:05'!
+test01!
+
+!classDefinition: #AccountTreeStructureWithSummary category: 'Portfolio' stamp: 'FD 11/15/2020 16:36:42'!
+Report subclass: #AccountTreeStructureWithSummary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!AccountTreeStructureWithSummaryTest methodsFor: 'nil' stamp: 'FD 11/15/2020 16:36:27'!
+test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts
+
+	| accountTreeStructure portfolio | 
+	
+	portfolio := Portfolio named: 'test portfolio'.
+	
+	accountTreeStructure := AccountTreeStructureWithSummary for: portfolio.
+	
+	self assert: accountTreeStructure report size equals: 1.
+	self assert: accountTreeStructure report first equals: 'test portfolio'.! !
+
+Report subclass: #AccountTreeStructureWithSummary
+	instanceVariableNames: 'account indentationLevel'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+
+!classDefinition: #AccountTreeStructureWithSummary category: 'Portfolio' stamp: 'FD 11/15/2020 16:37:05'!
+Report subclass: #AccountTreeStructureWithSummary
+	instanceVariableNames: 'account indentationLevel'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio'!
+!AccountTreeStructureWithSummary methodsFor: 'nil' stamp: 'FD 11/15/2020 16:37:19'!
+initializeWith: anAccount 
+	
+	account := anAccount.
+	indentationLevel := 0.! !
+!AccountTreeStructureWithSummary methodsFor: 'initialization' stamp: 'FD 11/15/2020 16:37:35' overrides: 50362243!
+report
+
+	| structure |
+	
+	structure := OrderedCollection new.
+
+	account buildReport: self from: structure.
+	
+	indentationLevel := 0.
+	^structure.! !
+!AccountTreeStructureWithSummary methodsFor: 'nil' stamp: 'FD 11/15/2020 16:37:52'!
+indent: anEntry
+
+	| indentedEntry |
+	
+	indentedEntry := anEntry.
+	indentationLevel timesRepeat: [indentedEntry := '   ',indentedEntry ].
+	
+	^indentedEntry.! !
+!AccountTreeStructureWithSummary methodsFor: 'report building -- private' stamp: 'FD 11/15/2020 16:38:13'!
+affectReport: aReportInProgress FromAccount: anAccount
+
+	aReportInProgress add: (self indent: anAccount name).	
+	indentationLevel := indentationLevel + 1.
+	
+	^aReportInProgress.! !
+!AccountTreeStructureWithSummary methodsFor: 'report building' stamp: 'FD 11/15/2020 16:38:31' overrides: 50362219!
+affectReport: aReportInProgress FromDeposit: aDeposit
+
+	^aReportInProgress.! !
+!AccountTreeStructureWithSummary methodsFor: 'report building' stamp: 'FD 11/15/2020 16:38:38'!
+affectReport: aReportInProgress FromPortfolio: aPortfolio
+
+	aReportInProgress add: (self indent: aPortfolio name).	
+	indentationLevel := indentationLevel + 1.
+	
+	^aReportInProgress.! !
+!AccountTreeStructureWithSummary methodsFor: 'report building' stamp: 'FD 11/15/2020 16:38:45' overrides: 50362225!
+affectReport: aReportInProgress FromTransferReception: aTransferReception
+
+	^aReportInProgress.! !
+!AccountTreeStructureWithSummary methodsFor: 'report building' stamp: 'FD 11/15/2020 16:38:54' overrides: 50362231!
+affectReport: aReportInProgress FromTransferSending: aTransferSending
+
+	^aReportInProgress.! !
+!AccountTreeStructureWithSummary methodsFor: 'report building' stamp: 'FD 11/15/2020 16:39:05' overrides: 50362237!
+affectReport: aReportInProgress FromWithdraw: aWithdraw
+
+	^aReportInProgress.! !
+!AccountTreeStructureWithSummary methodsFor: 'report building' stamp: 'FD 11/15/2020 16:39:12'!
+afterAffectReport
+
+	indentationLevel := indentationLevel - 1.! !
+
+!testRun: #AccountSummaryTest #test01AccountSummaryOfAnEmptyPortfolioOnlyShowsBalance stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AccountSummaryOfAPortfolioWithADepositAddsIt stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test04AccountSummaryOfAPortfolioWithASendingTransferAddsIt stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test05AccountSummaryOfAPortfolioWithAReceivingTransferAddsIt stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test06AccountSummaryShowsTheBalance stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test07AccountSummaryOfAnAccountWithMultipleTransactionsAddsThemAll stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test03ReportDoesNotShowTransactions stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test04ChildAccountIsIndented stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test05ChildAccountsAreIndented stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #AccountTreeStructureWithSummaryTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #NetTransferTest #test01NetTransferReportForAnAccountWithoutTransfersReturnsZero stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #NetTransferTest #test02NetTransferReportForAnAccountWithTransfersReturnsTheNetValue stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithOneAccountIsAccountBalance stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferAmountShouldBeGreaterThanZero stamp: 'FD 11/15/2020 16:39:18'!
+PASSED!
+!AccountTreeStructureWithSummaryTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 16:39:36'!
+test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccountWithoutTransactions
+
+	| accountTreeStructure account | 
+	
+	account := ReceptiveAccount named: 'test account'.
+	
+	accountTreeStructure := AccountTreeStructure for: account.
+	
+	self assert: accountTreeStructure report size equals: 1.
+	self assert: accountTreeStructure report first equals: 'test account'.! !
+
+!testRun: #AccountSummaryTest #test01AccountSummaryOfAnEmptyPortfolioOnlyShowsBalance stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AccountSummaryOfAPortfolioWithADepositAddsIt stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test04AccountSummaryOfAPortfolioWithASendingTransferAddsIt stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test05AccountSummaryOfAPortfolioWithAReceivingTransferAddsIt stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test06AccountSummaryShowsTheBalance stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test07AccountSummaryOfAnAccountWithMultipleTransactionsAddsThemAll stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test03ReportDoesNotShowTransactions stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test04ChildAccountIsIndented stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test05ChildAccountsAreIndented stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #AccountTreeStructureWithSummaryTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #AccountTreeStructureWithSummaryTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccountWithoutTransactions stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #NetTransferTest #test01NetTransferReportForAnAccountWithoutTransfersReturnsZero stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #NetTransferTest #test02NetTransferReportForAnAccountWithTransfersReturnsTheNetValue stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithOneAccountIsAccountBalance stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferAmountShouldBeGreaterThanZero stamp: 'FD 11/15/2020 16:39:38'!
+PASSED!
+!AccountTreeStructureWithSummaryTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 16:41:03'!
+test02ShowsEachAccountsSummary
+
+	| accountTreeStructure account | 
+	
+	account := ReceptiveAccount named: 'test account'.
+	Deposit register: 100 on: account. 
+	
+	accountTreeStructure := AccountTreeStructureWithSummary for: account.
+	
+	self assert: accountTreeStructure report size equals: 1.
+	self assert: accountTreeStructure report first equals: 'test account'.! !
+
+!methodRemoval: AccountTreeStructureWithSummaryTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccountWithoutTransactions stamp: 'FD 11/15/2020 16:41:07'!
+test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccountWithoutTransactions
+
+	| accountTreeStructure account | 
+	
+	account := ReceptiveAccount named: 'test account'.
+	
+	accountTreeStructure := AccountTreeStructure for: account.
+	
+	self assert: accountTreeStructure report size equals: 1.
+	self assert: accountTreeStructure report first equals: 'test account'.!
+!AccountTreeStructureWithSummaryTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 16:48:54' prior: 50368478!
+test02ShowsEachAccountsSummary
+
+	| accountTreeStructure account1 account2 portfolio| 
+	
+	account1 := ReceptiveAccount named: 'test account1'.
+	Deposit register: 100 on: account1.
+	
+	account2 := ReceptiveAccount named: 'test account2'.
+	Withdraw register: 50 on: account2.
+	
+	portfolio := Portfolio named: 'a portfolio'.
+	portfolio add: account1.
+	portfolio add: account2.
+	
+	accountTreeStructure := AccountTreeStructureWithSummary for: portfolio .
+	
+	self assert: accountTreeStructure report size equals: 7.
+	self assert: accountTreeStructure report first equals: 'a portfolio'.
+	self assert: accountTreeStructure report second equals: '   test account1'.
+	self assert: accountTreeStructure report third equals: '      Depósito por 100'.
+	self assert: accountTreeStructure report fourth equals: '      Balance = 100'.
+	self assert: accountTreeStructure report fifth equals: '   test account2'.
+	self assert: accountTreeStructure report sixth equals: '      Extracción por 50'.
+	self assert: accountTreeStructure report seventh equals: '      Balance = -50'.! !
+!AccountTreeStructureWithSummary methodsFor: 'report building' stamp: 'FD 11/15/2020 16:51:17' prior: 50368076!
+affectReport: aReportInProgress FromAccount: anAccount
+
+	aReportInProgress add: (self indent: anAccount name).	
+	indentationLevel := indentationLevel + 1.
+	
+	aReportInProgress addAll: ( self indentCollection: ( AccountSummary  for: anAccount ) report)
+	
+	^aReportInProgress.! !
+!AccountTreeStructureWithSummary methodsFor: 'report building -- private' stamp: 'FD 11/15/2020 16:52:40'!
+indentCollection: aCollectionOfEntries
+
+	^aCollectionOfEntries collect: [:anEntry | self indent: anEntry ].! !
+
+!testRun: #AccountSummaryTest #test01AccountSummaryOfAnEmptyPortfolioOnlyShowsBalance stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AccountSummaryOfAPortfolioWithADepositAddsIt stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test04AccountSummaryOfAPortfolioWithASendingTransferAddsIt stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test05AccountSummaryOfAPortfolioWithAReceivingTransferAddsIt stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test06AccountSummaryShowsTheBalance stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test07AccountSummaryOfAnAccountWithMultipleTransactionsAddsThemAll stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test03ReportDoesNotShowTransactions stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test04ChildAccountIsIndented stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test05ChildAccountsAreIndented stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #AccountTreeStructureWithSummaryTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #AccountTreeStructureWithSummaryTest #test02ShowsEachAccountsSummary stamp: 'FD 11/15/2020 16:52:43'!
+ERROR!
+
+!testRun: #NetTransferTest #test01NetTransferReportForAnAccountWithoutTransfersReturnsZero stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #NetTransferTest #test02NetTransferReportForAnAccountWithTransfersReturnsTheNetValue stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithOneAccountIsAccountBalance stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferAmountShouldBeGreaterThanZero stamp: 'FD 11/15/2020 16:52:43'!
+PASSED!
+
+!testRun: #AccountTreeStructureWithSummaryTest #test02ShowsEachAccountsSummary stamp: 'FD 11/15/2020 16:52:43'!
+ERROR!
+!AccountTreeStructureWithSummary methodsFor: 'report building' stamp: 'FD 11/15/2020 16:53:00' prior: 50368547!
+affectReport: aReportInProgress FromAccount: anAccount
+
+	aReportInProgress add: (self indent: anAccount name).	
+	indentationLevel := indentationLevel + 1.
+	
+	aReportInProgress addAll: ( self indentCollection: ( AccountSummary  for: anAccount ) report).
+	
+	^aReportInProgress.! !
+
+!testRun: #AccountSummaryTest #test01AccountSummaryOfAnEmptyPortfolioOnlyShowsBalance stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AccountSummaryOfAPortfolioWithADepositAddsIt stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test04AccountSummaryOfAPortfolioWithASendingTransferAddsIt stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test05AccountSummaryOfAPortfolioWithAReceivingTransferAddsIt stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test06AccountSummaryShowsTheBalance stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test07AccountSummaryOfAnAccountWithMultipleTransactionsAddsThemAll stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test03ReportDoesNotShowTransactions stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test04ChildAccountIsIndented stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test05ChildAccountsAreIndented stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #AccountTreeStructureWithSummaryTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #AccountTreeStructureWithSummaryTest #test02ShowsEachAccountsSummary stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #NetTransferTest #test01NetTransferReportForAnAccountWithoutTransfersReturnsZero stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #NetTransferTest #test02NetTransferReportForAnAccountWithTransfersReturnsTheNetValue stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithOneAccountIsAccountBalance stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferAmountShouldBeGreaterThanZero stamp: 'FD 11/15/2020 16:53:02'!
+PASSED!
+!AccountTreeStructureWithSummaryTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 16:53:34' prior: 50368510!
+test02ShowsEachAccountsSummary
+
+	| accountTreeStructure account1 account2 portfolio| 
+	
+	account1 := ReceptiveAccount named: 'test account1'.
+	Deposit register: 100 on: account1.
+	
+	account2 := ReceptiveAccount named: 'test account2'.
+	Withdraw register: 50 on: account2.
+	
+	portfolio := Portfolio named: 'a portfolio'.
+	portfolio add: account1.
+	portfolio add: account2.
+	
+	accountTreeStructure := AccountTreeStructureWithSummary for: portfolio .
+	
+	self assert: accountTreeStructure report size equals: 7.
+	self assert: accountTreeStructure report first equals: 'a portfolio'.
+	self assert: accountTreeStructure report second equals: '   test account1'.
+	self assert: accountTreeStructure report third equals: '      Depósito por 100'.
+	self assert: accountTreeStructure report fourth equals: '      Balance = 100'.
+	self assert: accountTreeStructure report fifth equals: '   test account2'.
+	self assert: accountTreeStructure report sixth equals: '      Extracción por 50'.
+	self assert: accountTreeStructure report seventh equals: '      Balance = 50'.! !
+
+!testRun: #AccountTreeStructureWithSummaryTest #test02ShowsEachAccountsSummary stamp: 'FD 11/15/2020 16:53:36'!
+FAILURE!
+!AccountTreeStructureWithSummaryTest methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 16:56:11' prior: 50368922!
+test02ShowsEachAccountsSummary
+
+	| accountTreeStructure account1 account2 portfolio| 
+	
+	account1 := ReceptiveAccount named: 'test account1'.
+	Deposit register: 100 on: account1.
+	
+	account2 := ReceptiveAccount named: 'test account2'.
+	Withdraw register: 50 on: account2.
+	
+	portfolio := Portfolio named: 'a portfolio'.
+	portfolio add: account1.
+	portfolio add: account2.
+	
+	accountTreeStructure := AccountTreeStructureWithSummary for: portfolio .
+	
+	self assert: accountTreeStructure report size equals: 7.
+	self assert: accountTreeStructure report first equals: 'a portfolio'.
+	self assert: accountTreeStructure report second equals: '   test account1'.
+	self assert: accountTreeStructure report third equals: '      Depósito por 100'.
+	self assert: accountTreeStructure report fourth equals: '      Balance = 100'.
+	self assert: accountTreeStructure report fifth equals: '   test account2'.
+	self assert: accountTreeStructure report sixth equals: '      Extracción por 50'.
+	self assert: accountTreeStructure report seventh equals: '      Balance = -50'.! !
+
+!testRun: #AccountSummaryTest #test01AccountSummaryOfAnEmptyPortfolioOnlyShowsBalance stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AccountSummaryOfAPortfolioWithADepositAddsIt stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test04AccountSummaryOfAPortfolioWithASendingTransferAddsIt stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test05AccountSummaryOfAPortfolioWithAReceivingTransferAddsIt stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test06AccountSummaryShowsTheBalance stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test07AccountSummaryOfAnAccountWithMultipleTransactionsAddsThemAll stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test03ReportDoesNotShowTransactions stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test04ChildAccountIsIndented stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test05ChildAccountsAreIndented stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #AccountTreeStructureWithSummaryTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #AccountTreeStructureWithSummaryTest #test02ShowsEachAccountsSummary stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #NetTransferTest #test01NetTransferReportForAnAccountWithoutTransfersReturnsZero stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #NetTransferTest #test02NetTransferReportForAnAccountWithTransfersReturnsTheNetValue stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithOneAccountIsAccountBalance stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferAmountShouldBeGreaterThanZero stamp: 'FD 11/15/2020 16:56:13'!
+PASSED!
+!NetTransferReport methodsFor: 'report building' stamp: 'FD 11/15/2020 16:57:36'!
+cleanAfterAffectReport! !
+!AccountTreeStructureWithSummary methodsFor: 'report building' stamp: 'FD 11/15/2020 16:57:36'!
+cleanAfterAffectReport
+
+	indentationLevel := indentationLevel - 1.! !
+!Balance methodsFor: 'report building' stamp: 'FD 11/15/2020 16:57:36'!
+cleanAfterAffectReport! !
+!AccountSummary methodsFor: 'report building' stamp: 'FD 11/15/2020 16:57:36'!
+cleanAfterAffectReport! !
+!AccountTreeStructure methodsFor: 'report building' stamp: 'FD 11/15/2020 16:57:36'!
+cleanAfterAffectReport
+
+	indentationLevel := indentationLevel - 1.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 16:57:36' prior: 50367277 overrides: 50361938!
+buildReport: reportInstructions from: aReportToBuildOnto
+
+	| reportInProgess |
+	
+	reportInProgess := reportInstructions affectReport: aReportToBuildOnto FromPortfolio: self.
+		
+	reportInProgess := accounts
+	inject: reportInProgess 
+	into: [:report :transaction | transaction buildReport: reportInstructions from: report].
+	
+	reportInstructions cleanAfterAffectReport.
+	
+	^reportInProgess.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'FD 11/15/2020 16:57:36' prior: 50367580 overrides: 50361938!
+buildReport: reportInstructions from: aReportToBuildOnto
+
+	| reportInProgess |
+	
+	reportInProgess := reportInstructions affectReport: aReportToBuildOnto FromAccount: self.
+	
+	reportInProgess := transactions
+	inject: reportInProgess 
+	into: [:report :transaction | transaction buildReport: reportInstructions from: report].
+	
+	reportInstructions cleanAfterAffectReport.
+	
+	^reportInProgess.! !
+
+!methodRemoval: NetTransferReport #afterAffectReport stamp: 'FD 11/15/2020 16:57:37'!
+afterAffectReport!
+
+!methodRemoval: AccountTreeStructureWithSummary #afterAffectReport stamp: 'FD 11/15/2020 16:57:37'!
+afterAffectReport
+
+	indentationLevel := indentationLevel - 1.!
+
+!methodRemoval: Balance #afterAffectReport stamp: 'FD 11/15/2020 16:57:37'!
+afterAffectReport!
+
+!methodRemoval: AccountSummary #afterAffectReport stamp: 'FD 11/15/2020 16:57:37'!
+afterAffectReport!
+
+!methodRemoval: AccountTreeStructure #afterAffectReport stamp: 'FD 11/15/2020 16:57:37'!
+afterAffectReport
+
+	indentationLevel := indentationLevel - 1.!
+
+!testRun: #AccountSummaryTest #test01AccountSummaryOfAnEmptyPortfolioOnlyShowsBalance stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AccountSummaryOfAPortfolioWithADepositAddsIt stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test04AccountSummaryOfAPortfolioWithASendingTransferAddsIt stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test05AccountSummaryOfAPortfolioWithAReceivingTransferAddsIt stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test06AccountSummaryShowsTheBalance stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test07AccountSummaryOfAnAccountWithMultipleTransactionsAddsThemAll stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test03ReportDoesNotShowTransactions stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test04ChildAccountIsIndented stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test05ChildAccountsAreIndented stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #AccountTreeStructureWithSummaryTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #AccountTreeStructureWithSummaryTest #test02ShowsEachAccountsSummary stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #NetTransferTest #test01NetTransferReportForAnAccountWithoutTransfersReturnsZero stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #NetTransferTest #test02NetTransferReportForAnAccountWithTransfersReturnsTheNetValue stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithOneAccountIsAccountBalance stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferAmountShouldBeGreaterThanZero stamp: 'FD 11/15/2020 16:57:47'!
+PASSED!
+!AccountTreeStructure methodsFor: 'report building' stamp: 'FD 11/15/2020 16:58:54'!
+increaseIndentationLevel
+
+	^ indentationLevel := indentationLevel + 1! !
+!AccountTreeStructure methodsFor: 'report building' stamp: 'FD 11/15/2020 16:58:54' prior: 50366710!
+affectReport: aReportInProgress FromAccount: anAccount
+
+	aReportInProgress add: (self indent: anAccount name).	
+	self increaseIndentationLevel.
+	
+	^aReportInProgress.! !
+!AccountTreeStructure methodsFor: 'report building' stamp: 'FD 11/15/2020 16:59:08' prior: 50366719!
+affectReport: aReportInProgress FromPortfolio: aPortfolio
+
+	aReportInProgress add: (self indent: aPortfolio name).	
+	self increaseIndentationLevel.
+	
+	^aReportInProgress.! !
+
+!testRun: #AccountSummaryTest #test01AccountSummaryOfAnEmptyPortfolioOnlyShowsBalance stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AccountSummaryOfAPortfolioWithADepositAddsIt stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test04AccountSummaryOfAPortfolioWithASendingTransferAddsIt stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test05AccountSummaryOfAPortfolioWithAReceivingTransferAddsIt stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test06AccountSummaryShowsTheBalance stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test07AccountSummaryOfAnAccountWithMultipleTransactionsAddsThemAll stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test03ReportDoesNotShowTransactions stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test04ChildAccountIsIndented stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test05ChildAccountsAreIndented stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #AccountTreeStructureWithSummaryTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #AccountTreeStructureWithSummaryTest #test02ShowsEachAccountsSummary stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #NetTransferTest #test01NetTransferReportForAnAccountWithoutTransfersReturnsZero stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #NetTransferTest #test02NetTransferReportForAnAccountWithTransfersReturnsTheNetValue stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithOneAccountIsAccountBalance stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferAmountShouldBeGreaterThanZero stamp: 'FD 11/15/2020 16:59:20'!
+PASSED!
+!AccountTreeStructure methodsFor: 'report building' stamp: 'FD 11/15/2020 16:59:48'!
+decreaseIndentationLevel
+
+	^ indentationLevel := indentationLevel - 1! !
+!AccountTreeStructure methodsFor: 'report building' stamp: 'FD 11/15/2020 16:59:48' prior: 50369185!
+cleanAfterAffectReport
+
+	self decreaseIndentationLevel.! !
+!AccountTreeStructure methodsFor: 'action' stamp: 'FD 11/15/2020 17:00:05'!
+resetIndentationLevel
+
+	^ indentationLevel := 0! !
+!AccountTreeStructure methodsFor: 'action' stamp: 'FD 11/15/2020 17:00:05' prior: 50366925 overrides: 50362243!
+report
+
+	| structure |
+	
+	structure := OrderedCollection new.
+
+	account buildReport: self from: structure.
+	
+	self resetIndentationLevel.
+	^structure.! !
+!AccountTreeStructureWithSummary methodsFor: 'action' stamp: 'FD 11/15/2020 17:00:26'!
+resetIndentationLevel
+
+	^ indentationLevel := 0! !
+!AccountTreeStructureWithSummary methodsFor: 'action' stamp: 'FD 11/15/2020 17:00:26' prior: 50368059 overrides: 50362243!
+report
+
+	| structure |
+	
+	structure := OrderedCollection new.
+
+	account buildReport: self from: structure.
+	
+	self resetIndentationLevel.
+	^structure.! !
+!AccountTreeStructureWithSummary methodsFor: 'report building' stamp: 'FD 11/15/2020 17:00:43'!
+increaseIndentationLevel
+
+	^ indentationLevel := indentationLevel + 1! !
+!AccountTreeStructureWithSummary methodsFor: 'report building' stamp: 'FD 11/15/2020 17:00:43' prior: 50368740!
+affectReport: aReportInProgress FromAccount: anAccount
+
+	aReportInProgress add: (self indent: anAccount name).	
+	self increaseIndentationLevel.
+	
+	aReportInProgress addAll: ( self indentCollection: ( AccountSummary  for: anAccount ) report).
+	
+	^aReportInProgress.! !
+!AccountTreeStructureWithSummary methodsFor: 'report building' stamp: 'FD 11/15/2020 17:00:57' prior: 50368092!
+affectReport: aReportInProgress FromPortfolio: aPortfolio
+
+	aReportInProgress add: (self indent: aPortfolio name).	
+	self increaseIndentationLevel.
+	
+	^aReportInProgress.! !
+!AccountTreeStructureWithSummary methodsFor: 'report building' stamp: 'FD 11/15/2020 17:01:11'!
+decreaseIndentationLevel
+
+	^ indentationLevel := indentationLevel - 1! !
+!AccountTreeStructureWithSummary methodsFor: 'report building' stamp: 'FD 11/15/2020 17:01:11' prior: 50369172!
+cleanAfterAffectReport
+
+	self decreaseIndentationLevel.! !
+
+!testRun: #AccountSummaryTest #test01AccountSummaryOfAnEmptyPortfolioOnlyShowsBalance stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test02AccountSummaryOfAPortfolioWithADepositAddsIt stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test03AccountSummaryOfAPortfolioWithAWithdrawalAddsIt stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test04AccountSummaryOfAPortfolioWithASendingTransferAddsIt stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test05AccountSummaryOfAPortfolioWithAReceivingTransferAddsIt stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test06AccountSummaryShowsTheBalance stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #AccountSummaryTest #test07AccountSummaryOfAnAccountWithMultipleTransactionsAddsThemAll stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test02ReportOnlyShowsTheRootNameWhenUsedOnAnAccount stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test03ReportDoesNotShowTransactions stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test04ChildAccountIsIndented stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #AccountTreeStructureTest #test05ChildAccountsAreIndented stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #AccountTreeStructureWithSummaryTest #test01ReportOnlyShowsTheRootNameWhenPortfolioDoesNotHaveAccounts stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #AccountTreeStructureWithSummaryTest #test02ShowsEachAccountsSummary stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #NetTransferTest #test01NetTransferReportForAnAccountWithoutTransfersReturnsZero stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #NetTransferTest #test02NetTransferReportForAnAccountWithTransfersReturnsTheNetValue stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithOneAccountIsAccountBalance stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #TransferTest #test01ARegisteredTransferToAnotherAccountDiminishesBalance stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #TransferTest #test02ARegisteredTransferFromAnotherAccountIncreasesBalance stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #TransferTest #test03SenderKnowsItsTransfer stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #TransferTest #test04ReceiverKnowsItsTransfer stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #TransferTest #test05AnAccountCannotTransferToItself stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+!testRun: #TransferTest #test06TransferAmountShouldBeGreaterThanZero stamp: 'FD 11/15/2020 17:01:15'!
+PASSED!
+
+----SNAPSHOT----(15 November 2020 17:01:30) CuisUniversity-4383.image priorSource: 1065260!
