@@ -5,20 +5,6 @@ TestCase subclass: #CartTest
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!CartTest methodsFor: 'as yet unclassified' stamp: 'CS 11/16/2020 19:36:08'!
-no_test04ACartWithUnderThirtyMinutesLifetimeIsValid
-
-	|newCart aLifetime| 
-	
-	newCart:= Cart new.
-	
-	aLifetime:=  Duration new.
-	
-	self assert: aLifetime totalMinutes 
-	
-
-	! !
-
 !CartTest methodsFor: 'as yet unclassified' stamp: 'CS 11/16/2020 19:21:07'!
 test01NewCartHasNoBooks
 
@@ -30,14 +16,14 @@ test01NewCartHasNoBooks
 	
 	! !
 
-!CartTest methodsFor: 'as yet unclassified' stamp: 'CS 11/16/2020 19:20:54'!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CS 11/18/2020 16:58:23'!
 test02ABookCanBeAddedToTheCart
 
 	|newCart newBook| 
 	
-	newCart:= Cart new.
+	newCart:= Cart  withCatalogue:( OrderedCollection with: 9992158107).
 	
-	newBook:= Book new.
+	newBook:= 9992158107.
 	
 	newCart add: newBook.
 	
@@ -47,14 +33,14 @@ test02ABookCanBeAddedToTheCart
 	
 	! !
 
-!CartTest methodsFor: 'as yet unclassified' stamp: 'CS 11/16/2020 19:20:42'!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CS 11/18/2020 16:57:30'!
 test03ABookCanBeAddedToTheCartMoreThanOnceAtATime
 
 	|newCart newBook| 
 	
-	newCart:= Cart new.
+	newCart:= Cart withCatalogue:( OrderedCollection with: 9992158107).
 	
-	newBook:= Book new.
+	newBook:= 9992158107.
 	
 	newCart add: newBook withQuantity: 2.
 	
@@ -64,35 +50,22 @@ test03ABookCanBeAddedToTheCartMoreThanOnceAtATime
 	
 	! !
 
-
-!classDefinition: #MerchantProcessorTests category: #TusLibros!
-TestCase subclass: #MerchantProcessorTests
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros'!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'CS 11/18/2020 16:57:39'!
+test04ABookThatIsNotIncludedInTheCatalogueCanNotBeAdded
 
-!MerchantProcessorTests methodsFor: 'as yet unclassified' stamp: 'CS 11/16/2020 17:45:19'!
-test01WhileMerchantProcessorWorksDebitingAValidAmountWithAValidCreditCardIsSuccesful! !
-
-!MerchantProcessorTests methodsFor: 'as yet unclassified' stamp: 'CS 11/16/2020 17:52:56'!
-test02WhileMerchantProcessorWorksDebitingAValidAmountWithAnInvalidCreditCardIsNotSuccesful! !
-
-!MerchantProcessorTests methodsFor: 'as yet unclassified' stamp: 'CS 11/16/2020 17:53:19'!
-test03WhileMerchantProcessorWorksDebitingAnInvalidAmountWithAValidCreditCardIsNotSuccesful! !
-
-
-!classDefinition: #Book category: #TusLibros!
-Object subclass: #Book
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros'!
+	|newCart newBook| 
+	
+	newCart:= Cart withCatalogue: OrderedCollection  new.
+	
+	newBook:= 9992158107.
+	
+	self should:[ newCart add: newBook] raise: Error withMessageText: Cart bookNotInCatalogueErrorDescription.
+	! !
 
 
 !classDefinition: #Cart category: #TusLibros!
 Object subclass: #Cart
-	instanceVariableNames: 'books'
+	instanceVariableNames: 'books orderedCollection catalogue'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
@@ -103,27 +76,56 @@ books
 	^books copy.! !
 
 
+!Cart methodsFor: 'actions' stamp: 'CS 11/16/2020 19:19:13'!
+add: aBook 
+	
+	self add: aBook withQuantity: 1.! !
+
+!Cart methodsFor: 'actions' stamp: 'CS 11/18/2020 17:10:24'!
+add: aBook withQuantity: aQuantity 
+
+	self assertBookIsInCatalogue: aBook.
+
+	books add: aBook withOccurrences: aQuantity.! !
+
+
+!Cart methodsFor: 'assertions' stamp: 'CS 11/18/2020 17:11:45'!
+assertBookIsInCatalogue: aBook
+
+	^ (catalogue includes: aBook) ifFalse: [self signalBookNotInCatalogue].! !
+
+
 !Cart methodsFor: 'initialization' stamp: 'CS 11/16/2020 19:38:58'!
 initialize
 	
 	books:= Bag new.
 	! !
 
-
-!Cart methodsFor: 'actions' stamp: 'CS 11/16/2020 19:19:13'!
-add: aBook 
+!Cart methodsFor: 'initialization' stamp: 'CS 11/18/2020 16:42:13'!
+initializeWithCatalogue: anOrderedCollection 
 	
-	self add: aBook withQuantity: 1.! !
+	
+	catalogue := anOrderedCollection.! !
 
-!Cart methodsFor: 'actions' stamp: 'CS 11/16/2020 19:40:56'!
-add: aBook withQuantity: aQuantity 
 
-	books add: aBook withOccurrences: aQuantity.! !
+!Cart methodsFor: 'signals' stamp: 'CS 11/18/2020 17:11:44'!
+signalBookNotInCatalogue
 
-
-!classDefinition: #MerchantProcessor category: #TusLibros!
-Object subclass: #MerchantProcessor
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros'!
+	^ self error: self class bookNotInCatalogueErrorDescription! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Cart class' category: #TusLibros!
+Cart class
+	instanceVariableNames: ''!
+
+!Cart class methodsFor: 'as yet unclassified' stamp: 'CS 11/18/2020 16:41:33'!
+withCatalogue: anOrderedCollection
+ 
+	^self new initializeWithCatalogue: anOrderedCollection.! !
+
+
+!Cart class methodsFor: 'error handling' stamp: 'CS 11/18/2020 16:50:53'!
+bookNotInCatalogueErrorDescription
+	
+	^'The book is not in the catalogue'.! !
