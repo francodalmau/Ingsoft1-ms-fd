@@ -136,17 +136,19 @@ test01ACashierCanNotReceiveAnEmptyCart
 	
 	! !
 
-!CashierTest methodsFor: 'tests' stamp: 'MS 11/22/2020 18:15:13'!
+!CashierTest methodsFor: 'tests' stamp: 'MS 11/25/2020 18:41:45'!
 test02ACashierCanNotCheckOutWhenItReceivesAnInvalidCardNumber
 
-	|aCatalog aCart aCashier|
+	|aCatalog aCart aCashier aMerchantProcessorSimulator|
 	
 	aCatalog:= Array new.
 	aCart := self createCart.
 	aCart add: 2 of: self itemSellByTheStore. 
 	
 	
-	aCashier := Cashier acceptingItemsOf: aCatalog.
+	aMerchantProcessorSimulator:= WorkingMerchantProcessor new.
+	
+	aCashier := Cashier acceptingItemsOf: aCatalog for: aMerchantProcessorSimulator.
 	
 	self  should: [aCashier checkOut: aCart with: self invalidCreditCardNumber and: self validExpirationDate  from: self validOwner] 
 		raise: Error - MessageNotUnderstood 
@@ -155,17 +157,18 @@ test02ACashierCanNotCheckOutWhenItReceivesAnInvalidCardNumber
 	
 	! !
 
-!CashierTest methodsFor: 'tests' stamp: 'MS 11/22/2020 18:15:19'!
+!CashierTest methodsFor: 'tests' stamp: 'MS 11/25/2020 18:41:29'!
 test03ACashierCanNotCheckOutWhenItReceivesAnInvalidExpirationDate
 
-	|aCatalog aCart aCashier|
+	|aCatalog aCart aCashier aMerchantProcessorSimulator|
 	
 	aCatalog:= Array new.
 	aCart := self createCart.
 	aCart add: 2 of: self itemSellByTheStore. 
 	
+	aMerchantProcessorSimulator:= WorkingMerchantProcessor new.
 	
-	aCashier := Cashier acceptingItemsOf: aCatalog.
+	aCashier := Cashier acceptingItemsOf: aCatalog for: aMerchantProcessorSimulator.
 	
 	self  should: [aCashier checkOut: aCart with: self validCardNumber and: self invalidExpirationDate  from: self validOwner] 
 		raise: Error - MessageNotUnderstood 
@@ -174,17 +177,18 @@ test03ACashierCanNotCheckOutWhenItReceivesAnInvalidExpirationDate
 	
 	! !
 
-!CashierTest methodsFor: 'tests' stamp: 'MS 11/22/2020 18:15:24'!
+!CashierTest methodsFor: 'tests' stamp: 'MS 11/25/2020 18:40:55'!
 test04ACashierCanNotCheckOutWhenItReceivesAnInvalidOwner
 
-	|aCatalog aCart aCashier|
+	|aCatalog aCart aCashier aMerchantProcessorSimulator|
 	
 	aCatalog:= Array new.
 	aCart := self createCart.
 	aCart add: 2 of: self itemSellByTheStore. 
 	
+	aMerchantProcessorSimulator:= WorkingMerchantProcessor new.
 	
-	aCashier := Cashier acceptingItemsOf: aCatalog.
+	aCashier := Cashier acceptingItemsOf: aCatalog for: aMerchantProcessorSimulator.
 	
 	self  should: [aCashier checkOut: aCart with: self validCardNumber and: self validExpirationDate from: self invalidOwner] 
 		raise: Error - MessageNotUnderstood 
@@ -193,23 +197,83 @@ test04ACashierCanNotCheckOutWhenItReceivesAnInvalidOwner
 	
 	! !
 
-!CashierTest methodsFor: 'tests' stamp: 'MS 11/22/2020 18:15:33'!
+!CashierTest methodsFor: 'tests' stamp: 'MS 11/25/2020 17:33:41'!
 test05ACashierPerformsASuccessfulCheckOut
 
-	|aCatalog aCart aCashier aMerchanProcessorSimulator|
+	|aCatalog aCart aCashier aMerchantProcessorSimulator|
 	
 	aCatalog:= Dictionary new.
 	aCatalog add: 'aBook' -> 40.
 	aCart := Cart acceptingItemsOf: aCatalog keys.
 	aCart add: 2 of: 'aBook'. 
 	
-	aMerchanProcessorSimulator:= MerchantProcessor new.
+	aMerchantProcessorSimulator:= WorkingMerchantProcessor new.
 	
-	aCashier := Cashier acceptingItemsOf: aCatalog for: aMerchanProcessorSimulator.
+	aCashier := Cashier acceptingItemsOf: aCatalog for: aMerchantProcessorSimulator.
 	
 	aCashier checkOut: aCart with: self validCardNumber and: self validExpirationDate from: self validOwner.
 	
-	self assert: aMerchanProcessorSimulator receivedCheckoutAmount equals: 80.
+	self assert: aMerchantProcessorSimulator receivedCheckoutAmount equals: 80.
+	
+	! !
+
+!CashierTest methodsFor: 'tests' stamp: 'MS 11/25/2020 17:33:22'!
+test06ACashierCanNotPerformsASuccessfulCheckOutWhenMerchantProcessorIsNotWorking
+
+	|aCatalog aCart aCashier aMerchantProcessorSimulator|
+	
+	aCatalog:= Dictionary new.
+	aCatalog add: 'aBook' -> 40.
+	aCart := Cart acceptingItemsOf: aCatalog keys.
+	aCart add: 2 of: 'aBook'. 
+	
+	aMerchantProcessorSimulator:= FailingMerchantProcessor new.
+	
+	aCashier := Cashier acceptingItemsOf: aCatalog for: aMerchantProcessorSimulator.
+	
+	self  should: [aCashier checkOut: aCart with: self validCardNumber and: self validExpirationDate  from: self validOwner] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: Cashier merchantProcessorIsNotWorkingErrorDescription.
+	
+	! !
+
+!CashierTest methodsFor: 'tests' stamp: 'MS 11/25/2020 18:10:51'!
+test07ACashierCanNotCheckOutWhenTheTransactionAmountIsTooBig
+
+	|aCatalog aCart aCashier aMerchantProcessorSimulator|
+	
+	aCatalog:= Dictionary new.
+	aCatalog add: 'aBook' -> 4000000000000000000000000000000000000000.
+	aCart := Cart acceptingItemsOf: aCatalog keys.
+	aCart add: 2 of: 'aBook'. 
+	
+	aMerchantProcessorSimulator:= WorkingMerchantProcessor new.
+	
+	aCashier := Cashier acceptingItemsOf: aCatalog for: aMerchantProcessorSimulator.
+	
+	self  should: [aCashier checkOut: aCart with: self validCardNumber and: self validExpirationDate  from: self validOwner] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: Cashier InvalidTransactionAmountErrorDescription.
+	
+	! !
+
+!CashierTest methodsFor: 'tests' stamp: 'MS 11/25/2020 18:23:08'!
+test08ACashierCanNotCheckOutWhenTheTransactionAmountIsHasTooManyDecimals
+
+	|aCatalog aCart aCashier aMerchantProcessorSimulator|
+	
+	aCatalog:= Dictionary new.
+	aCatalog add: 'aBook' -> 40.0000005.
+	aCart := Cart acceptingItemsOf: aCatalog keys.
+	aCart add: 2 of: 'aBook'. 
+	
+	aMerchantProcessorSimulator:= WorkingMerchantProcessor new.
+	
+	aCashier := Cashier acceptingItemsOf: aCatalog for: aMerchantProcessorSimulator.
+	
+	self  should: [aCashier checkOut: aCart with: self validCardNumber and: self validExpirationDate  from: self validOwner] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: Cashier InvalidTransactionAmountErrorDescription.
 	
 	! !
 
@@ -254,10 +318,10 @@ validCardNumber
 	
 	^1234.! !
 
-!CashierTest methodsFor: 'support' stamp: 'MS 11/22/2020 16:52:14'!
+!CashierTest methodsFor: 'support' stamp: 'MS 11/25/2020 17:08:00'!
 validExpirationDate
 	
-	^Date today.! !
+	^GregorianMonthOfYear yearNumber: 2030 monthNumber: 8.! !
 
 !CashierTest methodsFor: 'support' stamp: 'MS 11/22/2020 16:11:04'!
 validOwner
@@ -349,20 +413,48 @@ Object subclass: #Cashier
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
+!Cashier methodsFor: 'assertions' stamp: 'MS 11/25/2020 16:53:45'!
+assertCartNotEmpty: aCart
+
+	^ aCart isEmpty ifTrue: [self signalCartNotEmpty]! !
+
+!Cashier methodsFor: 'assertions' stamp: 'MS 11/25/2020 17:24:48'!
+assertRequestWasSuccesful: statusCode
+
+	statusCode = 0 ifFalse:[ self signalMerchantProcessorIsNotWorking].! !
+
+!Cashier methodsFor: 'assertions' stamp: 'MS 11/25/2020 18:29:13'!
+assertTrasactionAmountIsValid: anAmount
+	
+		((self numberHasLessThanFifteenDigits: anAmount) and:
+		(self hasTooManyDecimals:anAmount))
+		
+		ifFalse: [self signalInvalidTransactionAmountErrorDescription].! !
+
 !Cashier methodsFor: 'assertions' stamp: 'MS 11/22/2020 17:14:01'!
 assertValidCreditCardNumber: aNumber
 
 	^ (aNumber isInteger) ifFalse: [self signalInvalidCreditCardNumber]! !
 
-!Cashier methodsFor: 'assertions' stamp: 'MS 11/22/2020 16:34:39'!
+!Cashier methodsFor: 'assertions' stamp: 'MS 11/25/2020 16:51:10'!
 assertValidExpirationDate: aDate
 
-	^ (aDate isKindOf: Date) ifFalse: [self signalInvalidExpirationDate]! !
+	^ (aDate isKindOf: GregorianMonthOfYear) ifFalse: [self signalInvalidExpirationDate]! !
 
 !Cashier methodsFor: 'assertions' stamp: 'MS 11/22/2020 16:34:18'!
 assertValidOwner: anOwner
 
 	^ (anOwner size <= 30) ifFalse: [self signalInvalidOwner]! !
+
+!Cashier methodsFor: 'assertions' stamp: 'MS 11/25/2020 18:30:59'!
+hasTooManyDecimals: anAmount
+
+  ^((anAmount*100) fractionPart = 0.0).! !
+
+!Cashier methodsFor: 'assertions' stamp: 'MS 11/25/2020 18:27:04'!
+numberHasLessThanFifteenDigits: anAmount
+
+	^ (anAmount asInteger numberOfDigitsInBase: 10) <= 15! !
 
 !Cashier methodsFor: 'assertions' stamp: 'MS 11/22/2020 16:27:53'!
 validateCreditCardWith: aNumber and: aDate from: anOwner
@@ -372,6 +464,11 @@ validateCreditCardWith: aNumber and: aDate from: anOwner
 	self assertValidOwner: anOwner.
 	! !
 
+
+!Cashier methodsFor: 'signals' stamp: 'MS 11/25/2020 16:53:45'!
+signalCartNotEmpty
+
+	^ self error: self class canNotCheckOutAnEmptyCartErrorDescription! !
 
 !Cashier methodsFor: 'signals' stamp: 'MS 11/22/2020 16:35:02'!
 signalInvalidCreditCardNumber
@@ -388,11 +485,16 @@ signalInvalidOwner
 
 	^ self error: self class canNotCheckOutACartWithAnInvalidOwnerErrorDescription! !
 
+!Cashier methodsFor: 'signals' stamp: 'MS 11/25/2020 18:21:56'!
+signalInvalidTransactionAmountErrorDescription
 
-!Cashier methodsFor: 'initialization' stamp: 'MS 11/22/2020 15:01:41'!
-initializeAcceptingItemsOf: aCatalog
+	^ self error: self class InvalidTransactionAmountErrorDescription! !
 
-	catalog := aCatalog.! !
+!Cashier methodsFor: 'signals' stamp: 'MS 11/25/2020 17:21:09'!
+signalMerchantProcessorIsNotWorking
+
+	^ self error: self class merchantProcessorIsNotWorkingErrorDescription! !
+
 
 !Cashier methodsFor: 'initialization' stamp: 'MS 11/22/2020 17:11:08'!
 initializeAcceptingItemsOf: aCatalog for: aMerchantProcessor 
@@ -401,25 +503,33 @@ initializeAcceptingItemsOf: aCatalog for: aMerchantProcessor
 	merchantProcessor := aMerchantProcessor.! !
 
 
-!Cashier methodsFor: 'actions' stamp: 'MS 11/22/2020 18:07:57'!
+!Cashier methodsFor: 'actions' stamp: 'MS 11/25/2020 18:16:23'!
 checkOut: aCart with: aNumber and: aDate from: anOwner
 
-	|checkOutTotal|
+	|checkOutTotal statusCode|
 	checkOutTotal  := 0.
 
 	self validateCreditCardWith: aNumber and: aDate from: anOwner. 
 	
-	aCart isEmpty ifTrue: [self error: self class canNotCheckOutAnEmptyCartErrorDescription].
+	self assertCartNotEmpty: aCart.
 	
 	checkOutTotal := catalog keys sum: [:item |(catalog at: item) * (aCart occurrencesOf: item)] ifEmpty:[0].
+	self assertTrasactionAmountIsValid: checkOutTotal.
 	
-	merchantProcessor checkOut: checkOutTotal with: aNumber and: aDate from: anOwner.! !
+	statusCode:= merchantProcessor checkOut: checkOutTotal with: aNumber and: aDate from: anOwner.
+	
+	self assertRequestWasSuccesful: statusCode.
+	! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Cashier class' category: #TusLibros!
 Cashier class
 	instanceVariableNames: 'catalogue'!
+
+!Cashier class methodsFor: 'error handling' stamp: 'MS 11/25/2020 18:14:07'!
+InvalidTransactionAmountErrorDescription
+	^ 'Invalid Transaction Amount'! !
 
 !Cashier class methodsFor: 'error handling' stamp: 'MS 11/22/2020 15:23:30'!
 canNotCheckOutACartWithAnInvalidCardNumberErrorDescription
@@ -441,34 +551,77 @@ canNotCheckOutAnEmptyCartErrorDescription
 	
 	^'Cannot checkout an empty cart'.! !
 
+!Cashier class methodsFor: 'error handling' stamp: 'MS 11/25/2020 17:06:32'!
+merchantProcessorIsNotWorkingErrorDescription
+	
+	^'Merchant Processor is not working'.! !
 
-!Cashier class methodsFor: 'initialization' stamp: 'MS 11/19/2020 19:57:49'!
-acceptingItemsOf: aCatalog
 
-	^self new initializeAcceptingItemsOf: aCatalog ! !
-
-
-!Cashier class methodsFor: 'as yet unclassified' stamp: 'MS 11/22/2020 17:10:45'!
+!Cashier class methodsFor: 'initialization' stamp: 'MS 11/22/2020 17:10:45'!
 acceptingItemsOf: aCatalog for: aMerchantProcessor 
 
 	^self new initializeAcceptingItemsOf: aCatalog for: aMerchantProcessor.! !
 
 
-!classDefinition: #MerchantProcessor category: #TusLibros!
-Object subclass: #MerchantProcessor
+!classDefinition: #MerchantProcessorSimulator category: #TusLibros!
+Object subclass: #MerchantProcessorSimulator
 	instanceVariableNames: 'receivedChekoutAmount receivedChekoutCreditCardNumber receivedChekoutExpirationDate receivedChekoutCreditCardOwner'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!MerchantProcessor methodsFor: 'as yet unclassified' stamp: 'MS 11/22/2020 18:11:40'!
+!MerchantProcessorSimulator methodsFor: 'as yet unclassified' stamp: 'MS 11/25/2020 17:10:57'!
+checkOut: checkOutTotal with: aNumber and: aDate from: anOwner
+	
+	self subclassResponsibility.! !
+
+!MerchantProcessorSimulator methodsFor: 'as yet unclassified' stamp: 'MS 11/25/2020 17:11:11'!
+receivedCheckoutAmount
+	self subclassResponsibility.! !
+
+
+!classDefinition: #FailingMerchantProcessor category: #TusLibros!
+MerchantProcessorSimulator subclass: #FailingMerchantProcessor
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!FailingMerchantProcessor methodsFor: 'as yet unclassified' stamp: 'MS 11/25/2020 17:15:41'!
+checkOut: checkOutTotal with: aNumber and: aDate from: anOwner
+
+	receivedChekoutAmount:= checkOutTotal.
+	receivedChekoutCreditCardNumber:= aNumber .
+	receivedChekoutExpirationDate:= aDate. 
+	receivedChekoutCreditCardOwner:= anOwner. 
+
+	^400.! !
+
+!FailingMerchantProcessor methodsFor: 'as yet unclassified' stamp: 'MS 11/25/2020 17:15:02'!
+receivedCheckoutAmount
+
+	^receivedChekoutAmount .
+
+	! !
+
+
+!classDefinition: #WorkingMerchantProcessor category: #TusLibros!
+MerchantProcessorSimulator subclass: #WorkingMerchantProcessor
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!WorkingMerchantProcessor methodsFor: 'as yet unclassified' stamp: 'MS 11/25/2020 17:25:16'!
 checkOut: checkOutTotal with: aNumber and: aDate from: anOwner
 	
 	receivedChekoutAmount:= checkOutTotal.
 	receivedChekoutCreditCardNumber:= aNumber .
 	receivedChekoutExpirationDate:= aDate. 
-	receivedChekoutCreditCardOwner:= anOwner ! !
+	receivedChekoutCreditCardOwner:= anOwner.
+	
+	^0.! !
 
-!MerchantProcessor methodsFor: 'as yet unclassified' stamp: 'MS 11/22/2020 18:12:44'!
+!WorkingMerchantProcessor methodsFor: 'as yet unclassified' stamp: 'MS 11/25/2020 17:09:21'!
 receivedCheckoutAmount
 	^receivedChekoutAmount .! !
